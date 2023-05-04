@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Button, Modal, Grid, Icon, Header, Segment, Card} from 'semantic-ui-react'
+import { Button, Modal, Divider, Grid, Icon, Header, Segment, Card} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
+import Navbar from './Navbar'
 import axios from "axios";
+import Recipe from './Recipe'
 import RecipeInfo from './RecipeInfo'
-import { addToFavorites } from "./actions/rootActions"
+import { removeFavorite } from "./actions/rootActions"
 
-class Recipe extends Component {        
+
+class Favorite extends Component {        
 
     state = {
         modalOpen: false
@@ -20,8 +23,11 @@ class Recipe extends Component {
         this.setState({ modalOpen: false });
     }
 
-    addToFaves = () => {
-this.props.addToFavorites(this.props.recipe)
+
+
+    
+    removeFavorite = () => {
+        this.props.removeFavorite(this.props.recipe)
     }
 
     render() {
@@ -31,8 +37,8 @@ this.props.addToFavorites(this.props.recipe)
                     <img src= {i.image_url} onClick={this.handleOpen}/>
                     <Header as="h3" style={{marginTop: "2%", marginBottom:"2%"}}>
                         {i.name}
-                        <Button onClick={this.addToFaves} style={{marginTop:"-2%" ,backgroundColor:"white"}}floated="right" size="small">
-                            <Icon color="red" name="heart"/>
+                        <Button onClick={this.removeFavorite} style={{marginTop:"-2%" ,backgroundColor:"white"}}floated="right" size="small">
+                            <Icon color="red" name="close"/>
                     </Button>
                     </Header> 
                   
@@ -53,8 +59,9 @@ this.props.addToFavorites(this.props.recipe)
   
 const mapDispatchToProps = (dispatch) => {
     return { 
-      addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) }
+        removeFavorite: (recipe) =>  { dispatch(removeFavorite(recipe)) }
+
     }
   }
   
-  export default connect(null, mapDispatchToProps)(Recipe)
+  export default connect(null, mapDispatchToProps)(Favorite)

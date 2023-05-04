@@ -47,7 +47,7 @@ module Api::V1
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:text)
+      params.require(:review).permit(:text, :recipe_id)
     end
 end
 end

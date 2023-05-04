@@ -1,25 +1,16 @@
 import React, { Component } from 'react'
-import { Form, Grid, Button,  Segment, Input} from 'semantic-ui-react'
+import { Form, Grid, Button,  Segment} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { connect } from "react-redux"
 import axios from "axios";
 
-class CreateRecipe extends Component {
+class CreateRi extends Component {
 
 state = {
     name: '',
     description: '',
     image_url: '',
-    recipe_ingredients: [],
-    ingredient: '',
-    ingredientq:'',
-}
-
-addIngredient = (event, ingredient) => {
-    event.preventDefault()
-
-    this.state.recipe_ingredients.push(ingredient)
-    console.log(this.state.recipe_ingredients)
+    recipe_ingredients: []
 }
 
 handleChange = (event) => {
@@ -32,7 +23,7 @@ handleChange = (event) => {
 handleSubmit = (event, recipe) => {
     event.preventDefault()
     axios
-    .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url, recipe_ingredients: recipe.recipe_ingredients})
+    .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url})
     .then((response) => {
       console.log(response);
 })}
@@ -48,13 +39,11 @@ render() {
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
                         <h2 style={{fontWeight:"normal", marginTop:"1.5%"}}>Create Recipe</h2>
                         <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
-                        <Form.Button floated="right" inverted  style={{marginTop:"-8%", width:"80px", fontWeight:"normal", color:"white", backgroundColor:"teal"}}className="formButtons" content='Save'/>        
-
                             <Form.Input
                             required
                             type="text"
                             id="name"
-                            placeholder="Name"
+                            placeholder="name"
                             value={this.state.name} 
                             onChange={this.handleChange}
                             />
@@ -62,7 +51,7 @@ render() {
                             required
                             type="text"
                             id="image_url"
-                            placeholder="Image URL"
+                            placeholder="image_url"
                             value={this.state.image_url} 
                             onChange={this.handleChange}
                             />
@@ -75,35 +64,19 @@ render() {
                             onChange={this.handleChange}
                             />
                            
-                      <h3 style={{fontWeight:"normal"}}>Ingredients</h3>
-                      
-
-                        </Form>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient)}}>
-                 
-                    <Form.Group>
+                      Ingredients:<br></br>
                       <Form.Input
                             required
                             type="text"
                             id="ingredient"
-                            placeholder="Ingredient"
+                            placeholder="ingredient"
                             value={this.state.ingredient} 
                             onChange={this.handleChange}
                             />
-                                <Form.Input
-                      
-                            type="text"
-                            id="ingredientq"
-                            placeholder="Quantity"
-                            value={this.state.ingredientq} 
-                            onChange={this.handleChange}
-                            />
-
-
-                            <Form.Button >Add</Form.Button>
-                            <Button>Remove</Button>
-                            </Form.Group>
-                                 </Form>      
+                                        
+                            <br></br><br></br>
+                            <Form.Button inverted style={{width:"250px", fontWeight:"normal", color:"white", backgroundColor:"#585858"}}className="formButtons" content='SAVE RECIPE'/>        
+                        </Form>
                         <br></br>
                     </Segment>           
                 </Grid.Column>
@@ -112,4 +85,4 @@ render() {
     )
 }
 }
-export default CreateRecipe
+export default CreateRi

@@ -1,3 +1,4 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :text
+  attributes :id, :text, :recipe_id, :created_at
+  belongs_to :recipe
 end

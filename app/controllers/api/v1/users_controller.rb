@@ -9,6 +9,10 @@ module Api::V1
     render json: @users
   end
 
+  def profile
+    render json: {  user: current_user }, status: :accepted
+end
+
   # GET /users/1
   def show
     render json: @user
@@ -16,13 +20,14 @@ module Api::V1
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
 
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    if @user.valid?
+      @token = encode_token(user_id: @user.id)
+      render json: { user: @user, jwt: @token }
+  else
+      render json: { message: 'Failed to create user. Please try again.' }, status: :unprocessable_entity
+  end
   end
 
   # PATCH/PUT /users/1
@@ -47,7 +52,7 @@ module Api::V1
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 end
 end
