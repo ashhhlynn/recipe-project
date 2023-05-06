@@ -16,10 +16,10 @@ class RecipeIngredientsController < ApplicationController
 
   # POST /recipe_ingredients
   def create
-    @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
+    @recipe_ingredient = RecipeIngredient.create(recipe_ingredient_params)
 
     if @recipe_ingredient.save
-      render json: @recipe_ingredient, status: :created, location: @recipe_ingredient
+      render json: @recipe_ingredient, status: :created
     else
       render json: @recipe_ingredient.errors, status: :unprocessable_entity
     end

@@ -34,7 +34,6 @@ export const getRating = (ratings) => {
     }
 }
 
-
 export const addToFavorites = (recipe) => {
     return (dispatch) => {
         dispatch({ type: "ADD_TO_FAVORITES", recipe: recipe })     
@@ -47,7 +46,6 @@ export const removeFavorite = (recipe) => {
     }
 }
 
-
 export const createUser = (userData) => {
     return (dispatch) => {
         dispatch({ type: "SET_CURRENT_USER", user: userData })
@@ -55,19 +53,11 @@ export const createUser = (userData) => {
     }
 }
 
-
-
-
 export const checkUser = (u) => {
-    return (dispatch) => {
-     
-   
-            dispatch({ type: "SET_CURRENT_USER", user: u })
-
+    return (dispatch) => {  
+        dispatch({ type: "SET_CURRENT_USER", user: u })
     }
-
 }
-   
 
 export const logOut = () => {
     return (dispatch) => {

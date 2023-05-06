@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :users
       resources :recipe_ingredients
       resources :recipes
+      resources :ratings
+
     end
   end
   namespace :api do

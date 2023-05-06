@@ -9,7 +9,8 @@ import { addToFavorites } from "./actions/rootActions"
 class Recipe extends Component {        
 
     state = {
-        modalOpen: false
+        modalOpen: false, 
+        ratings: []
     }
     
     handleOpen = () => {
@@ -25,8 +26,7 @@ class Recipe extends Component {
     }
 
     render() {
-        const i = this.props.recipe
-        let r = this.props.rating
+        const i = this.props.recipe    
             return (
                 <>
                     <img style={{width:"270px", height:"260px"}}src= {i.image_url} onClick={this.handleOpen}/>
@@ -37,11 +37,11 @@ class Recipe extends Component {
                         <Icon style={{marginRight:"1000%"}} floated="right" size="large" color="red" name="heart"/>
                     </Button>
                     <Item floated="right">
-                    <Icon size="small" color="purple" name="star"/>
-                    <Icon size="small" color="purple" name="star"/>
-                    <Icon size="small" color="purple" name="star "/>
-                    <Icon size="small" color="purple" name="star outline"/>
-                    <Icon size="small" color="purple" name="star outline"/>
+                        <Icon size="small" color="purple" name="star"/>
+                        <Icon size="small" color="purple" name="star"/>
+                        <Icon size="small" color="purple" name="star "/>
+                        <Icon size="small" color="purple" name="star outline"/>
+                        <Icon size="small" color="purple" name="star outline"/>
                     </Item>
                     <Modal 
                          open={this.state.modalOpen}
@@ -63,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
   
-  export default connect(null, mapDispatchToProps)(Recipe)
+export default connect(null, mapDispatchToProps)(Recipe)

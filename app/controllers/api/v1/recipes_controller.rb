@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
 
-    render json: @recipes, include: [:reviews, :recipe_ingredients]
+    render json: @recipes, include: [:reviews, :recipe_ingredients, :ratings]
   end
 
   # GET /recipes/1
@@ -20,8 +20,9 @@ class RecipesController < ApplicationController
     params[:recipe_ingredients].each do |ri|
       RecipeIngredient.create(recipe_id: @recipe.id, name: ri)
     end 
+
     if @recipe.save
-      render json: @recipe, status: :created, location: @recipe
+      render json: @recipe, status: :created
     else
       render json: @recipe.errors, status: :unprocessable_entity
     end

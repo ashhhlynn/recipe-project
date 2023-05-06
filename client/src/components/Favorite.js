@@ -27,25 +27,20 @@ class Favorite extends Component {
     }
 
     render() {
-        const i = this.props.recipe
-
-     
+        const i = this.props.recipe     
             return (
                 <>
-                    <img style={{width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>
-                   
-        <h3 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
-            {i.name} 
-        </h3>  
-                   
-         <Button onClick={this.removeFavorite} style={{marginTop:"-14%", background:"none"}} >
-                            <Icon style={{marginRight:"1000%"}}floated="right" color="red" size="large" name="close"/>
-                        </Button>
-               
+                <img style={{width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
+                <h3 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
+                    {i.name} 
+                </h3>                  
+                <Button onClick={this.removeFavorite} style={{marginTop:"-14%", background:"none"}} >
+                    <Icon style={{marginRight:"1000%"}}floated="right" color="red" size="large" name="close"/>
+                </Button>             
                     <Modal 
-                         open={this.state.modalOpen}
-                         onClose={this.handleClose}
-                         closeIcon
+                        open={this.state.modalOpen}
+                        onClose={this.handleClose}
+                        closeIcon
                     >
                         <Modal.Content >
                             <RecipeInfo recipe={i} key={i.id} handleClose={this.handleClose} />

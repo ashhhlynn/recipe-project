@@ -38,7 +38,7 @@ class Signup extends Component {
                     </Grid.Column>
                     <Grid.Column>
                         <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-                            <h2 style={{fontWeight:"normal"}}>Register</h2>
+                            <h1 style={{}}>Register</h1>
                             <Form onSubmit={ (event) => {this.handleSubmit(event, this.state)} }>              
                             <Form.Input
                             required

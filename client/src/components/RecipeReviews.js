@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Icon, Menu} from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import { connect } from "react-redux"
 
 class RecipeReviews extends Component {
 
@@ -15,7 +13,7 @@ class RecipeReviews extends Component {
         })
         return (
             <>
-    {reviews}
+                {reviews}
             </>
         )
     }

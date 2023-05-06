@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_18_054833) do
+ActiveRecord::Schema.define(version: 2023_05_06_092856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "score"
+    t.string "recipe_id"
+    t.string "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "recipe_ingredients", force: :cascade do |t|
     t.string "name"

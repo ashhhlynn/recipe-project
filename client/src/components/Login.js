@@ -45,7 +45,7 @@ class Login extends Component {
                 </Grid.Column>
                 <Grid.Column>
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-            <h2 style={{fontWeight:"normal"}}>Sign In</h2>
+                    <h1 style={{}}>Sign In</h1>
             <Form onSubmit={ (event) => { this.handleSubmit(event, this.state)}}>
                 <Form.Input
                     required

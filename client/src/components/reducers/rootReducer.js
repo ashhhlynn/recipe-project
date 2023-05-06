@@ -89,15 +89,12 @@ const rootReducer = (state = initialState, action) => {
                         favorites: newFaves,
                         loading: false,
                     };
-
         
         case "ADD_RECIPE":
             return {
                 ...state,
                 recipes: [...state.recipes, action.data],
             };
-
-    
 
         case "DELETE_RECIPE":
             let recipesNew = state.recipes.filter(item => item.id !== action.id);
@@ -107,9 +104,6 @@ const rootReducer = (state = initialState, action) => {
                 loading: false
             };
 
-    
-
-       
         case 'SET_CURRENT_USER':
             return {
                 ...state, 
@@ -122,10 +116,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state, 
                 currentUser: [], 
                 loading: false,
-
             };
-         
- 
 
         default:
             return state;

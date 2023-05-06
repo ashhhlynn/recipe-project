@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
 import React, { Component } from 'react'
@@ -8,25 +7,19 @@ import CreateRecipe from './components/CreateRecipe'
 import Profile from './components/Profile'
 import Login from './components/Login'
 import Home from './components/Home'
-
 import Signup from './components/Signup'
 import Favorites from './components/Favorites'
 import { fetchRecipes } from "./components/actions/rootActions"
-
-import Navbar from './components/Navbar'
 import Head from './components/Head'
 import { checkUser } from "./components/actions/rootActions"
 import { Container } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { connect } from "react-redux"
 
-
 class App extends Component {
-
 
   componentDidMount = () => {
     if (localStorage.token) {
-
       const token = localStorage.token;
       console.log(token)
       axios
@@ -41,8 +34,7 @@ class App extends Component {
         }
       })
       .catch((error) => console.log(error));
-      this.props.checkUser()}
-
+    }
     axios
     .get("api/v1/recipes.json")
       .then((response) => {
@@ -50,15 +42,9 @@ class App extends Component {
           this.props.fetchRecipes(response.data)
       })
     .catch((error) => console.log(error));
-
-    }
+  }
   
-
-  
-
 render() {
-
-
   return (
     <Router>
     <div className="App">   
@@ -72,14 +58,12 @@ render() {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/favorites" element={<Favorites />} />
           <Route exact path="/" element={<Home />} />
-
         </Routes>
       </Container>
     </div>
   </Router>
     )}
-
-  }
+}
   
 const mapDispatchToProps = (dispatch) => {
   return { 

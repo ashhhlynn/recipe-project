@@ -15,7 +15,9 @@
   font-weight: "normal" !important;
 
 }
-
+.ui.menu.item  {
+color: "grey" !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

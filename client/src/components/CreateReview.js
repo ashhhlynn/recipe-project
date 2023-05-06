@@ -19,7 +19,6 @@ class CreateReview extends Component {
         .then((response) => {
             console.log(response);
         })
-
         let x = this.state.stars
         axios
         .post("/api/v1/ratings", { score: x, recipe_id: i})
@@ -43,35 +42,30 @@ class CreateReview extends Component {
     }
     
     render() {
-    
         return (
             <>
-
-<center>               
-
+            <center>               
                 <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
-                <Icon size="big" color="purple" name="star outline"/>
-          <Icon  onClick={this.handleAdd} size="big" color="purple" name="star outline"/>
-          <Icon   onClick={this.handleAdd}  size="big" color="purple"  name="star outline"/>
-          <Icon onClick={this.handleAdd}  size="big" color="purple" name="star outline"/>
-          <Icon size="big" color="purple" name="star outline"/><br></br><br></br><br></br>
-                   <Form.TextArea
-                   style={{width:"300px"}}
+                    <Icon size="big" color="purple" name="star outline"/>
+                    <Icon onClick={this.handleAdd} size="big" color="purple" name="star outline"/>
+                    <Icon onClick={this.handleAdd}  size="big" color="purple"  name="star outline"/>
+                    <Icon onClick={this.handleAdd}  size="big" color="purple" name="star outline"/>
+                    <Icon size="big" color="purple" name="star outline"/><br></br><br></br><br></br>
+                    <Form.TextArea
+                            style={{width:"300px"}}
                             required
-                        
                             type="text"
                             id="text"
                             placeholder=""
                             value={this.state.text} 
                             onChange={this.handleChange}
                     />
-                <Form.Button basic color="purple" circular style={{width:"130px", fontWeight:"normal", color:"purple"}}className="formButtons" content='Submit'/>        
-            
-                </Form>   </center>
+                    <Form.Button basic color="purple" circular style={{width:"130px", fontWeight:"normal", color:"purple"}}className="formButtons" content='Submit'/>        
+                </Form>   
+            </center>
             </>
         )
     }
 }
-
 
 export default CreateReview

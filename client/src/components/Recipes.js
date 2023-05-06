@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
+import { Button, Dropdown, Grid, Segment, Card, Search, Item, Header} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import axios from "axios";
@@ -28,9 +28,6 @@ class Recipes extends Component {
       .then((response) => {
           console.log(response);
           this.props.fetchRecipes(response.data)
-          this.setState({
-            recipes: response.data,
-          });
       })
     .catch((error) => console.log(error));
 
@@ -43,20 +40,12 @@ class Recipes extends Component {
           });
       })
     .catch((error) => console.log(error));
-
-    axios
-    .get("api/v1/ratings.json")
-      .then((response) => {
-          console.log(response);
-         this.props.getRating(response.data)
-      })
-    .catch((error) => console.log(error));
   }
 
   sortItems = (event) => {
     console.log(event.target.id)
     if (event.target.id === "1" ) { 
-        this.props.filterIngredient()
+        this.props.sortRating()
     }
     else if (event.target.id === "2" ) { 
         this.props.sortDate()
@@ -67,7 +56,7 @@ class Recipes extends Component {
     else if (event.target.id === "4" ) { 
         this.props.sortNumberReviews()
     }
-}
+  }
 
   render() {
     const recipeGroup = this.props.recipes.map( i => {
@@ -91,24 +80,28 @@ class Recipes extends Component {
             <Navbar/>
           </Grid.Column>
           <Grid.Column>        
-         <Item style={{width:"850px", marginLeft:"3.5%"}}>
-             <Header floated="right" style={{marginTop:"0%"}}>
+          <Item style={{width:"850px", marginLeft:"3.5%"}}>
+            <br></br>
+            <Search 
+              size="huge"
+              placeholder='Search...'
+            />
+            <br></br>
+            <Header floated="right" style={{marginTop:"0%"}}>
             <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Name</Button> 
             <Button id="2"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Date</Button> 
             <Button id="1"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Rating</Button> 
             <Button id="4"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Reviews</Button> 
             </Header>  
-             <Dropdown
+            <Dropdown
             placeholder='Filter by Ingredient'
-           style={{minWidth:"350px"}}
+            style={{minWidth:"350px"}}
             compact
-          
             selection
-           size="tiny"
-           onChange={this.handleChange}
+            size="tiny"
             options={riGroup}
             /> 
-      </Item>
+          </Item>
             <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
               {recipeGroup}
             </Card.Group>
@@ -124,7 +117,6 @@ const mapStateToProps = (state) => {
     recipes: state.recipes,
     rating: state.rating
   }
-
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -134,8 +126,7 @@ const mapDispatchToProps = (dispatch) => {
     sortNumberReviews: () =>  { dispatch(sortNumberReviews()) },
     sortDate: () =>  { dispatch(sortDate()) },
     filterIngredient: () =>  { dispatch(filterIngredient()) },
-   getRating: (ratings) =>  { dispatch(getRating(ratings)) }
-
+    getRating: (ratings) =>  { dispatch(getRating(ratings)) }
   }
 }
 
