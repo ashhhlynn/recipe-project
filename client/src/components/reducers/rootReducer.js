@@ -17,11 +17,21 @@ const rootReducer = (state = initialState, action) => {
 
             case "ADD_TO_FAVORITES":
                 console.log(action.recipe)
+                if (!state.favorites.find(f=> f.id === action.recipe.id))
+                {
                 return {
                     ...state,
                     favorites: [...state.favorites, action.recipe],
                     loading: false,
-                };
+                }
+            }
+            else{
+                return {
+                    ...state,
+                    favorites: [...state.favorites],
+                    loading: false,
+                }
+            };
     
                 case "REMOVE_FAVORITE":
                     console.log(action.recipe)

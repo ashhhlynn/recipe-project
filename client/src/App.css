@@ -1,5 +1,19 @@
 .App {
   text-align: center;
+ font-family: "Lato" !important;
+}
+
+.h1 {
+  font-weight: "normal" !important;
+}
+
+.h2 {
+  font-weight: "normal" !important;
+}
+
+.ui.header {
+  font-weight: "normal" !important;
+
 }
 
 .App-logo {
@@ -35,4 +49,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.ui.header {
+  font-weight: "normal" !important;
 }

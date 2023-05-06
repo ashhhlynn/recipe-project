@@ -19,14 +19,14 @@ handleChange = (event) => {
     })
 }
 
-
 handleSubmit = (event, recipe) => {
     event.preventDefault()
     axios
     .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url})
     .then((response) => {
       console.log(response);
-})}
+    })
+}
 
 render() {
     return ( 
@@ -47,7 +47,7 @@ render() {
                             value={this.state.name} 
                             onChange={this.handleChange}
                             />
-                                   <Form.Input
+                            <Form.Input
                             required
                             type="text"
                             id="image_url"
@@ -64,25 +64,25 @@ render() {
                             onChange={this.handleChange}
                             />
                            
-                      Ingredients:<br></br>
-                      <Form.Input
+                        Ingredients:<br></br>
+                        <Form.Input
                             required
                             type="text"
                             id="ingredient"
                             placeholder="ingredient"
                             value={this.state.ingredient} 
                             onChange={this.handleChange}
-                            />
-                                        
-                            <br></br><br></br>
-                            <Form.Button inverted style={{width:"250px", fontWeight:"normal", color:"white", backgroundColor:"#585858"}}className="formButtons" content='SAVE RECIPE'/>        
-                        </Form>
-                        <br></br>
-                    </Segment>           
-                </Grid.Column>
-            </Grid>
+                        />                
+                        <br></br><br></br>
+                        <Form.Button inverted style={{width:"250px", fontWeight:"normal", color:"white", backgroundColor:"#585858"}}className="formButtons" content='SAVE RECIPE'/>        
+                    </Form>
+                    <br></br>
+                </Segment>           
+            </Grid.Column>
+        </Grid>
         </Segment>
     )
 }
 }
+
 export default CreateRi

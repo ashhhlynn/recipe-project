@@ -7,6 +7,7 @@ import Recipes from './components/Recipes'
 import CreateRecipe from './components/CreateRecipe'
 import Profile from './components/Profile'
 import Login from './components/Login'
+import Home from './components/Home'
 
 import Signup from './components/Signup'
 import Favorites from './components/Favorites'
@@ -52,7 +53,7 @@ render() {
     <Router>
     <div className="App">   
       <Head />
-      <Container style={{marginTop:"5%"}}>
+      <Container style={{marginTop:"1.3%"}}>
         <Routes>
           <Route exact path="/recipes" element={<Recipes />} />
           <Route exact path="/createrecipe" element={<CreateRecipe />} />
@@ -60,6 +61,7 @@ render() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/favorites" element={<Favorites />} />
+          <Route exact path="/" element={<Home />} />
 
         </Routes>
       </Container>

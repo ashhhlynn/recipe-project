@@ -5,25 +5,23 @@ import { connect } from "react-redux"
 
 class Head extends Component {
 
-    
     render() {
         return (
             <div>
-                <img height="220px" width="1250px"src="https://downtownmidland.com/wp-content/uploads/2020/07/Food_Header2.jpg"/>
+                <Menu icon="labeled" style={{marginTop:"0%"}} >
+                    <h1 style={{letterSpacing: "1.5px", fontWeight: "normal", fontFamily:"Lato", color: "purple", fontSize:"40px", marginTop:"2%", marginLeft:"3%"}}>
+                    Cookbook.</h1>
+                    <Menu.Menu style={{marginTop:"1%"}} position="right">
+                    <Menu.Item ><Icon color="grey" size="large" name="home"></Icon>Home</Menu.Item>
 
-                <Menu style={{marginTop:"-8%"}} >
-<h1 style={{fontFamily:"segoe Script", fontSize:"44px", marginTop:"2%", marginLeft:"23%", marginBottom:"1%"}}>
-                    The Cookbook</h1>
-                <Menu.Menu position="middle">
-                    <Menu.Item position="right">Login</Menu.Item>
-                    <Menu.Item >Signup</Menu.Item>
-                    <Menu.Item>Logout</Menu.Item>
+                        <Menu.Item ><Icon color="grey" size="large" name="user plus"></Icon>Sign Up</Menu.Item>
+                        <Menu.Item><Icon size="large" color="grey" name="sign-in"></Icon>Sign In</Menu.Item>
+                        <Menu.Item><Icon size="large" color="grey" name="sign-out"></Icon>Sign Out</Menu.Item>
                     </Menu.Menu>
                 </Menu>
             </div>
         )
     }
 }
-
 
 export default Head

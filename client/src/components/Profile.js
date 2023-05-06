@@ -60,13 +60,19 @@ class Profile extends Component {
             return (
               <Card style={{textAlign: "left"}}>
                 <img src= {i.image_url}/>
-                <Header as="h3" style={{marginBottom:"-1%"}}>
+                <Header as="h3" style={{marginTop: "2%", marginBottom:"2%"}}>
                   {i.name}
+                  <Button.Group size="small" floated="right" style={{marginTop:"-2%", backgroundColor:"white"}}>
+                  <Button floated="right" size="small" style={{backgroundColor:"white", width:"50px"}}onClick={this.removeRecipe(i.id)}>
+                    <Icon color="purple" name="write"></Icon></Button>
+                  
+                  <Button style={{backgroundColor:"white", width:"50px"}}floated="right" size="small" onClick={this.removeRecipe(i.id)}>
+                  <Icon color="red" name="close"></Icon></Button>
+                  </Button.Group>
                 </Header> 
-                <i style={{marginTop:"0%"}}>{i.description}</i>
-                <Button onClick={this.removeRecipe(i.id)}>X</Button>
                 <br></br><br></br>  
               </Card>
+
             )
           })
           const reviewGroup = this.state.reviews.map( i => {
@@ -86,15 +92,16 @@ class Profile extends Component {
                 <Grid.Column style={{width:"300px"}}> 
                     <Navbar/>
                 </Grid.Column>
-                <Grid.Column  style={{marginTop: "1%", marginLeft:"5%"}}>
-                    <h2>Recipes</h2>
-                    <Divider></Divider>
-                    <Card.Group itemsPerRow={3} >
+                <Grid.Column >
+                  <center>
+                    <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Recipes
+                    <Divider></Divider></h2></center>
+                    <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
                      {recipeGroup}
                      </Card.Group>
                         <br></br>
-                        <h2>Reviews</h2>
-                        <Divider></Divider>
+                        <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Reviews
+                    <Divider></Divider></h2>
                         {reviewGroup}
                 </Grid.Column>
             </Grid>
