@@ -72,7 +72,7 @@ class Signup extends Component {
                     value={this.state.password_confirmation} 
                     onChange={this.handleChange}
                 />
-                <Form.Button content="Submit"/>
+                <Form.Button circular basic color="purple" content="Submit"/>
             </Form>
 
             </Segment>

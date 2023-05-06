@@ -16,10 +16,21 @@ export const sortNumberReviews = () => {
     }
 }
 
+export const filterIngredient = (name) => {
+    return (dispatch) => {
+        dispatch({ type: "FILTER_INGREDIENT", name })
+    }
+}
 
 export const sortDate = () => {
     return (dispatch) => {
         dispatch({ type: "SORT_DATE" })
+    }
+}
+
+export const getRating = (ratings) => {
+    return (dispatch) => {
+        dispatch({ type: "GET_RATING", ratings })
     }
 }
 

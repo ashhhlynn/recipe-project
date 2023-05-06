@@ -62,7 +62,7 @@ class Login extends Component {
                     value={this.state.password} 
                     onChange={this.handleChange}
                 /> 
-                <Form.Button content='Submit' />
+                <Form.Button circular basic color="purple" content='Submit' />
             </Form>
             </Segment>
                 

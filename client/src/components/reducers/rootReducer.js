@@ -1,8 +1,10 @@
 const initialState = {
     recipes: [],
+    filteredRecipes: [],
     currentUser: [],
     loading: false,
-    favorites: []
+    favorites: [],
+    rating: ''
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,6 +16,21 @@ const rootReducer = (state = initialState, action) => {
                 recipes: action.recipes,
                 loading: false,
             };
+
+
+     case "GET_RATING":
+        console.log(action.ratings)
+        let x = action.ratings.map(r => r.score)
+        const totalScores = x.reduce(
+            (previousScore, currentScore, index)=>previousScore+currentScore, 
+            0);
+            console.log(totalScores); //returns 403
+        return {
+            ...state,
+            rating: totalScores,
+            loading: false,
+        };
+
 
             case "SORT_A_TO_Z":
                 console.log(...state.recipes)
@@ -37,6 +54,15 @@ const rootReducer = (state = initialState, action) => {
                         }; 
     
 
+                        case "FILTER_INGREDIENT":
+                            console.log(...state.recipes)
+                            let filteredRecipes = state.recipes.filter(f => f.name === action.name)
+
+                            return {
+                                ...state,
+                     recipes:  filteredRecipes
+                            }; 
+        
             case "ADD_TO_FAVORITES":
                 console.log(action.recipe)
                 if (!state.favorites.find(f=> f.id === action.recipe.id))

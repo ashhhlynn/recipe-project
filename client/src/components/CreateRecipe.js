@@ -7,10 +7,13 @@ import axios from "axios";
 class CreateRecipe extends Component {
 
 state = {
+    id:'',
     name: '',
     description: '',
     image_url: '',
     recipe_ingredients: [],
+    ingredients: [],
+
     ingredient1: '',
     quantity1:'',
     ingredient2: '',
@@ -25,14 +28,15 @@ state = {
 
 addIngredient = (event, ingredient) => {
     event.preventDefault()
-    this.state.recipe_ingredients.push(ingredient)
-    console.log(this.state.recipe_ingredients)
-    let q = this.state.quantity1
-    axios
-    .post("/api/v1/recipe_ingredients", { recipe_id: 100, name: ingredient, quantity: q})
+let i = this.state.ingredient1
+let q = this.state.quantity1
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: 25})
     .then((response) => {
       console.log(response);
-    })
+this.state.ingredients.push(response.data.id)
+})
+console.log(this.state.ingredients)
 }
 
 removeIngredient = () => {
@@ -91,7 +95,7 @@ render() {
                             onChange={this.handleChange}
                             />    
                         <h2 >Ingredients</h2>
-                    </Form><br></br>
+                    </Form><br></br><center>
                     <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient1)}}>
                         <Form.Group>
                             <Form.Input
@@ -177,9 +181,9 @@ render() {
                             <Button basic color="purple">-</Button>
                         </Form.Group>
                         </Form>
-                        
+                        <center>
                         <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient5)}}>
-
+                      
                         <Form.Group>
                             <Form.Input
                             type="text"
@@ -198,7 +202,8 @@ render() {
                             <Form.Button basic color="purple">+</Form.Button>
                             <Button basic color="purple">-</Button>
                         </Form.Group>
-                    </Form>      
+                     
+                    </Form>      </center>   </center>
                     <br></br>
                 </Segment>           
             </Grid.Column>
