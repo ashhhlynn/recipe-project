@@ -11,6 +11,7 @@ import Home from './components/Home'
 
 import Signup from './components/Signup'
 import Favorites from './components/Favorites'
+import { fetchRecipes } from "./components/actions/rootActions"
 
 import Navbar from './components/Navbar'
 import Head from './components/Head'
@@ -29,7 +30,6 @@ class App extends Component {
       const token = localStorage.token;
       console.log(token)
       axios
-
       .get("/api/v1/profile.json")
       .then((response) => {
           if (response.message) {
@@ -41,10 +41,20 @@ class App extends Component {
         }
       })
       .catch((error) => console.log(error));
-      this.props.checkUser()
-    }       
-  }
+      this.props.checkUser()}
 
+    axios
+    .get("api/v1/recipes.json")
+      .then((response) => {
+          console.log(response);
+          this.props.fetchRecipes(response.data)
+      })
+    .catch((error) => console.log(error));
+
+    }
+  
+
+  
 
 render() {
 
@@ -73,7 +83,8 @@ render() {
   
 const mapDispatchToProps = (dispatch) => {
   return { 
-    checkUser: (user) =>  { dispatch(checkUser(user)) }
+    checkUser: (user) =>  { dispatch(checkUser(user)) },
+    fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }, 
   }
 }
 

@@ -4,6 +4,26 @@ export const fetchRecipes = (recipes) => {
     }
 }
 
+export const sortAToZ = () => {
+    return (dispatch) => {
+        dispatch({ type: "SORT_A_TO_Z" })
+    }
+}
+
+export const sortNumberReviews = () => {
+    return (dispatch) => {
+        dispatch({ type: "SORT_NUMBER_REVIEWS" })
+    }
+}
+
+
+export const sortDate = () => {
+    return (dispatch) => {
+        dispatch({ type: "SORT_DATE" })
+    }
+}
+
+
 export const addToFavorites = (recipe) => {
     return (dispatch) => {
         dispatch({ type: "ADD_TO_FAVORITES", recipe: recipe })     

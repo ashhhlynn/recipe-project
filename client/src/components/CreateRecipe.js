@@ -63,7 +63,7 @@ render() {
                 </Grid.Column>
                 <Grid.Column>
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-                        <h2 style={{fontWeight:"normal", marginTop:"1.5%"}}>Share Recipe</h2>
+                        <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
                         <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
                         <Form.Button floated="right" inverted circular color="white" style={{marginTop:"-8%", width:"80px", fontWeight:"normal", color:"white", backgroundColor:"purple"}}className="formButtons" content='Save'/>        
                             <Form.Input
@@ -90,7 +90,7 @@ render() {
                             value={this.state.description} 
                             onChange={this.handleChange}
                             />    
-                        <h3 style={{fontWeight:"normal"}}>Ingredients</h3>
+                        <h2 >Ingredients</h2>
                     </Form><br></br>
                     <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient1)}}>
                         <Form.Group>

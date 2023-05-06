@@ -15,6 +15,28 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
+            case "SORT_A_TO_Z":
+                console.log(...state.recipes)
+                return {
+                    ...state,
+                    recipes: [...state.recipes.slice().sort((item1, item2) => item2.name < item1.name ? 1 : -1)]
+                }; 
+
+                case "SORT_NUMBER_REVIEWS":
+                    console.log(...state.recipes)
+                    return {
+                        ...state,
+             recipes: [...state.recipes.slice().sort((item1, item2) => item2.reviews.length > item1.reviews.length ? 1 : -1)]
+                    }; 
+
+                    case "SORT_DATE":
+                        console.log(...state.recipes)
+                        return {
+                            ...state,
+                 recipes: [...state.recipes.slice().sort((item1, item2) => item2.created_at > item1.created_at ? 1 : -1)]
+                        }; 
+    
+
             case "ADD_TO_FAVORITES":
                 console.log(action.recipe)
                 if (!state.favorites.find(f=> f.id === action.recipe.id))

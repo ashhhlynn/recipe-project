@@ -8,8 +8,8 @@ class Head extends Component {
     render() {
         return (
             <div>
-                <Menu icon="labeled" style={{marginTop:"0%"}} >
-                    <h1 style={{letterSpacing: "1.5px", fontWeight: "normal", fontFamily:"Lato", color: "purple", fontSize:"40px", marginTop:"2%", marginLeft:"3%"}}>
+                <Menu borderless icon="labeled" style={{marginTop:"0%"}} >
+                    <h1 style={{letterSpacing: "1.5px", fontFamily:"Lato", color: "purple", fontSize:"40px", marginTop:"2%", marginLeft:"3%"}}>
                     Cookbook.</h1>
                     <Menu.Menu style={{marginTop:"1%"}} position="right">
                     <Menu.Item ><Icon color="grey" size="large" name="home"></Icon>Home</Menu.Item>

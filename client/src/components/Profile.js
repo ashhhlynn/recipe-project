@@ -94,15 +94,17 @@ class Profile extends Component {
                 </Grid.Column>
                 <Grid.Column >
                   <center>
-                    <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Recipes
+                    <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Recipes Created
                     <Divider></Divider></h2></center>
                     <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
                      {recipeGroup}
                      </Card.Group>
                         <br></br>
-                        <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Reviews
+                        <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Your Reviews
                     <Divider></Divider></h2>
                         {reviewGroup}
+                        <h2 style={{fontWeight:"normal", marginLeft:"57%"}}>Your Ratings
+                    <Divider></Divider></h2>
                 </Grid.Column>
             </Grid>
         </Segment>

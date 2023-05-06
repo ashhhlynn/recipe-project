@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Segment, Card, Item} from 'semantic-ui-react'
+import { Button, Dropdown, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import axios from "axios";
 import Recipe from './Recipe'
 import { fetchRecipes } from "./actions/rootActions"
+import { sortAToZ } from "./actions/rootActions"
+import { sortNumberReviews } from "./actions/rootActions"
+import { sortDate } from "./actions/rootActions"
 
 class Recipes extends Component {        
 
@@ -39,20 +42,36 @@ class Recipes extends Component {
     .catch((error) => console.log(error));
   }
 
+  sortItems = (event) => {
+    console.log(event.target.id)
+    if (event.target.id === "1" ) { 
+        this.props.sortHighPrice()
+    }
+    else if (event.target.id === "2" ) { 
+        this.props.sortDate()
+    }
+    else if (event.target.id === "3" ) { 
+        this.props.sortAToZ()
+    }
+    else if (event.target.id === "4" ) { 
+        this.props.sortNumberReviews()
+    }
+}
+
+
   render() {
-    const recipeGroup = this.state.recipes.map( i => {
+    const recipeGroup = this.props.recipes.map( i => {
       return (
         <Card >
           <Recipe recipe={i} key={i.id}/>
         </Card>    
       )
     })
-
     const riGroup = this.state.recipe_ingredients.map( i => {
       return (
         <div>
-{i.name}
-          </div>
+          {i.name}
+        </div>
       )
     })
     return (
@@ -62,20 +81,27 @@ class Recipes extends Component {
             <Navbar/>
           </Grid.Column>
           <Grid.Column>
-            <Item style={{marginLeft:"50%"}}>
-            <Dropdown
-            placeholder='Ingredient'
-            fluid
+            
+         <Item style={{width:"850px", marginLeft:"3.5%"}}>
+             <Header floated="right" style={{marginTop:"0%"}}>
+            <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Name</Button> 
+            <Button id="2"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Date</Button> 
+            <Button id="1"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Rating</Button> 
+
+            <Button id="4"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Reviews</Button> 
+            </Header>  
+          
+             <Dropdown
+            placeholder='Filter by Ingredient'
+           style={{minWidth:"350px"}}
+            compact
             search
             selection
+           size="tiny"
             options={riGroup}
             /> 
-            <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Name</Button> 
-            <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Date</Button> 
-            <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Reviews</Button> 
-
-
-            </Item>
+</Item>
+      
           
             <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
               {recipeGroup}
@@ -87,10 +113,21 @@ class Recipes extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { 
+    recipes: state.recipes,
+  }
+
+}
+
 const mapDispatchToProps = (dispatch) => {
   return { 
-    fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }
+    fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }, 
+    sortAToZ: () =>  { dispatch(sortAToZ()) },
+    sortNumberReviews: () =>  { dispatch(sortNumberReviews()) },
+    sortDate: () =>  { dispatch(sortDate()) }
+
   }
 }
 
-export default connect(null, mapDispatchToProps)(Recipes)
+export default connect(mapStateToProps, mapDispatchToProps)(Recipes)
