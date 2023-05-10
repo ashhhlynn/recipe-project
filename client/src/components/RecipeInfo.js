@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, Icon, Image, Grid, Form, Segment, Divider} from 'semantic-ui-react'
+import { Item, Icon, Image, Grid, Rating, Segment, Divider} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import axios from "axios";
@@ -7,8 +7,30 @@ import RecipeReviews from './RecipeReviews'
 import CreateReview from './CreateReview'
 
 class RecipeInfo extends Component {
-  
+    state = {
+        ratings: [],
+        avg: 0
+    }
+
+
+    componentDidMount = () => {
+        this.props.recipe.ratings.map(r => {
+
+this.state.ratings.push(r.score)
+
+        })
+        console.log(this.state.ratings)
+        const avg = this.state.ratings.reduce((a,b) => a + b,0) / this.state.ratings.length;
+        console.log(avg)
+        let x = Math.round(avg)
+        console.log(x)
+        this.setState({avg: x})
+
+    }
+    
     render() {
+        let x = this.state.avg
+        const { rating } = this.state.avg
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
             return (
                 <div>{ri.name}</div>
@@ -25,14 +47,10 @@ class RecipeInfo extends Component {
                 </center>
             </Grid.Column>
             <Grid.Column>
-            <center>
+            <center><br></br>
                 <Item style={{marginRight:"17%"}}>
-                <br></br>
-                    <Icon size="big" color="purple" name="star "/>
-                    <Icon size="big" color="purple" name="star "/>
-                    <Icon size="big" color="purple"  name="star "/>
-                    <Icon size="big" color="purple" name="star outline"/>
-                    <Icon size="big" color="purple" name="star outline"/>
+                <Rating size="massive" rating={this.state.avg} disabled defaultRating={x} maxRating={5} />
+
                     <h2>Ingredients</h2>
                     <h3 style={{fontWeight:"normal"}}> {recipe_ingredients}</h3>
                 </Item>

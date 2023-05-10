@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Grid, Button,  Segment, Input} from 'semantic-ui-react'
+import { Form, Grid, Button,  Segment, Item, Input} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { connect } from "react-redux"
 import axios from "axios";
@@ -96,6 +96,7 @@ render() {
                             />    
                         <h2 >Ingredients</h2>
                     </Form><br></br><center>
+                        <Item style={{marginLeft: "6.5%"}}>
                     <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient1)}}>
                         <Form.Group>
                             <Form.Input
@@ -203,7 +204,7 @@ render() {
                             <Button basic color="purple">-</Button>
                         </Form.Group>
                      
-                    </Form>      </center>   </center>
+                    </Form>    </center> </Item>  </center>
                     <br></br>
                 </Segment>           
             </Grid.Column>

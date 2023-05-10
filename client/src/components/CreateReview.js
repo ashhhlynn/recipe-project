@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { Icon, Form, Button} from 'semantic-ui-react'
+import { Icon, Form, Button, Rating, Label} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import axios from "axios";
+import Stars from './Stars'
 
 class CreateReview extends Component {
 
     state = {
-        text: '',
-        stars: 0
+      
+      
     }
-    
     handleSubmit = (event, review) => {
         event.preventDefault()
         let i = this.props.recipe.id
@@ -38,22 +38,29 @@ class CreateReview extends Component {
         console.log(s)
         this.setState ({
             stars: s
-        })
-    }
+        })}
     
+  
+    
+        handleRating = (e, { rating, maxRating }) =>
+        this.setState({ rating, maxRating })
+
     render() {
+
+
         return (
             <>
-            <center>               
+            <center>          
+                    
                 <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
-                    <Icon size="big" color="purple" name="star outline"/>
-                    <Icon onClick={this.handleAdd} size="big" color="purple" name="star outline"/>
-                    <Icon onClick={this.handleAdd}  size="big" color="purple"  name="star outline"/>
-                    <Icon onClick={this.handleAdd}  size="big" color="purple" name="star outline"/>
-                    <Icon size="big" color="purple" name="star outline"/><br></br><br></br><br></br>
+
+
+<Rating color="purple" size="massive" maxRating={5} onRate={this.handleRating} />
+        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+
+
                     <Form.TextArea
                             style={{width:"300px"}}
-                            required
                             type="text"
                             id="text"
                             placeholder=""

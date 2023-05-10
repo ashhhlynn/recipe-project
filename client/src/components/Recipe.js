@@ -12,7 +12,7 @@ class Recipe extends Component {
         modalOpen: false, 
         ratings: []
     }
-    
+
     handleOpen = () => {
         this.setState({ modalOpen: true });
     }
