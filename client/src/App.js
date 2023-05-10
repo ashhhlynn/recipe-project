@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { Component } from 'react'
 import './App.css';
 import Recipes from './components/Recipes'
-import CreateRecipe from './components/CreateRecipe'
+import CreateRi from './components/CreateRi'
 import Profile from './components/Profile'
 import Login from './components/Login'
 import Home from './components/Home'
@@ -52,7 +52,7 @@ render() {
       <Container style={{marginTop:"1.3%"}}>
         <Routes>
           <Route exact path="/recipes" element={<Recipes />} />
-          <Route exact path="/createrecipe" element={<CreateRecipe />} />
+          <Route exact path="/createrecipe" element={<CreateRi />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />

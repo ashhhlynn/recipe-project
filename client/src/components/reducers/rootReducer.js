@@ -52,6 +52,14 @@ const rootReducer = (state = initialState, action) => {
                             ...state,
                  recipes: [...state.recipes.slice().sort((item1, item2) => item2.created_at > item1.created_at ? 1 : -1)]
                         }; 
+
+                        case "SORT_RATING":
+                            console.log(...state.recipes)
+                            return {
+                                ...state,
+                     recipes: [...state.recipes.slice().sort((item1, item2) => item2.average > item1.average ? 1 : -1)]
+                            }; 
+        
     
 
                         case "FILTER_INGREDIENT":
@@ -105,6 +113,7 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case 'SET_CURRENT_USER':
+            console.log(state.currentUser)
             return {
                 ...state, 
                 currentUser: action.user, 

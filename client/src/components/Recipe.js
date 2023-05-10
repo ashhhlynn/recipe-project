@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Grid, Item, Icon, Header} from 'semantic-ui-react'
+import { Button, Modal, Grid, Item, Icon, Image, Rating} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import axios from "axios";
@@ -10,7 +10,6 @@ class Recipe extends Component {
 
     state = {
         modalOpen: false, 
-        ratings: []
     }
 
     handleOpen = () => {
@@ -29,20 +28,16 @@ class Recipe extends Component {
         const i = this.props.recipe    
             return (
                 <>
-                    <img style={{width:"270px", height:"260px"}}src= {i.image_url} onClick={this.handleOpen}/>
-                    <h3 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
-                        {i.name} 
-                    </h3>   
-                    <Button onClick={this.addToFaves} style={{marginTop:"-14%", background:"none"}}>
-                        <Icon style={{marginRight:"1000%"}} floated="right" size="large" color="red" name="heart"/>
+                    <Image style={{width:"270px", height:"260px"}}src= {i.image_url} onClick={this.handleOpen}/>
+                    <Button onClick={this.addToFaves} style={{marginTop:"-27%", background:"none"}}>
+                        <Icon style={{marginLeft:"80%"}} floated="right" size="huge" color="red" name="heart"/>
                     </Button>
-                    <Item floated="right">
-                        <Icon size="small" color="purple" name="star"/>
-                        <Icon size="small" color="purple" name="star"/>
-                        <Icon size="small" color="purple" name="star "/>
-                        <Icon size="small" color="purple" name="star outline"/>
-                        <Icon size="small" color="purple" name="star outline"/>
-                    </Item>
+                    <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
+                        {i.name} 
+                    </h2>   
+                    <Rating rating={i.average} disabled defaultRating={0} maxRating={5} />
+<br></br>
+                
                     <Modal 
                          open={this.state.modalOpen}
                          onClose={this.handleClose}

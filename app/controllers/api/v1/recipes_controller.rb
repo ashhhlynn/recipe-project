@@ -17,10 +17,11 @@ class RecipesController < ApplicationController
   # POST /recipes
   def create
     @recipe = Recipe.create(recipe_params)
+    if params[:recipe_ingredients]
     params[:recipe_ingredients].each do |ri|
       RecipeIngredient.create(recipe_id: @recipe.id, name: ri)
     end 
-
+  end 
     if @recipe.save
       render json: @recipe, status: :created
     else
@@ -50,7 +51,7 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :image_url, :description, :recipe_ingredients => [:recipe_id, :name])
+      params.require(:recipe).permit(:average, :name, :image_url, :description, :recipe_ingredients => [:recipe_id, :name])
     end
 end
 end

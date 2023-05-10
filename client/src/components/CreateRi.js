@@ -1,16 +1,58 @@
 import React, { Component } from 'react'
-import { Form, Grid, Button,  Segment} from 'semantic-ui-react'
+import { Form, Grid, Button,  Segment, Item, Input, Accordion} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { connect } from "react-redux"
 import axios from "axios";
 
-class CreateRi extends Component {
+class CreateRecipe extends Component {
 
 state = {
+    id:'',
     name: '',
     description: '',
     image_url: '',
-    recipe_ingredients: []
+    recipe_ingredients: [],
+    ingredients: [],
+
+    ingredient1: '',
+    quantity1:'',
+    ingredient2: '',
+    quantity2:'',
+    ingredient3: '',
+    quantity3:'',
+    ingredient4: '',
+    quantity4:'',
+    ingredient5: '',
+    quantity5:'',
+}
+
+addIngredient = (event, ingredient) => {
+    event.preventDefault()
+let i = this.state.ingredient1
+let q = this.state.quantity1
+let id = this.state.id
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
+    .then((response) => {
+      console.log(response);
+})
+}
+
+removeIngredient = () => {
+
+}
+
+
+addIngredientTwo = (event, ingredient) => {
+    event.preventDefault()
+let i = this.state.ingredient2
+let q = this.state.quantity2
+let id = this.state.id
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
+    .then((response) => {
+      console.log(response);
+})
 }
 
 handleChange = (event) => {
@@ -19,14 +61,18 @@ handleChange = (event) => {
     })
 }
 
+
 handleSubmit = (event, recipe) => {
     event.preventDefault()
     axios
     .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url})
     .then((response) => {
       console.log(response);
+      this.setState ({
+       id: response.data.id
     })
-}
+    console.log(this.state.id)
+})}
 
 render() {
     return ( 
@@ -37,13 +83,13 @@ render() {
                 </Grid.Column>
                 <Grid.Column>
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-                        <h2 style={{fontWeight:"normal", marginTop:"1.5%"}}>Create Recipe</h2>
+                        <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
                         <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
                             <Form.Input
                             required
                             type="text"
                             id="name"
-                            placeholder="name"
+                            placeholder="Name"
                             value={this.state.name} 
                             onChange={this.handleChange}
                             />
@@ -51,7 +97,7 @@ render() {
                             required
                             type="text"
                             id="image_url"
-                            placeholder="image_url"
+                            placeholder="Image URL"
                             value={this.state.image_url} 
                             onChange={this.handleChange}
                             />
@@ -62,20 +108,125 @@ render() {
                             placeholder="Description"
                             value={this.state.description} 
                             onChange={this.handleChange}
-                            />
-                           
-                        Ingredients:<br></br>
-                        <Form.Input
+                            />    
+                        <Form.Button inverted circular color="white" style={{marginTop:"-8%", width:"80px", fontWeight:"normal", color:"white", backgroundColor:"purple"}}className="formButtons" content='Create'/>        
+            
+                    </Form><br></br><center>
+
+
+
+                    <Accordion as={Form.Field} />
+                        <Item style={{marginLeft: "6.5%"}}>
+                        <h2 >Ingredients</h2>
+                    <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient1)}}>
+                        <Form.Group>
+                            <Form.Input
                             required
                             type="text"
-                            id="ingredient"
-                            placeholder="ingredient"
-                            value={this.state.ingredient} 
+                            id="ingredient1"
+                            placeholder="Ingredient"
+                            value={this.state.ingredient1} 
                             onChange={this.handleChange}
-                        />                
-                        <br></br><br></br>
-                        <Form.Button inverted style={{width:"250px", fontWeight:"normal", color:"white", backgroundColor:"#585858"}}className="formButtons" content='SAVE RECIPE'/>        
-                    </Form>
+                            />
+                            <Form.Input             
+                            type="text"
+                            id="quantity1"
+                            placeholder="Quantity"
+                            value={this.state.quantity1} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Button basic color="purple">+</Form.Button>
+                            <Button id="1" onClick={this.removeIngredient} basic color="purple">-</Button>
+                        </Form.Group>
+                        </Form>
+                        <Form onSubmit= { (event) =>{this.addIngredientTwo(event, this.state.ingredient2)}}>
+                        <Form.Group>
+                            <Form.Input
+                            required
+                            type="text"
+                            id="ingredient2"
+                            placeholder="Ingredient"
+                            value={this.state.ingredient2} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Input             
+                            type="text"
+                            id="quantity2"
+                            placeholder="Quantity"
+                            value={this.state.quantity2} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Button basic color="purple" >+</Form.Button>
+                            <Button basic color="purple">-</Button>
+                        </Form.Group>
+                        </Form>
+                        <Form onSubmit= { (event) =>{this.addIngredientTwo(event, this.state.ingredient3)}}>
+
+                        <Form.Group>
+                            <Form.Input
+                            required
+                            type="text"
+                            id="ingredient3"
+                            placeholder="Ingredient"
+                            value={this.state.ingredient3} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Input             
+                            type="text"
+                            id="quantity3"
+                            placeholder="Quantity"
+                            value={this.state.quantity3} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Button basic color="purple">+</Form.Button>
+                            <Button basic color="purple">-</Button>
+                        </Form.Group>
+                        </Form>                        
+                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient4)}}>
+
+                        <Form.Group>
+                            <Form.Input
+                            type="text"
+                            id="ingredient4"
+                            placeholder="Ingredient"
+                            value={this.state.ingredient4} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Input             
+                            type="text"
+                            id="quantity4"
+                            placeholder="Quantity"
+                            value={this.state.quantity4} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Button basic color="purple">+</Form.Button>
+                            <Button basic color="purple">-</Button>
+                        </Form.Group>
+                        </Form>
+                        <center>
+                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient5)}}>
+                      
+                        <Form.Group>
+                            <Form.Input
+                            type="text"
+                            id="ingredient5"
+                            placeholder="Ingredient"
+                            value={this.state.ingredient5} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Input             
+                            type="text"
+                            id="quantity5"
+                            placeholder="Quantity"
+                            value={this.state.quantity5} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Button basic color="purple">+</Form.Button>
+                            <Button basic color="purple">-</Button>
+                        </Form.Group>
+                        <Form.Button inverted circular color="white" style={{marginTop:"-8%", width:"80px", fontWeight:"normal", color:"white", backgroundColor:"purple"}}className="formButtons" content='Save'/>        
+
+                    </Form>    </center> </Item>  </center>
                     <br></br>
                 </Segment>           
             </Grid.Column>
@@ -85,4 +236,4 @@ render() {
 }
 }
 
-export default CreateRi
+export default CreateRecipe

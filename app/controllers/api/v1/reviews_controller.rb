@@ -19,7 +19,7 @@ module Api::V1
     @review = Review.new(review_params)
 
     if @review.save
-      render json: @review, status: :created, location: @review
+      render json: @review, status: :created
     else
       render json: @review.errors, status: :unprocessable_entity
     end
@@ -47,7 +47,7 @@ module Api::V1
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:text, :recipe_id)
+      params.require(:review).permit(:text, :recipe_id, :score)
     end
 end
 end

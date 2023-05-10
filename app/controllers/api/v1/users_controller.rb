@@ -1,6 +1,5 @@
 module Api::V1
   class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
   def index
@@ -52,7 +51,7 @@ end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :id, :email, :password, :password_confirmation)
     end
 end
 end

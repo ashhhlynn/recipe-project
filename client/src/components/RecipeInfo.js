@@ -14,26 +14,18 @@ class RecipeInfo extends Component {
 
 
     componentDidMount = () => {
-        this.props.recipe.ratings.map(r => {
-
-this.state.ratings.push(r.score)
-
-        })
-        console.log(this.state.ratings)
-        const avg = this.state.ratings.reduce((a,b) => a + b,0) / this.state.ratings.length;
-        console.log(avg)
-        let x = Math.round(avg)
-        console.log(x)
-        this.setState({avg: x})
-
+     
     }
+
+
+    
     
     render() {
         let x = this.state.avg
         const { rating } = this.state.avg
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
             return (
-                <div>{ri.name}</div>
+                <div>{ri.quantity} {ri.name}</div>
             )
         })
         return (         
@@ -49,7 +41,7 @@ this.state.ratings.push(r.score)
             <Grid.Column>
             <center><br></br>
                 <Item style={{marginRight:"17%"}}>
-                <Rating size="massive" rating={this.state.avg} disabled defaultRating={x} maxRating={5} />
+                <Rating size="massive" rating={this.props.recipe.average} disabled maxRating={5} />
 
                     <h2>Ingredients</h2>
                     <h3 style={{fontWeight:"normal"}}> {recipe_ingredients}</h3>

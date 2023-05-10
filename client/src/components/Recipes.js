@@ -9,7 +9,7 @@ import { sortAToZ } from "./actions/rootActions"
 import { sortNumberReviews } from "./actions/rootActions"
 import { sortDate } from "./actions/rootActions"
 import { filterIngredient } from "./actions/rootActions"
-import { getRating } from "./actions/rootActions"
+import { sortRating } from "./actions/rootActions"
 
 class Recipes extends Component {        
 
@@ -126,7 +126,7 @@ const mapDispatchToProps = (dispatch) => {
     sortNumberReviews: () =>  { dispatch(sortNumberReviews()) },
     sortDate: () =>  { dispatch(sortDate()) },
     filterIngredient: () =>  { dispatch(filterIngredient()) },
-    getRating: (ratings) =>  { dispatch(getRating(ratings)) }
+    sortRating: () =>  { dispatch(sortRating()) }
   }
 }
 

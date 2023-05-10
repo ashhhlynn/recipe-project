@@ -28,6 +28,12 @@ export const sortDate = () => {
     }
 }
 
+export const sortRating = () => {
+    return (dispatch) => {
+        dispatch({ type: "SORT_RATING" })
+    }
+}
+
 export const getRating = (ratings) => {
     return (dispatch) => {
         dispatch({ type: "GET_RATING", ratings })

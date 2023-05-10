@@ -8,24 +8,43 @@ import Stars from './Stars'
 class CreateReview extends Component {
 
     state = {
-      
-      
     }
-    handleSubmit = (event, review) => {
+
+    calculateAverage = () => {
+        let reviews = this.props.recipe.reviews.map(r => r.score)
+        console.log(reviews)
+        const avg = reviews.reduce((a,b) => a + b,0) / reviews.length;
+        console.log(avg)
+        let x = Math.round(avg)
+        console.log(x)
+
+let id = this.props.recipe.id
+        axios
+      .put("/api/v1/recipes/" + id, {
+        average: x
+      })
+      .then((response) => {
+        console.log(response.data);
+
+        });
+
+
+    }
+
+    handleSubmitRating = (event, number) => {
         event.preventDefault()
         let i = this.props.recipe.id
+        console.log(number.rating)
         axios
-        .post("/api/v1/reviews", { text: review.text, recipe_id: i})
+        .post("/api/v1/reviews", { score: number.rating, recipe_id: i})
         .then((response) => {
             console.log(response);
+            this.calculateAverage()
         })
-        let x = this.state.stars
-        axios
-        .post("/api/v1/ratings", { score: x, recipe_id: i})
-        .then((response) => {
-            console.log(response);
-        })
+
     }
+
+
 
     handleChange = (event) => {
         this.setState ({
@@ -33,14 +52,7 @@ class CreateReview extends Component {
         })
     }
 
-    handleAdd = () => {
-        let s = this.state.stars + 1
-        console.log(s)
-        this.setState ({
-            stars: s
-        })}
-    
-  
+
     
         handleRating = (e, { rating, maxRating }) =>
         this.setState({ rating, maxRating })
@@ -52,12 +64,11 @@ class CreateReview extends Component {
             <>
             <center>          
                     
-                <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
+                <Form onSubmit= { (event) => {this.handleSubmitRating(event, this.state)}}>
 
 
 <Rating color="purple" size="massive" maxRating={5} onRate={this.handleRating} />
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
-
 
                     <Form.TextArea
                             style={{width:"300px"}}

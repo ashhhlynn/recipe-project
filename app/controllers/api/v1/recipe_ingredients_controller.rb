@@ -18,7 +18,7 @@ class RecipeIngredientsController < ApplicationController
   def create
     @recipe_ingredient = RecipeIngredient.create(recipe_ingredient_params)
 
-    if @recipe_ingredient.save
+    if @recipe_ingredient.valid?
       render json: @recipe_ingredient, status: :created
     else
       render json: @recipe_ingredient.errors, status: :unprocessable_entity
