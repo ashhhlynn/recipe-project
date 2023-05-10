@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Segment, Card, Search, Item, Header} from 'semantic-ui-react'
+import { Button, Dropdown, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import axios from "axios";
@@ -82,11 +82,6 @@ class Recipes extends Component {
           <Grid.Column>        
           <Item style={{width:"850px", marginLeft:"3.5%"}}>
             <br></br>
-            <Search 
-              size="huge"
-              placeholder='Search...'
-            />
-            <br></br>
             <Header floated="right" style={{marginTop:"0%"}}>
             <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Name</Button> 
             <Button id="2"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Date</Button> 
@@ -115,7 +110,6 @@ class Recipes extends Component {
 const mapStateToProps = (state) => {
   return { 
     recipes: state.recipes,
-    rating: state.rating
   }
 }
 

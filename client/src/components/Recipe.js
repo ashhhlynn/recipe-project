@@ -35,9 +35,8 @@ class Recipe extends Component {
                     <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                         {i.name} 
                     </h2>   
-                    <Rating rating={i.average} disabled defaultRating={0} maxRating={5} />
-<br></br>
-                
+                    <Rating rating={i.average} disabled maxRating={5} />
+                    <br></br>          
                     <Modal 
                          open={this.state.modalOpen}
                          onClose={this.handleClose}

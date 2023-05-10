@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu} from 'semantic-ui-react'
+import { Icon, Menu, Rating} from 'semantic-ui-react'
 
 class RecipeReviews extends Component {
 
@@ -7,8 +7,9 @@ class RecipeReviews extends Component {
         const reviews = this.props.recipe.reviews.map(r => {           
             return(
                 <div>
-                    {r.score} 
-                    "{r.text}" <b>by user9</b> {r.created_at.substring(0, 10)}<br></br><br></br>
+                    <Rating size="small" rating={r.score} disabled maxRating={5} /> {r.created_at.substring(0, 10)}
+                    <br></br>
+                    "{r.text}" <br></br><br></br>
                 </div>
             )
         })
