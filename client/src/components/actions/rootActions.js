@@ -61,7 +61,6 @@ export const removeFavorite = (recipe) => {
 export const createUser = (userData) => {
     return (dispatch) => {
         dispatch({ type: "SET_CURRENT_USER", user: userData })
-           
     }
 }
 

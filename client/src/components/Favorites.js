@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Modal, Divider, Grid, Icon, Header, Segment, Card} from 'semantic-ui-react'
+import {  Grid, Segment, Card} from 'semantic-ui-react'
 import { connect } from "react-redux"
-import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import axios from "axios";
-import Recipe from './Recipe'
 import Favorite from './Favorite'
 import { fetchFavorites } from "./actions/rootActions"
 
@@ -16,7 +14,7 @@ class Favorites extends Component {
         .then((response) => {
           console.log(response);
           this.props.fetchFavorites(response.data)
-      })
+        })
         .catch((error) => console.log(error));
     }
 

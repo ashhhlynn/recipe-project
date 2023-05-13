@@ -9,7 +9,8 @@
 
 .button.ui.button {
   background-color: #702963;
-  color: #ffffff
+  color: #ffffff;
+  font-weight: normal  !important;
 }
 
 .h2 {
@@ -18,20 +19,10 @@
 
 .ui.header {
   font-weight: "normal" !important;
-
 }
+
 .ui.menu.item  {
 color: "grey" !important;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -47,15 +38,6 @@ color: "grey" !important;
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .ui.header {

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { Item, Icon, Image, Grid, Rating, Segment, Divider} from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import { connect } from "react-redux"
-import axios from "axios";
+import { Item, Image, Grid, Rating, Segment, Divider} from 'semantic-ui-react'
 import RecipeReviews from './RecipeReviews'
 import CreateReview from './CreateReview'
 
@@ -23,34 +20,33 @@ class RecipeInfo extends Component {
         })
         return (         
             <center>
-            <h1>{this.props.recipe.name}</h1>
-            <Rating size="massive" rating={this.props.recipe.average} disabled maxRating={5} />
-            <Divider></Divider>
-            <Grid vert stackable columns={2} >
-            <Grid.Column > 
-                <center>
-                    <Image size="medium" src={this.props.recipe.image_url}></Image>
-                </center>
-            </Grid.Column>
-            <Grid.Column>
-            <center><br></br>
-                <Item style={{marginRight:"17%"}}>
-                    <h2>Ingredients</h2>
-                    <h3 style={{fontWeight:"normal"}}> {recipe_ingredients}</h3>
-                    <h3 style={{fontWeight:"normal"}}>Instructions: {this.props.recipe.description}</h3><br></br>
-                </Item>
-            </center>
-            </Grid.Column>
-            </Grid>
-      
-            <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} centered placeholder>
-                        <h2>Reviews</h2>
-                        <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>
-                        <br></br>
-                        <CreateReview recipe={this.props.recipe} key={this.props.recipe.id}/>
-                        <br></br>
-            </Segment>
-        </center>  
+                <h1>{this.props.recipe.name}</h1>
+                <Rating size="massive" rating={this.props.recipe.average} disabled maxRating={5} />
+                <Divider></Divider>
+                <Grid vert stackable columns={2} >
+                    <Grid.Column > 
+                        <center>
+                            <Image size="medium" src={this.props.recipe.image_url}></Image>
+                        </center>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <center>
+                            <Item style={{marginRight:"17%"}}>
+                                <h2>Ingredients</h2>
+                                <h3 style={{fontWeight:"normal"}}> {recipe_ingredients}</h3>
+                                <h3 style={{fontWeight:"normal"}}>Instructions: {this.props.recipe.description}</h3><br></br>
+                            </Item>
+                        </center>
+                    </Grid.Column>
+                </Grid>
+                <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} centered placeholder>
+                    <h2>Reviews</h2>
+                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>
+                    <br></br>
+                    <CreateReview recipe={this.props.recipe} key={this.props.recipe.id}/>
+                    <br></br>
+                </Segment>
+            </center>  
         )
     }
 }

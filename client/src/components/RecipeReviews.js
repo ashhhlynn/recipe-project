@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu, Rating} from 'semantic-ui-react'
+import { Rating} from 'semantic-ui-react'
 
 class RecipeReviews extends Component {
 

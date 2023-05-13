@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Modal, Rating, Divider, Grid, Icon, Image, Header, Segment, Card} from 'semantic-ui-react'
+import { Button, Modal, Rating, Icon, Image} from 'semantic-ui-react'
 import { connect } from "react-redux"
-import { Link } from 'react-router-dom'
-import Navbar from './Navbar'
 import axios from "axios";
-import Recipe from './Recipe'
 import RecipeInfo from './RecipeInfo'
 import { removeFavorite } from "./actions/rootActions"
 
@@ -26,10 +23,21 @@ class Favorite extends Component {
         this.props.removeFavorite(this.props.recipe)
     }
 
+    removeFave = (favorite) => {
+        let id = favorite.id
+        axios
+        .delete("/api/v1/favorites/" + id)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => console.log(error));
+        this.props.removeFavorite(favorite.id)
+    }
+
     render() {
         const i = this.props.recipe     
-            return (
-                <>
+        return (
+            <>
                 <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name} 
@@ -38,18 +46,17 @@ class Favorite extends Component {
                     <Icon style={{marginLeft:"95%", color:"#702963"}}floated="right" size="large" name="close"/>
                 </Button> 
                 <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
-
-                    <Modal 
-                        open={this.state.modalOpen}
-                        onClose={this.handleClose}
-                        closeIcon
-                    >
-                        <Modal.Content >
-                            <RecipeInfo recipe={i} key={i.id} handleClose={this.handleClose} />
-                        </Modal.Content>
-                    </Modal>
-                </>
-            )
+                <Modal 
+                    open={this.state.modalOpen}
+                    onClose={this.handleClose}
+                    closeIcon
+                >
+                    <Modal.Content >
+                        <RecipeInfo recipe={i} key={i.id} handleClose={this.handleClose} />
+                    </Modal.Content>
+                </Modal>
+            </>
+        )
     }
 }
 

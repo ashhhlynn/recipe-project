@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import axios from "axios";
-import { Form, Grid, Button,  Segment} from 'semantic-ui-react'
+import { Form, Grid, Segment} from 'semantic-ui-react'
 import Navbar from './Navbar'
+import { checkUser } from "./actions/rootActions"
+import { connect } from "react-redux"
 
 class Signup extends Component {
 
@@ -17,8 +19,8 @@ class Signup extends Component {
         axios
         .post("/api/v1/users", { username: userData.username, email: userData.email, password: userData.password, password_confirmation: userData.password_confirmation})
         .then((response) => {
-          console.log(response)
-          localStorage.token = response.jwt;
+          console.log(response.data.user)
+          localStorage.token = response.data.jwt;
         })
     }
 
@@ -56,35 +58,38 @@ class Signup extends Component {
                             value={this.state.email} 
                             onChange={this.handleChange}
                              />
-                <Form.Input
-                    required
-                    id="password"
-                    placeholder="Password"
-                    type="password"
-                    value={this.state.password} 
-                    onChange={this.handleChange}
-                /> 
-                <Form.Input
-                    required
-                    id="password_confirmation"
-                    placeholder="Confirm Password"
-                    type="password"
-                    value={this.state.password_confirmation} 
-                    onChange={this.handleChange}
-                />
-                <Form.Button circular basic color="purple" content="Submit"/>
-            </Form>
-
-            </Segment>
-                
-                </Grid.Column>
+                            <Form.Input
+                            required
+                            id="password"
+                            placeholder="Password"
+                            type="password"
+                            value={this.state.password} 
+                            onChange={this.handleChange}
+                            /> 
+                            <Form.Input
+                            required
+                            id="password_confirmation"
+                            placeholder="Confirm Password"
+                            type="password"
+                            value={this.state.password_confirmation} 
+                            onChange={this.handleChange}
+                            />
+                            <Form.Button circular basic color="purple" content="Submit"/>
+                            </Form>
+                        </Segment>
+                    </Grid.Column>
                 </Grid>
-             </Segment>
+            </Segment>
             </>
         )
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return { 
+      checkUser: (user) =>  { dispatch(checkUser(user)) },
+    }
+  }
+  
 
-
-export default Signup
+export default connect(null, mapDispatchToProps)(Signup)

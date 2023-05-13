@@ -4,7 +4,8 @@ const initialState = {
     currentUser: [],
     loading: false,
     favorites: [],
-    rating: ''
+    rating: '',
+    userFavorites: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -114,6 +115,7 @@ const rootReducer = (state = initialState, action) => {
 
         case 'SET_CURRENT_USER':
             console.log(state.currentUser)
+            console.log(action.user)
             return {
                 ...state, 
                 currentUser: action.user, 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Form, Button, Rating, Label} from 'semantic-ui-react'
+import { Form, Rating} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import axios from "axios";
@@ -34,9 +34,9 @@ class CreateReview extends Component {
         console.log(number.text)
         axios
         .post("/api/v1/reviews", { score: number.rating, recipe_id: i, text: number.text})
-        .then((response) => {
-            console.log(response);
-            this.calculateAverage(number.rating)
+            .then((response) => {
+                console.log(response);
+                this.calculateAverage(number.rating)
         })
     }
 
@@ -46,8 +46,6 @@ class CreateReview extends Component {
         })
         console.log(this.state.text)
     }
-
-
     
     handleRating = (e, { rating, maxRating }) =>
         this.setState({ rating, maxRating })
