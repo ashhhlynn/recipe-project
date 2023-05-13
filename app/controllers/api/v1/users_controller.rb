@@ -14,9 +14,12 @@ module Api::V1
 end
 
 def show
-  user = User.find(params[:id])
-  render json: user, include: [:recipes]
+  @user = User.find(params[:id])
+  render json: @user, include: [recipes: {include: [:recipe_ingredients, :reviews]}]
+
 end
+
+
 
 
   # POST /users

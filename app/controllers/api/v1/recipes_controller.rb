@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
 
-    render json: @recipes
+    render json: @recipes, include: [:reviews, :recipe_ingredients]
   end
 
   # GET /recipes/1
