@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Divider, Grid, Icon, Header, Segment, Card} from 'semantic-ui-react'
+import { Button, Modal, Rating, Divider, Grid, Icon, Image, Header, Segment, Card} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
@@ -30,13 +30,15 @@ class Favorite extends Component {
         const i = this.props.recipe     
             return (
                 <>
-                <img style={{width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
-                <h3 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
+                <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
+                <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name} 
-                </h3>                  
-                <Button onClick={this.removeFavorite} style={{marginTop:"-14%", background:"none"}} >
-                    <Icon style={{marginRight:"1000%"}}floated="right" color="red" size="large" name="close"/>
-                </Button>             
+                </h2>                   
+                <Button floated="right" onClick={this.removeFavorite} style={{marginTop:"-15%", background:"none"}} >
+                    <Icon style={{marginLeft:"95%", color:"#702963"}}floated="right" size="large" name="close"/>
+                </Button> 
+                <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
+
                     <Modal 
                         open={this.state.modalOpen}
                         onClose={this.handleClose}

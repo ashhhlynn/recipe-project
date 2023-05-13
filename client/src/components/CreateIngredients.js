@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Grid, Button,  Segment, Item, Input} from 'semantic-ui-react'
+import { Form, Grid, Button, Step, Segment, Icon, Item, Input, Accordion} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { connect } from "react-redux"
 import axios from "axios";
@@ -8,7 +8,14 @@ class CreateIngredients extends Component {
 
 state = {
     id:'',
-
+    name: '',
+    description: '',
+    image_url: '',
+    ingredients: [
+        {
+            name: "",
+            quantity: ""}
+        ],
     ingredient1: '',
     quantity1:'',
     ingredient2: '',
@@ -25,17 +32,71 @@ addIngredient = (event, ingredient) => {
     event.preventDefault()
     let i = this.state.ingredient1
     let q = this.state.quantity1
+    let id = this.state.id
     axios 
-    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: 25})
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
     .then((response) => {
       console.log(response);
-this.state.ingredients.push(response.data.id)
-})
-console.log(this.state.ingredients)
+    })
+
+    this.state.ingredients.push({name: i, quantity: q})
+    console.log(this.state.ingredients)
 }
 
 removeIngredient = () => {
 
+}
+
+
+addIngredientTwo = (event, ingredient) => {
+    event.preventDefault()
+let i = this.state.ingredient2
+let q = this.state.quantity2
+let id = this.state.id
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
+    .then((response) => {
+      console.log(response);
+})
+}
+
+
+addIngredientThree = (event, ingredient) => {
+    event.preventDefault()
+let i = this.state.ingredient3
+let q = this.state.quantity3
+let id = this.state.id
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
+    .then((response) => {
+      console.log(response);
+})
+}
+
+
+addIngredientFour = (event, ingredient) => {
+    event.preventDefault()
+let i = this.state.ingredient4
+let q = this.state.quantity4
+let id = this.state.id
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
+    .then((response) => {
+      console.log(response);
+})
+}
+
+
+addIngredientFive = (event, ingredient) => {
+    event.preventDefault()
+let i = this.state.ingredient5
+let q = this.state.quantity5
+let id = this.state.id
+    axios 
+    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: id})
+    .then((response) => {
+      console.log(response);
+})
 }
 
 handleChange = (event) => {
@@ -45,7 +106,32 @@ handleChange = (event) => {
 }
 
 
+handleSubmit = (event, recipe) => {
+    event.preventDefault()
+    axios
+    .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url})
+    .then((response) => {
+      console.log(response);
+      this.setState ({
+       id: response.data.id
+    })
+    console.log(this.state.id)
+})}
 
+
+handleSubmitTwo = (event, recipe) => {
+    event.preventDefault()
+    let ingredients = this.state.ingredients
+    console.log(this.state.ingredients)
+    axios
+    .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url, recipe_ingredients: ingredients})
+    .then((response) => {
+      console.log(response);
+      this.setState ({
+       id: response.data.id
+    })
+    console.log(this.state.id)
+})}
 
 render() {
     return ( 
@@ -56,10 +142,30 @@ render() {
                 </Grid.Column>
                 <Grid.Column>
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-                        
-                        <h2 >Ingredients</h2>
-                  <br></br><center>
+                        <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
+
+                        <Step.Group>
+    <Step link>
+
+      <Step.Content>
+        <Step.Title>Recipe</Step.Title>
+        <Step.Description>Enter basic information</Step.Description>
+      </Step.Content>
+    </Step>
+    <Step link>
+ 
+      <Step.Content>
+        <Step.Title>Ingredients</Step.Title>
+        <Step.Description>Enter five ingredients</Step.Description>
+      </Step.Content>
+    </Step>
+  </Step.Group>
+                       
+
+
+                    <h2 >Ingredients</h2>
                         <Item style={{marginLeft: "6.5%"}}>
+                   
                     <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient1)}}>
                         <Form.Group>
                             <Form.Input
@@ -77,11 +183,10 @@ render() {
                             value={this.state.quantity1} 
                             onChange={this.handleChange}
                             />
-                            <Form.Button basic color="purple">+</Form.Button>
+                            <Button id="1" onClick={this.addIngredient} basic color="purple">-</Button>
                             <Button id="1" onClick={this.removeIngredient} basic color="purple">-</Button>
                         </Form.Group>
-                        </Form>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient2)}}>
+                     
                         <Form.Group>
                             <Form.Input
                             required
@@ -101,8 +206,6 @@ render() {
                             <Form.Button basic color="purple" >+</Form.Button>
                             <Button basic color="purple">-</Button>
                         </Form.Group>
-                        </Form>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient3)}}>
 
                         <Form.Group>
                             <Form.Input
@@ -123,9 +226,7 @@ render() {
                             <Form.Button basic color="purple">+</Form.Button>
                             <Button basic color="purple">-</Button>
                         </Form.Group>
-                        </Form>                        
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient4)}}>
-
+                      
                         <Form.Group>
                             <Form.Input
                             type="text"
@@ -144,9 +245,7 @@ render() {
                             <Form.Button basic color="purple">+</Form.Button>
                             <Button basic color="purple">-</Button>
                         </Form.Group>
-                        </Form>
                         <center>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient5)}}>
                       
                         <Form.Group>
                             <Form.Input
@@ -165,9 +264,14 @@ render() {
                             />
                             <Form.Button basic color="purple">+</Form.Button>
                             <Button basic color="purple">-</Button>
-                        </Form.Group>
-                     
-                    </Form>    </center> </Item>  </center>
+                        </Form.Group></center>
+</Form>
+                      </Item> 
+                    
+                    <Form.Button inverted circular color="white" style={{marginTop:"-8%", width:"80px", fontWeight:"normal", color:"white", backgroundColor:"purple"}}className="formButtons" content='Save'/>        
+
+                 
+
                     <br></br>
                 </Segment>           
             </Grid.Column>

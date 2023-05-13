@@ -7,6 +7,11 @@
   font-weight: "normal" !important;
 }
 
+.button.ui.button {
+  background-color: #702963;
+  color: #ffffff
+}
+
 .h2 {
   font-weight: "normal" !important;
 }

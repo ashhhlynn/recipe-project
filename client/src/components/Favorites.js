@@ -6,8 +6,19 @@ import Navbar from './Navbar'
 import axios from "axios";
 import Recipe from './Recipe'
 import Favorite from './Favorite'
+import { fetchFavorites } from "./actions/rootActions"
 
 class Favorites extends Component {        
+
+    getFavorites = () => {
+        axios
+        .get("api/v1/favorites.json")
+        .then((response) => {
+          console.log(response);
+          this.props.fetchFavorites(response.data)
+      })
+        .catch((error) => console.log(error));
+    }
 
     render() {
         const recipeGroup = this.props.favorites.map( i => {
@@ -41,4 +52,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Favorites)
+const mapDispatchToProps = (dispatch) => {
+    return { 
+      fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

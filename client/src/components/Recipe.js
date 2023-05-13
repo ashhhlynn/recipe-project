@@ -28,15 +28,14 @@ class Recipe extends Component {
         const i = this.props.recipe    
             return (
                 <>
-                    <Image style={{width:"270px", height:"260px"}}src= {i.image_url} onClick={this.handleOpen}/>
-                    <Button onClick={this.addToFaves} style={{marginTop:"-27%", background:"none"}}>
-                        <Icon style={{marginLeft:"80%"}} floated="right" size="huge" color="red" name="heart"/>
-                    </Button>
+                    <Image style={{cursor:"pointer", width:"270px", height:"260px"}}src= {i.image_url} onClick={this.handleOpen}/>
                     <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
-                        {i.name} 
+                        {i.name}                     
                     </h2>   
-                    <Rating rating={i.average} disabled maxRating={5} />
-                    <br></br>          
+                    <Button floated="right" onClick={this.addToFaves} style={{marginTop:"-15%", background:"none"}} >
+                        <Icon style={{color:"#702963", marginLeft:"93%"}}floated="right"  size="large" name="heart"/>
+                    </Button> 
+                    <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
                     <Modal 
                          open={this.state.modalOpen}
                          onClose={this.handleClose}

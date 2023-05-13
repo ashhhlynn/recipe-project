@@ -8,7 +8,7 @@ class Head extends Component {
         return (
             <div>
                 <Menu borderless icon="labeled" style={{marginTop:"0%"}} >
-                    <h1 style={{letterSpacing: "1.5px", fontFamily:"Segoe Print", color: "purple", fontSize:"40px", marginTop:"2%", marginLeft:"3%"}}>
+                    <h1 style={{letterSpacing: "1.5px", fontFamily:"Segoe Print", color: "#702963", fontSize:"40px", marginTop:"2%", marginLeft:"3%"}}>
                         Cookbook.
                     </h1>
                     <Menu.Menu style={{marginTop:"1%"}} position="right">

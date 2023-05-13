@@ -66,7 +66,7 @@ class CreateReview extends Component {
                             value={this.state.text} 
                             onChange={this.handleChange}
                     />
-                    <Form.Button basic color="purple" circular style={{width:"130px", fontWeight:"normal", color:"purple"}}className="formButtons" content='Submit'/>        
+                    <Form.Button circular style={{width:"130px", color:"white", fontWeight:"normal"}}className="formButtons" content='Submit'/>        
                 </Form>   
             </center>
             </>

@@ -37,12 +37,12 @@ class RecipeInfo extends Component {
                 <Item style={{marginRight:"17%"}}>
                     <h2>Ingredients</h2>
                     <h3 style={{fontWeight:"normal"}}> {recipe_ingredients}</h3>
-                    <h3 style={{fontWeight:"normal"}}>{this.props.recipe.description}</h3><br></br>
+                    <h3 style={{fontWeight:"normal"}}>Instructions: {this.props.recipe.description}</h3><br></br>
                 </Item>
             </center>
             </Grid.Column>
             </Grid>
-           <br></br>
+      
             <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} centered placeholder>
                         <h2>Reviews</h2>
                         <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>

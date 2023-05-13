@@ -3,6 +3,7 @@ import { Form, Grid, Button,  Segment, Item, Input} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { connect } from "react-redux"
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 class CreateRecipe extends Component {
 
@@ -11,9 +12,6 @@ state = {
     name: '',
     description: '',
     image_url: '',
-    recipe_ingredients: [],
-    ingredients: [],
-
     ingredient1: '',
     quantity1:'',
     ingredient2: '',
@@ -24,19 +22,12 @@ state = {
     quantity4:'',
     ingredient5: '',
     quantity5:'',
+    recipe_ingredients: []
 }
 
 addIngredient = (event, ingredient) => {
     event.preventDefault()
-let i = this.state.ingredient1
-let q = this.state.quantity1
-    axios 
-    .post("/api/v1/recipe_ingredients", {name: i, quantity: q, recipe_id: 25})
-    .then((response) => {
-      console.log(response);
-this.state.ingredients.push(response.data.id)
-})
-console.log(this.state.ingredients)
+    this.state.recipe_ingredients.push(ingredient)
 }
 
 removeIngredient = () => {
@@ -69,7 +60,6 @@ render() {
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
                         <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
                         <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
-                        <Form.Button floated="right" inverted circular color="white" style={{marginTop:"-8%", width:"80px", fontWeight:"normal", color:"white", backgroundColor:"purple"}}className="formButtons" content='Save'/>        
                             <Form.Input
                             required
                             type="text"
@@ -95,9 +85,8 @@ render() {
                             onChange={this.handleChange}
                             />    
                         <h2 >Ingredients</h2>
-                    </Form><br></br><center>
-                        <Item style={{marginLeft: "6.5%"}}>
-                    <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient1)}}>
+                    <br></br><center>
+                        <Item style={{marginLeft: "30%"}}>
                         <Form.Group>
                             <Form.Input
                             required
@@ -107,18 +96,9 @@ render() {
                             value={this.state.ingredient1} 
                             onChange={this.handleChange}
                             />
-                            <Form.Input             
-                            type="text"
-                            id="quantity1"
-                            placeholder="Quantity"
-                            value={this.state.quantity1} 
-                            onChange={this.handleChange}
-                            />
-                            <Form.Button basic color="purple">+</Form.Button>
-                            <Button id="1" onClick={this.removeIngredient} basic color="purple">-</Button>
+                     
+                            <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
                         </Form.Group>
-                        </Form>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient2)}}>
                         <Form.Group>
                             <Form.Input
                             required
@@ -128,18 +108,9 @@ render() {
                             value={this.state.ingredient2} 
                             onChange={this.handleChange}
                             />
-                            <Form.Input             
-                            type="text"
-                            id="quantity2"
-                            placeholder="Quantity"
-                            value={this.state.quantity2} 
-                            onChange={this.handleChange}
-                            />
-                            <Form.Button basic color="purple" >+</Form.Button>
-                            <Button basic color="purple">-</Button>
+                      
+                                    <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
                         </Form.Group>
-                        </Form>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient3)}}>
 
                         <Form.Group>
                             <Form.Input
@@ -150,18 +121,9 @@ render() {
                             value={this.state.ingredient3} 
                             onChange={this.handleChange}
                             />
-                            <Form.Input             
-                            type="text"
-                            id="quantity3"
-                            placeholder="Quantity"
-                            value={this.state.quantity3} 
-                            onChange={this.handleChange}
-                            />
-                            <Form.Button basic color="purple">+</Form.Button>
-                            <Button basic color="purple">-</Button>
+                      
+                                   <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
                         </Form.Group>
-                        </Form>                        
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient4)}}>
 
                         <Form.Group>
                             <Form.Input
@@ -171,19 +133,10 @@ render() {
                             value={this.state.ingredient4} 
                             onChange={this.handleChange}
                             />
-                            <Form.Input             
-                            type="text"
-                            id="quantity4"
-                            placeholder="Quantity"
-                            value={this.state.quantity4} 
-                            onChange={this.handleChange}
-                            />
-                            <Form.Button basic color="purple">+</Form.Button>
-                            <Button basic color="purple">-</Button>
+                    
+                                <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
                         </Form.Group>
-                        </Form>
                         <center>
-                        <Form onSubmit= { (event) =>{this.addIngredient(event, this.state.ingredient5)}}>
                       
                         <Form.Group>
                             <Form.Input
@@ -193,19 +146,17 @@ render() {
                             value={this.state.ingredient5} 
                             onChange={this.handleChange}
                             />
-                            <Form.Input             
-                            type="text"
-                            id="quantity5"
-                            placeholder="Quantity"
-                            value={this.state.quantity5} 
-                            onChange={this.handleChange}
-                            />
-                            <Form.Button basic color="purple">+</Form.Button>
-                            <Button basic color="purple">-</Button>
+                       
+                                  <Button id="1" basic color="grey"  onClick={this.addIngredient} >+</Button>
                         </Form.Group>
                      
-                    </Form>    </center> </Item>  </center>
+                   </center> </Item> 
+                   
+                   <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="large" className="formButtons" content='Save Recipe'/>        
+
+                       </center>
                     <br></br>
+                    </Form> 
                 </Segment>           
             </Grid.Column>
         </Grid>

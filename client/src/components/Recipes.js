@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
+import { Button, Dropdown, Search, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import axios from "axios";
@@ -79,23 +79,21 @@ class Recipes extends Component {
           <Grid.Column style={{width:"300px"}}> 
             <Navbar/>
           </Grid.Column>
-          <Grid.Column>        
+          <Grid.Column>  
+        
           <Item style={{width:"850px", marginLeft:"3.5%"}}>
             <br></br>
-            <Header floated="right" style={{marginTop:"0%"}}>
-            <Button id="3"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Name</Button> 
-            <Button id="2"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Date</Button> 
-            <Button id="1"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Rating</Button> 
-            <Button id="4"circular basic color="purple" onClick={(event)=>{this.sortItems(event)}}>Reviews</Button> 
+            <Header floated="right" style={{marginTop:"0%", marginLeft:"16%"}}>
+            <Button id="3"circular basic style={{color:"#702963"}} onClick={(event)=>{this.sortItems(event)}}>Name</Button> 
+            <Button id="2"circular basic onClick={(event)=>{this.sortItems(event)}}>Date</Button> 
+            <Button id="1"circular basic  onClick={(event)=>{this.sortItems(event)}}>Rating</Button> 
+            <Button id="4"circular basic  onClick={(event)=>{this.sortItems(event)}}>Reviews</Button> 
             </Header>  
-            <Dropdown
-            placeholder='Filter by Ingredient'
-            style={{minWidth:"350px"}}
-            compact
-            selection
-            size="tiny"
-            options={riGroup}
-            /> 
+            <Search
+          placeholder='Search by ingredient...'
+        
+         
+        />  
           </Item>
             <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
               {recipeGroup}

@@ -4,6 +4,12 @@ export const fetchRecipes = (recipes) => {
     }
 }
 
+export const fetchFavorites = (recipes) => {
+    return (dispatch) => {
+        dispatch({ type: "FETCH_FAVORITES", recipes: recipes })     
+    }
+}
+
 export const sortAToZ = () => {
     return (dispatch) => {
         dispatch({ type: "SORT_A_TO_Z" })
