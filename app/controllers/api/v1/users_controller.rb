@@ -1,6 +1,8 @@
 module Api::V1
   class UsersController < ApplicationController
 
+    skip_before_action :authorized, only: [:create, :index, :profile, :show]
+
   # GET /users
   def index
     @users = User.all
@@ -12,10 +14,11 @@ module Api::V1
     render json: {  user: current_user }, status: :accepted
 end
 
-  # GET /users/1
-  def show
-    render json: @user
-  end
+def show
+  user = User.find(params[:id])
+  render json: user, include: [:recipes]
+end
+
 
   # POST /users
   def create
@@ -24,34 +27,21 @@ end
     if @user.valid?
       @token = encode_token(user_id: @user.id)
       render json: { user: @user, jwt: @token }
-  else
-      render json: { message: 'Failed to create user. Please try again.' }, status: :unprocessable_entity
-  end
-  end
-
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+      render json: { message: 'Failed to create user. Please try again.' }
+  end
   end
 
-  # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :id, :email, :password, :password_confirmation)
+      params.permit(:username, :email, :password, :password_confirmation)
     end
 end
 end

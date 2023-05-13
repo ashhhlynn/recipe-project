@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
   # POST /favorites
   def create
     @favorite = Favorite.new(favorite_params)
-
+    @recipe 
     if @favorite.save
       render json: @favorite, status: :created
     else

@@ -2,6 +2,9 @@ module Api::V1
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
 
+  skip_before_action :authorized, only: [:index, :create, :update]
+
+
   # GET /recipes
   def index
     @recipes = Recipe.all
@@ -51,7 +54,7 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:average, :name, :image_url, :description, :recipe_ingredients => [:recipe_id, :name])
+      params.require(:recipe).permit(:average, :name, :user_id, :image_url, :description, :recipe_ingredients => [:recipe_id, :name])
     end
 end
 end

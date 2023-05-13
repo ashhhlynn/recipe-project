@@ -1,6 +1,7 @@
 module Api::V1
 class RecipeIngredientsController < ApplicationController
   before_action :set_recipe_ingredient, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index, :create]
 
   # GET /recipe_ingredients
   def index
@@ -27,10 +28,10 @@ class RecipeIngredientsController < ApplicationController
 
   # PATCH/PUT /recipe_ingredients/1
   def update
-    if @recipe_ingredient.update(recipe_ingredient_params)
-      render json: @recipe_ingredient
+    if recipe_ingredient.update(recipe_ingredient_params)
+      render json: recipe_ingredient
     else
-      render json: @recipe_ingredient.errors, status: :unprocessable_entity
+      render json: recipe_ingredient.errors, status: :unprocessable_entity
     end
   end
 
@@ -47,7 +48,7 @@ class RecipeIngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_ingredient_params
-      params.require(:recipe_ingredient).permit(:name, :quantity, :recipe_id, :id)
+      params.require(:recipe_ingredient).permit(:name, :recipe_id)
     end
 end
 end

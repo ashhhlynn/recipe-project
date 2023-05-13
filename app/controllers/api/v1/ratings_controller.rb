@@ -1,6 +1,7 @@
 module Api::V1
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index, :create]
 
   # GET /ratings
   def index

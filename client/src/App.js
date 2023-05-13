@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { Component } from 'react'
 import './App.css';
 import Recipes from './components/Recipes'
-import CreateRi from './components/CreateRi'
+import CreateRi from './components/Notusin/CreateRi'
 import CreateIngredients from './components/CreateIngredients'
 import CreateRecipe from './components/CreateRecipe'
 import Profile from './components/Profile'

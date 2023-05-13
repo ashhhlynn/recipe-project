@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Grid, Button, Step, Segment, Icon, Item, Input, Accordion} from 'semantic-ui-react'
-import Navbar from './Navbar'
+import Navbar from '../Navbar'
 import { connect } from "react-redux"
 import axios from "axios";
 import { Link } from 'react-router-dom'
