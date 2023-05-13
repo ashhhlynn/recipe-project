@@ -3,10 +3,10 @@ import { Item, Image, Grid, Rating, Segment, Divider} from 'semantic-ui-react'
 import RecipeReviews from './RecipeReviews'
 import CreateReview from './CreateReview'
 
-class RecipeInfo extends Component {
+class FavoriteInfo extends Component {
 
     state = {
-      
+        ratings: [],
     }
 
     componentDidMount = () => {     
@@ -52,4 +52,4 @@ class RecipeInfo extends Component {
     }
 }
 
-export default RecipeInfo
+export default FavoriteInfo

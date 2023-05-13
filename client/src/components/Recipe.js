@@ -31,9 +31,11 @@ class Recipe extends Component {
             user_id: 4
         })
         .then((response) => {
-        console.log(response.data);
+        console.log(response.data)
         });
         this.props.addToFavorites(this.props.recipe)
+        window.alert("Added to favorites.")
+
     }
 
     render() {

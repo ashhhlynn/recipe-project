@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal, Rating, Icon, Image, Item} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
-import RecipeInfo from './RecipeInfo'
+import FavoriteInfo from './FavoriteInfo'
 import { removeFavorite } from "./actions/rootActions"
 
 class Favorite extends Component {        
@@ -36,18 +36,18 @@ class Favorite extends Component {
     }
 
     render() {
-        const i = this.props.recipe  
+        const f = this.props.recipe  
         return (
             <>
-                <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
+                <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {f.image_url} onClick={this.handleOpen}/>   
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
-                    {i.name} 
+                    {f.name} 
                 </h2>                   
                 <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
                     <Icon style={{marginLeft:"93%", color:"#702963"}}floated="right" size="large" name="close"/>
                 </Button> 
                 <Item>
-                    <Rating size="small" rating={i.average} disabled maxRating={5} />
+                    <Rating size="small" rating={f.average} disabled maxRating={5} />
                 </Item>
                 <Modal 
                     open={this.state.modalOpen}
@@ -55,18 +55,22 @@ class Favorite extends Component {
                     closeIcon
                 >
                     <Modal.Content >
-                        <RecipeInfo recipe={i} handleClose={this.handleClose} />
+                        <FavoriteInfo recipe={f} key={f.name} handleClose={this.handleClose} />
                     </Modal.Content>
                 </Modal>
             </>
         )
     }
 }
-
+const mapStateToProps = (state) => {
+    return { 
+      currentUser: state.currentUser
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return { 
         removeFavorite: (recipe) =>  { dispatch(removeFavorite(recipe)) }
     }
 }
   
-export default connect(null, mapDispatchToProps)(Favorite)
+export default connect(mapStateToProps, mapDispatchToProps)(Favorite)

@@ -42,6 +42,8 @@ class App extends Component {
           this.props.fetchRecipes(response.data)
       })
     .catch((error) => console.log(error));
+    this.props.checkUser()
+
   }
   
 render() {

@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
-import { Form, Rating} from 'semantic-ui-react'
+import { Form, Rating, Message} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import { updateRR } from "./actions/rootActions"
+import Reminder from './Reminder'
 
 class CreateReview extends Component {
 
     state = {
+    }
+    
+    componentDidMount = () => {
+
     }
 
     calculateAverage = (number) => {
@@ -35,9 +40,10 @@ class CreateReview extends Component {
         console.log(number.text)
         axios
         .post("/api/v1/reviews", { score: number.rating, recipe_id: i, text: number.text})
-            .then((response) => {
-                console.log(response.data)
-                this.calculateAverage(number.rating)
+        .then((response) => {
+            console.log(response.data)
+            window.alert("Review submitted.")
+            this.calculateAverage(number.rating)
         })
     }
 
@@ -52,9 +58,19 @@ class CreateReview extends Component {
         this.setState({ rating, maxRating })
 
     render() {
+  
         return (
             <>
-            <center>                
+            <center>               
+     
+       
+    
+        <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
+            Create account or login to create review.
+        </Message>
+    
+    <Reminder />
+           
                 <Form onSubmit= { (event) => {this.handleSubmitRating(event, this.state)}}>
                     <Rating color="purple" size="massive" maxRating={5} onRate={this.handleRating} />
                     <Form.TextArea
@@ -73,10 +89,16 @@ class CreateReview extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return { 
+      currentUser: state.currentUser
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return { 
       updateRR: (recipe) =>  { dispatch(updateRR(recipe)) }, 
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateReview)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateReview)

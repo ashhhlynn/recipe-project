@@ -1,17 +1,72 @@
 import React, { Component } from 'react'
-import {  Grid, Segment, Card} from 'semantic-ui-react'
+import {  Grid, Segment, Card, Message} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import Favorite from './Favorite'
 import { fetchFavorites } from "./actions/rootActions"
+import axios from "axios";
+import { checkUser } from "./actions/rootActions"
 
 class Favorites extends Component {        
 
+    componentDidMount = () => {
+        this.props.checkUser()
+        if (this.props.currentUser.length === 0 ){
+            axios
+            .get("api/v1/users/4.json")
+              .then((response) => {
+                console.log(response.data.recipes);
+                this.props.fetchFavorites(response.data.recipes)
+              })
+            .catch((error) => console.log(error));
+        }
+        else {
+        
+
+          
+        
+        
+            let u = this.props.currentUser.id
+        axios
+        .get("api/v1/users/" + u)
+        .then((response) => {
+          console.log(response.data.recipes);
+          this.props.fetchFavorites(response.data.recipes)
+        })
+      .catch((error) => console.log(error));
+        }
+    }
+
+    componentDidMounty = () => {
+        axios
+        .get("api/v1/users/4.json")
+          .then((response) => {
+            console.log(response.data.recipes);
+            this.props.fetchFavorites(response.data.recipes)
+          })
+        .catch((error) => console.log(error));
+
+        axios
+      .get("/api/v1/profile.json")
+      .then((response) => {
+          if (response.message) {
+              localStorage.removeItem("token")
+          }
+          else {
+          console.log(response);
+          this.props.checkUser(response.user)
+        }
+      })
+      .catch((error) => console.log(error));
+
+      console.log(this.props.currentUser)
+      }
+    
     render() {
-        const recipeGroup = this.props.favorites.map( i => {
+        const recipeGroup = this.props.favorites.map( f => {
             return (
                 <Card >
-                    <Favorite recipe={i} />
+                    <Favorite recipe={f} key={f.id}/>
                 </Card>    
             )
         })  
@@ -22,6 +77,9 @@ class Favorites extends Component {
                     <Navbar/>
                 </Grid.Column>
                 <Grid.Column >
+                    <Message color="yellow" style={{marginLeft:"7%", width:"300px"}}>
+                        Create account or login to save favorites.
+                    </Message>
                     <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
                         {recipeGroup}
                     </Card.Group>
@@ -36,12 +94,15 @@ class Favorites extends Component {
 const mapStateToProps = (state) => {
     return { 
       favorites: state.favorites,
+      currentUser: state.currentUser
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return { 
       fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
+      checkUser: (user) =>  { dispatch(checkUser(user)) },
+
     }
 }
 

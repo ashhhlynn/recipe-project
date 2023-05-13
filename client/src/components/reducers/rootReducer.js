@@ -28,11 +28,9 @@ const rootReducer = (state = initialState, action) => {
 
         case "UPDATE_RR":
             console.log(action.recipe)
-            let rr = state.recipes.filter(f=> f.id !== action.recipe.id)
-            let nrr = rr.push(action.recipe)
             return {
                 ...state,
-                recipes: nrr,
+                recipes: [...state.recipes.filter(item=> item.id !== action.recipe.id), action.recipe],
                 loading: false,
             };
 
@@ -128,11 +126,19 @@ const rootReducer = (state = initialState, action) => {
         case 'SET_CURRENT_USER':
             console.log(state.currentUser)
             console.log(action.user)
+            if (action.user !== undefined){
             return {
                 ...state, 
                 currentUser: action.user, 
                 loading: false
-            };
+            }}
+            
+            else {
+                return {
+                    ...state
+                }
+            }
+            ;
 
         case 'LOGOUT':
             return {
