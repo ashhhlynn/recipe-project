@@ -10,6 +10,12 @@ export const fetchFavorites = (recipes) => {
     }
 }
 
+export const updateRR = (recipe) => {
+    return (dispatch) => {
+        dispatch({ type: "UPDATE_RR", recipe: recipe })     
+    }
+}
+
 export const sortAToZ = () => {
     return (dispatch) => {
         dispatch({ type: "SORT_A_TO_Z" })

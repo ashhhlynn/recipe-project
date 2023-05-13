@@ -34,7 +34,7 @@ class Recipes extends Component {
     axios
     .get("api/v1/users/4.json")
     .then((response) => {
-      console.log(response);
+      console.log(response.data.recipes);
       this.props.fetchFavorites(response.data.recipes)
     })
     .catch((error) => console.log(error));

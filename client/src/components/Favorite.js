@@ -36,7 +36,7 @@ class Favorite extends Component {
     }
 
     render() {
-        const i = this.props.recipe     
+        const i = this.props.favorite    
         return (
             <>
                 <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
@@ -53,7 +53,7 @@ class Favorite extends Component {
                     closeIcon
                 >
                     <Modal.Content >
-                        <RecipeInfo recipe={i} key={i.id} handleClose={this.handleClose} />
+                        <RecipeInfo recipe={i} handleClose={this.handleClose} />
                     </Modal.Content>
                 </Modal>
             </>

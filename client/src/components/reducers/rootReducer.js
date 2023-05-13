@@ -26,6 +26,13 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
+            case "UPDATE_RR":
+                console.log(action.recipe)
+                return {
+                    ...state,
+                    loading: false,
+                };
+
         case "GET_RATING":
             console.log(action.ratings)
             let x = action.ratings.map(r => r.score)

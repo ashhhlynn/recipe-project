@@ -3,6 +3,7 @@ import { Form, Rating} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import axios from "axios";
+import { updateRR } from "./actions/rootActions"
 
 class CreateReview extends Component {
 
@@ -24,6 +25,7 @@ class CreateReview extends Component {
         })
         .then((response) => {
         console.log(response.data);
+        this.props.updateRR(response.data)
         });
     }
 
@@ -35,7 +37,7 @@ class CreateReview extends Component {
         axios
         .post("/api/v1/reviews", { score: number.rating, recipe_id: i, text: number.text})
             .then((response) => {
-                console.log(response);
+                console.log(response.data)
                 this.calculateAverage(number.rating)
         })
     }
@@ -72,4 +74,10 @@ class CreateReview extends Component {
     }
 }
 
-export default CreateReview
+const mapDispatchToProps = (dispatch) => {
+    return { 
+      updateRR: (recipe) =>  { dispatch(updateRR(recipe)) }, 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateReview)

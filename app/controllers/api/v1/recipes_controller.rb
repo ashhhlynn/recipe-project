@@ -1,8 +1,7 @@
 module Api::V1
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :update, :destroy]
 
-  skip_before_action :authorized, only: [:index, :create, :update]
+  skip_before_action :authorized, only: [:index, :create, :update, :show]
 
 
   # GET /recipes
@@ -14,7 +13,9 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
-    render json: @recipe
+    @recipe = Recipe.find(params[:id])
+
+    render json: @recipe, include: [:reviews, :recipe_ingredients]
   end
 
   # POST /recipes
@@ -34,10 +35,11 @@ class RecipesController < ApplicationController
 
   # PATCH/PUT /recipes/1
   def update
-    if @recipe.update(recipe_params)
-      render json: @recipe
+    recipe = Recipe.find(params[:id])
+    if recipe.update(recipe_params)
+      render json: recipe
     else
-      render json: @recipe.errors, status: :unprocessable_entity
+      render json: recipe.errors, status: :unprocessable_entity
     end
   end
 
