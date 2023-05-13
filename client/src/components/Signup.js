@@ -74,7 +74,7 @@ class Signup extends Component {
                             value={this.state.password_confirmation} 
                             onChange={this.handleChange}
                             />
-                            <Form.Button circular content="Submit"/>
+                            <Form.Button circular size="large" content="Submit"/>
                             </Form>
                         </Segment>
                     </Grid.Column>

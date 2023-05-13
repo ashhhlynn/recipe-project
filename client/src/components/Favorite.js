@@ -44,7 +44,7 @@ class Favorite extends Component {
                     {i.name} 
                 </h2>                   
                 <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
-                    <Icon style={{marginLeft:"95%", color:"#702963"}}floated="right" size="large" name="close"/>
+                    <Icon style={{marginLeft:"93%", color:"#702963"}}floated="right" size="large" name="close"/>
                 </Button> 
                 <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
                 <Modal 

@@ -13,9 +13,9 @@ class Navbar extends Component {
         return (
             <div >
                 <Menu className="nav" size="huge" vertical style={{minHeight:"515px", marginTop:"-5%", marginLeft:"-4%", marginBottom:"-5%", height:"100%"}}>
-                    <Menu.Item ><Link to="/recipes" style={{color:"#585858", fontSize:"20px"}}>All Recipes</Link></Menu.Item>
-                    <Menu.Item><Link to="/createrecipe"  style={{color:"#585858", fontSize:"20px"}}>Share Recipe</Link></Menu.Item>
-                    <Menu.Item><Link to="/favorites"  style={{color:"#585858 ",  fontSize:"20px"}}>Favorites</Link></Menu.Item>
+                    <Menu.Item ><Link to="/" style={{fontWeight:"bold", color:"#585858", letterSpacing:"3%", fontFamily:"Lato", fontSize:"20px"}}>All Recipes</Link></Menu.Item>
+                    <Menu.Item><Link to="/createrecipe"  style={{fontWeight:"bold", color:"#585858", fontSize:"20px"}}>Share Recipe</Link></Menu.Item>
+                    <Menu.Item><Link to="/favorites"  style={{fontWeight:"bold", color:"#585858 ",  fontSize:"20px"}}>Favorites</Link></Menu.Item>
                     <Menu.Item></Menu.Item>
                 </Menu>
             </div>
