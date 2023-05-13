@@ -24,11 +24,14 @@ class Recipe extends Component {
     }
 
     addToFavorites = () => {
+        let id = this.props.recipe.id
         axios
-        .post("/api/v1/favorites", { recipe_id: this.props.recipe.id, user_id: this.props.currentUser.id})
-        .then((response) => {
-        console.log(response);
+        .put("/api/v1/recipes/" + id, {
+            user_id: 4
         })
+        .then((response) => {
+        console.log(response.data);
+        });
         this.props.addToFavorites(this.props.recipe)
     }
 
@@ -40,7 +43,7 @@ class Recipe extends Component {
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h2>   
-                <Button floated="right" onClick={this.addToFaves} style={{marginTop:"-15%", background:"none"}} >
+                <Button floated="right" onClick={this.addToFavorites} style={{marginTop:"-15%", background:"none"}} >
                     <Icon style={{color:"#702963", marginLeft:"93%"}}floated="right"  size="large" name="heart"/>
                 </Button> 
                 <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>

@@ -8,12 +8,16 @@ import { fetchFavorites } from "./actions/rootActions"
 
 class Favorites extends Component {        
 
+    componentDidMount = () => {
+        this.getFavorites()
+    }
+    
     getFavorites = () => {
         axios
-        .get("api/v1/favorites.json")
+        .get("api/v1/users/4.json")
         .then((response) => {
           console.log(response);
-          this.props.fetchFavorites(response.data)
+          this.props.fetchFavorites(response.data.recipes)
         })
         .catch((error) => console.log(error));
     }

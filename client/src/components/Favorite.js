@@ -23,15 +23,16 @@ class Favorite extends Component {
         this.props.removeFavorite(this.props.recipe)
     }
 
-    removeFave = (favorite) => {
-        let id = favorite.id
+    removeFave = () => {
+        let i = this.props.recipe.id
         axios
-        .delete("/api/v1/favorites/" + id)
-        .then((response) => {
-          console.log(response)
+        .put("/api/v1/recipes/" + i, {
+            user_id: 3
         })
-        .catch((error) => console.log(error));
-        this.props.removeFavorite(favorite.id)
+        .then((response) => {
+            console.log(response.data);
+        });
+        this.props.removeFavorite(this.props.recipe)
     }
 
     render() {
@@ -42,7 +43,7 @@ class Favorite extends Component {
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name} 
                 </h2>                   
-                <Button floated="right" onClick={this.removeFavorite} style={{marginTop:"-15%", background:"none"}} >
+                <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
                     <Icon style={{marginLeft:"95%", color:"#702963"}}floated="right" size="large" name="close"/>
                 </Button> 
                 <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
