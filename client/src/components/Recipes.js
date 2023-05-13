@@ -10,6 +10,7 @@ import { sortNumberReviews } from "./actions/rootActions"
 import { sortDate } from "./actions/rootActions"
 import { filterIngredient } from "./actions/rootActions"
 import { sortRating } from "./actions/rootActions"
+import { fetchFavorites } from "./actions/rootActions"
 
 class Recipes extends Component {        
 
@@ -31,13 +32,11 @@ class Recipes extends Component {
     .catch((error) => console.log(error));
 
     axios
-    .get("api/v1/recipe_ingredients.json")
-      .then((response) => {
-          console.log(response);
-          this.setState({
-            recipe_ingredients: response.data,
-          });
-      })
+    .get("api/v1/users/4.json")
+    .then((response) => {
+      console.log(response);
+      this.props.fetchFavorites(response.data.recipes)
+    })
     .catch((error) => console.log(error));
   }
 
@@ -63,13 +62,6 @@ class Recipes extends Component {
         <Card >
           <Recipe recipe={i} key={i.id}/>
         </Card>    
-      )
-    })
-    const riGroup = this.state.recipe_ingredients.map( i => {
-      return (
-        <div>
-         {i.name}
-        </div>
       )
     })
     return (
@@ -114,7 +106,9 @@ const mapDispatchToProps = (dispatch) => {
     sortNumberReviews: () =>  { dispatch(sortNumberReviews()) },
     sortDate: () =>  { dispatch(sortDate()) },
     filterIngredient: () =>  { dispatch(filterIngredient()) },
-    sortRating: () =>  { dispatch(sortRating()) }
+    sortRating: () =>  { dispatch(sortRating()) },
+    fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
+
   }
 }
 

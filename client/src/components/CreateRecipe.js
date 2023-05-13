@@ -13,25 +13,18 @@ state = {
     description: '',
     image_url: '',
     ingredient1: '',
-    quantity1:'',
     ingredient2: '',
-    quantity2:'',
     ingredient3: '',
-    quantity3:'',
     ingredient4: '',
-    quantity4:'',
     ingredient5: '',
-    quantity5:'',
     recipe_ingredients: []
 }
 
-addIngredient = (event, ingredient) => {
+addIngredient = (event) => {
     event.preventDefault()
-    this.state.recipe_ingredients.push(ingredient)
-}
-
-removeIngredient = () => {
-
+    console.log(this.state[event.target.id])
+    this.state.recipe_ingredients.push(this.state[event.target.id])
+    console.log(this.state.recipe_ingredients)
 }
 
 handleChange = (event) => {
@@ -40,11 +33,10 @@ handleChange = (event) => {
     })
 }
 
-
 handleSubmit = (event, recipe) => {
     event.preventDefault()
     axios
-    .post("/api/v1/recipes", { name: recipe.name, description: recipe.description, image_url: recipe.image_url, recipe_ingredients: recipe.recipe_ingredients})
+    .post("/api/v1/recipes", { name: recipe.name, user_id: 3, description: recipe.description, image_url: recipe.image_url, recipe_ingredients: recipe.recipe_ingredients})
     .then((response) => {
       console.log(response);
 })}
@@ -84,10 +76,10 @@ render() {
                             value={this.state.description} 
                             onChange={this.handleChange}
                             />    
-                        <h2 >Ingredients</h2>
-                    <br></br><center>
-                        <Item style={{marginLeft: "30%"}}>
-                        <Form.Group>
+                            <h2 >Ingredients</h2>
+                            <br></br>
+                            <Item style={{marginLeft: "30%"}}>
+                            <Form.Group>
                             <Form.Input
                             required
                             type="text"
@@ -95,37 +87,30 @@ render() {
                             placeholder="Ingredient"
                             value={this.state.ingredient1} 
                             onChange={this.handleChange}
-                            />
-                     
-                            <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
-                        </Form.Group>
-                        <Form.Group>
+                            />                    
+                            <Button id="ingredient1" basic color="grey" onClick={this.addIngredient} >+</Button>
+                            </Form.Group>
+                            <Form.Group>
                             <Form.Input
-                            required
                             type="text"
                             id="ingredient2"
                             placeholder="Ingredient"
                             value={this.state.ingredient2} 
                             onChange={this.handleChange}
                             />
-                      
-                                    <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
-                        </Form.Group>
-
-                        <Form.Group>
-                            <Form.Input
-                            required
+                            <Button id="ingredient2" basic color="grey" onClick={this.addIngredient} >+</Button>
+                            </Form.Group>
+                            <Form.Group>
+                            <Form.Input                       
                             type="text"
                             id="ingredient3"
                             placeholder="Ingredient"
                             value={this.state.ingredient3} 
                             onChange={this.handleChange}
                             />
-                      
-                                   <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
-                        </Form.Group>
-
-                        <Form.Group>
+                            <Button id="ingredient3" basic color="grey" onClick={this.addIngredient} >+</Button>
+                            </Form.Group>
+                            <Form.Group>
                             <Form.Input
                             type="text"
                             id="ingredient4"
@@ -133,12 +118,9 @@ render() {
                             value={this.state.ingredient4} 
                             onChange={this.handleChange}
                             />
-                    
-                                <Button id="1" basic color="grey" onClick={this.addIngredient} >+</Button>
-                        </Form.Group>
-                        <center>
-                      
-                        <Form.Group>
+                            <Button id="ingredient4" basic color="grey" onClick={this.addIngredient} >+</Button>
+                            </Form.Group>
+                            <Form.Group>
                             <Form.Input
                             type="text"
                             id="ingredient5"
@@ -146,23 +128,19 @@ render() {
                             value={this.state.ingredient5} 
                             onChange={this.handleChange}
                             />
-                       
-                                  <Button id="1" basic color="grey"  onClick={this.addIngredient} >+</Button>
-                        </Form.Group>
-                     
-                   </center> </Item> 
-                   
-                   <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="large" className="formButtons" content='Save Recipe'/>        
-
-                       </center>
-                    <br></br>
-                    </Form> 
-                </Segment>           
-            </Grid.Column>
-        </Grid>
+                            <Button id="ingredient5" basic color="grey"  onClick={this.addIngredient} >+</Button>
+                            </Form.Group>
+                        </Item> 
+                        <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="large" className="formButtons" content='Save Recipe'/>        
+                        <br></br>
+                        </Form> 
+                    </Segment>           
+                </Grid.Column>
+            </Grid>
         </Segment>
     )
 }
+
 }
 
 export default CreateRecipe

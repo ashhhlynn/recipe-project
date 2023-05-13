@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import axios from "axios";
 import RecipeInfo from './RecipeInfo'
 import { addToFavorites } from "./actions/rootActions"
+import { fetchRecipes } from "./actions/rootActions"
 
 class Recipe extends Component {        
 
@@ -69,7 +70,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return { 
-      addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) }
+      addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
+      fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }, 
+
     }
 }
   

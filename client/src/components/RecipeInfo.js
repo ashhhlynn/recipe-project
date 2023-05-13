@@ -10,12 +10,13 @@ class RecipeInfo extends Component {
     }
 
     componentDidMount = () => {     
+        console.log(this.props.recipe)
     }
     
     render() {
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
             return (
-                <div>{ri.quantity} {ri.name}</div>
+                <div>{ri.name}</div>
             )
         })
         return (         
@@ -39,7 +40,7 @@ class RecipeInfo extends Component {
                         </center>
                     </Grid.Column>
                 </Grid>
-                <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} centered placeholder>
+                <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} placeholder>
                     <h2>Reviews</h2>
                     <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>
                     <br></br>

@@ -13,7 +13,7 @@ class CreateReview extends Component {
         let reviews = this.props.recipe.reviews.map(r => r.score)
         reviews.push(number)
         console.log(reviews)
-        const avg = reviews.reduce((a,b) => a + b, 0) / reviews.length + 1;
+        const avg = reviews.reduce((a,b) => a + b, 0) / reviews.length;
         console.log(avg)
         let x = Math.round(avg)
         console.log(x)
