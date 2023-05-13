@@ -66,12 +66,6 @@ class Recipe extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return { 
-      currentUser: state.currentUser
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return { 
       addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
@@ -79,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
   
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe)
+export default connect(null, mapDispatchToProps)(Recipe)

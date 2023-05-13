@@ -62,15 +62,11 @@ class Favorite extends Component {
         )
     }
 }
-const mapStateToProps = (state) => {
-    return { 
-      currentUser: state.currentUser
-    }
-}
+
 const mapDispatchToProps = (dispatch) => {
     return { 
         removeFavorite: (recipe) =>  { dispatch(removeFavorite(recipe)) }
     }
 }
   
-export default connect(mapStateToProps, mapDispatchToProps)(Favorite)
+export default connect(null, mapDispatchToProps)(Favorite)

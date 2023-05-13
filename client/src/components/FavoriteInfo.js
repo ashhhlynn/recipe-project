@@ -6,7 +6,6 @@ import CreateReview from './CreateReview'
 class FavoriteInfo extends Component {
 
     state = {
-        ratings: [],
     }
 
     componentDidMount = () => {     

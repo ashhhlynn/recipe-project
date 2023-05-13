@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { Component } from 'react'
 import './App.css';
 import Recipes from './components/Recipes'
-import CreateIngredients from './components/Notusin/CreateIngredients'
 import CreateRecipe from './components/CreateRecipe'
 import Profile from './components/Notusin/Profile'
 import Login from './components/Login'
@@ -43,7 +42,6 @@ class App extends Component {
       })
     .catch((error) => console.log(error));
     this.props.checkUser()
-
   }
   
 render() {
@@ -55,7 +53,6 @@ render() {
         <Routes>
           <Route exact path="/" element={<Recipes />} />
           <Route exact path="/createrecipe" element={<CreateRecipe />} />
-          <Route exact path="/createingredients" element={<CreateIngredients />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />

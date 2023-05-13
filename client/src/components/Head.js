@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Icon, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
+const hi = 
+<Menu.Item><Icon size="large" color="grey" name="sign-out"></Icon><Link to ='/'  style={{marginTop:"-10%", color:"grey"}}>Sign Out </Link></Menu.Item>
+
 class Head extends Component {
 
     render() {

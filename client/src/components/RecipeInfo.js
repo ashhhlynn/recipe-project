@@ -6,7 +6,6 @@ import CreateReview from './CreateReview'
 class RecipeInfo extends Component {
 
     state = {
-      
     }
 
     componentDidMount = () => {     

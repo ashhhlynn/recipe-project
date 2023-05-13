@@ -3,7 +3,6 @@ import { Form, Rating, Message} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import { updateRR } from "./actions/rootActions"
-import Reminder from './Reminder'
 
 class CreateReview extends Component {
 
@@ -11,7 +10,6 @@ class CreateReview extends Component {
     }
     
     componentDidMount = () => {
-
     }
 
     calculateAverage = (number) => {
@@ -61,16 +59,10 @@ class CreateReview extends Component {
   
         return (
             <>
-            <center>               
-     
-       
-    
-        <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
-            Create account or login to create review.
-        </Message>
-    
-    <Reminder />
-           
+            <center>                   
+                <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
+                    Create account or login to create review.
+                </Message>
                 <Form onSubmit= { (event) => {this.handleSubmitRating(event, this.state)}}>
                     <Rating color="purple" size="massive" maxRating={5} onRate={this.handleRating} />
                     <Form.TextArea
@@ -89,16 +81,10 @@ class CreateReview extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return { 
-      currentUser: state.currentUser
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return { 
       updateRR: (recipe) =>  { dispatch(updateRR(recipe)) }, 
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateReview)
+export default connect(null, mapDispatchToProps)(CreateReview)

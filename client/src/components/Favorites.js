@@ -5,12 +5,10 @@ import Navbar from './Navbar'
 import Favorite from './Favorite'
 import { fetchFavorites } from "./actions/rootActions"
 import axios from "axios";
-import { checkUser } from "./actions/rootActions"
 
 class Favorites extends Component {        
 
     componentDidMount = () => {
-        this.props.checkUser()
         if (this.props.currentUser.length === 0 ){
             axios
             .get("api/v1/users/4.json")
@@ -21,46 +19,16 @@ class Favorites extends Component {
             .catch((error) => console.log(error));
         }
         else {
-        
-
-          
-        
-        
             let u = this.props.currentUser.id
-        axios
-        .get("api/v1/users/" + u)
-        .then((response) => {
-          console.log(response.data.recipes);
-          this.props.fetchFavorites(response.data.recipes)
-        })
-      .catch((error) => console.log(error));
+            axios
+            .get("api/v1/users/" + u)
+            .then((response) => {
+                console.log(response.data.recipes);
+                this.props.fetchFavorites(response.data.recipes)
+            })
+            .catch((error) => console.log(error));
         }
     }
-
-    componentDidMounty = () => {
-        axios
-        .get("api/v1/users/4.json")
-          .then((response) => {
-            console.log(response.data.recipes);
-            this.props.fetchFavorites(response.data.recipes)
-          })
-        .catch((error) => console.log(error));
-
-        axios
-      .get("/api/v1/profile.json")
-      .then((response) => {
-          if (response.message) {
-              localStorage.removeItem("token")
-          }
-          else {
-          console.log(response);
-          this.props.checkUser(response.user)
-        }
-      })
-      .catch((error) => console.log(error));
-
-      console.log(this.props.currentUser)
-      }
     
     render() {
         const recipeGroup = this.props.favorites.map( f => {
@@ -101,8 +69,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
       fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
-      checkUser: (user) =>  { dispatch(checkUser(user)) },
-
     }
 }
 
