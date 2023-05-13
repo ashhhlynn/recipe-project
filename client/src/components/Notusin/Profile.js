@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Button, Modal, Divider, Grid, Icon, Header, Segment, Card} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom'
-import Navbar from './Navbar'
+import Navbar from '../Navbar'
 import axios from "axios";
-import Recipe from './Recipe'
+import Recipe from '../Recipe'
 
 class Profile extends Component {        
 

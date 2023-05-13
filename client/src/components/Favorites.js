@@ -2,30 +2,16 @@ import React, { Component } from 'react'
 import {  Grid, Segment, Card} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
-import axios from "axios";
 import Favorite from './Favorite'
 import { fetchFavorites } from "./actions/rootActions"
 
 class Favorites extends Component {        
 
-    componentDidMount = () => {
- console.log(this.props.favorites)
-
-        axios
-    .get("api/v1/users/4.json")
-    .then((response) => {
-      console.log(response.data.recipes);
-      this.props.fetchFavorites(response.data.recipes)
-    })
-    .catch((error) => console.log(error));
-  }
-    
-
     render() {
         const recipeGroup = this.props.favorites.map( i => {
             return (
                 <Card >
-                    <Favorite favorite={i} />
+                    <Favorite recipe={i} />
                 </Card>    
             )
         })  
@@ -58,4 +44,5 @@ const mapDispatchToProps = (dispatch) => {
       fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

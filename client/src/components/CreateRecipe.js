@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Form, Grid, Button,  Segment, Item, Input} from 'semantic-ui-react'
+import { Form, Grid, Button,  Segment, Item } from 'semantic-ui-react'
 import Navbar from './Navbar'
-import { connect } from "react-redux"
 import axios from "axios";
-import { Link } from 'react-router-dom'
 
 class CreateRecipe extends Component {
 
@@ -25,6 +23,7 @@ addIngredient = (event) => {
     console.log(this.state[event.target.id])
     this.state.recipe_ingredients.push(this.state[event.target.id])
     console.log(this.state.recipe_ingredients)
+    window.alert("Ingredient added.")
 }
 
 handleChange = (event) => {
@@ -36,9 +35,10 @@ handleChange = (event) => {
 handleSubmit = (event, recipe) => {
     event.preventDefault()
     axios
-    .post("/api/v1/recipes", { name: recipe.name, user_id: 3, description: recipe.description, image_url: recipe.image_url, recipe_ingredients: recipe.recipe_ingredients})
+    .post("/api/v1/recipes", { name: recipe.name, user_id: 3, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
     .then((response) => {
       console.log(response);
+      window.alert("Recipe created.")
 })}
 
 render() {
@@ -51,7 +51,7 @@ render() {
                 <Grid.Column>
                     <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
                         <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
-                        <Form onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
+                        <Form success onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
                             <Form.Input
                             required
                             type="text"
@@ -140,7 +140,6 @@ render() {
         </Segment>
     )
 }
-
 }
 
 export default CreateRecipe

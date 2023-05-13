@@ -26,12 +26,15 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
-            case "UPDATE_RR":
-                console.log(action.recipe)
-                return {
-                    ...state,
-                    loading: false,
-                };
+        case "UPDATE_RR":
+            console.log(action.recipe)
+            let rr = state.recipes.filter(f=> f.id !== action.recipe.id)
+            let nrr = rr.push(action.recipe)
+            return {
+                ...state,
+                recipes: nrr,
+                loading: false,
+            };
 
         case "GET_RATING":
             console.log(action.ratings)

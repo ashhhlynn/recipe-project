@@ -7,6 +7,15 @@
   font-weight: "normal" !important;
 }
 
+.navy .navb {
+  height:100% !important;
+  min-height:"515px" !important;
+  margin-top: "-5%";
+  margin-left: "-4%";
+
+}
+
+
 .button.ui.button {
   background-color: #702963;
   color: #ffffff;
@@ -21,8 +30,9 @@
   font-weight: "normal" !important;
 }
 
-.ui.menu.item  {
+.navy > .a  {
 color: "grey" !important;
+letter-spacing: 3%  !important;
 }
 
 .App-header {
@@ -43,3 +53,4 @@ color: "grey" !important;
 .ui.header {
   font-weight: "normal" !important;
 }
+

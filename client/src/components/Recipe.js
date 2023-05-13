@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Icon, Image, Rating} from 'semantic-ui-react'
+import { Button, Modal, Icon, Image, Item, Rating} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import RecipeInfo from './RecipeInfo'
@@ -47,7 +47,9 @@ class Recipe extends Component {
                 <Button floated="right" onClick={this.addToFavorites} style={{marginTop:"-15%", background:"none"}} >
                     <Icon style={{color:"#702963", marginLeft:"93%"}}floated="right"  size="large" name="heart"/>
                 </Button> 
-                <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
+                <Item>
+                <Rating size="small" rating={i.average} disabled maxRating={5} />
+                </Item>
                 <Modal 
                     open={this.state.modalOpen}
                     onClose={this.handleClose}
@@ -66,13 +68,12 @@ const mapStateToProps = (state) => {
     return { 
       currentUser: state.currentUser
     }
-  }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return { 
       addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
       fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }, 
-
     }
 }
   

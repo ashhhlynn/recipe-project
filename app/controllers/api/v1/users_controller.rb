@@ -6,8 +6,7 @@ module Api::V1
   # GET /users
   def index
     @users = User.all
-
-    render json: @users
+    render json: @users, include: [:recipes]
   end
 
   def profile
@@ -16,7 +15,7 @@ end
 
 def show
   user = User.find(params[:id])
-  render json: user, include: [:recipes, include: [:recipe_ingredients, :reviews]]
+  render json: user, include: [:recipes]
 end
 
 

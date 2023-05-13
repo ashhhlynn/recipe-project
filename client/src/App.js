@@ -3,12 +3,10 @@ import axios from "axios";
 import React, { Component } from 'react'
 import './App.css';
 import Recipes from './components/Recipes'
-import CreateRi from './components/Notusin/CreateRi'
-import CreateIngredients from './components/CreateIngredients'
+import CreateIngredients from './components/Notusin/CreateIngredients'
 import CreateRecipe from './components/CreateRecipe'
-import Profile from './components/Profile'
+import Profile from './components/Notusin/Profile'
 import Login from './components/Login'
-import Home from './components/Notusin/Home'
 import Signup from './components/Signup'
 import Favorites from './components/Favorites'
 import { fetchRecipes } from "./components/actions/rootActions"

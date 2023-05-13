@@ -8,7 +8,6 @@ import { fetchRecipes } from "./actions/rootActions"
 import { sortAToZ } from "./actions/rootActions"
 import { sortNumberReviews } from "./actions/rootActions"
 import { sortDate } from "./actions/rootActions"
-import { filterIngredient } from "./actions/rootActions"
 import { sortRating } from "./actions/rootActions"
 import { fetchFavorites } from "./actions/rootActions"
 
@@ -18,7 +17,6 @@ class Recipes extends Component {
     super(props);
     this.state = {
       recipes: [],
-      recipe_ingredients: []
     };
   }
     
@@ -26,17 +24,17 @@ class Recipes extends Component {
     axios
     .get("api/v1/recipes.json")
       .then((response) => {
-          console.log(response);
-          this.props.fetchRecipes(response.data)
+        console.log(response);
+        this.props.fetchRecipes(response.data)
       })
     .catch((error) => console.log(error));
 
     axios
     .get("api/v1/users/4.json")
-    .then((response) => {
-      console.log(response.data.recipes);
-      this.props.fetchFavorites(response.data.recipes)
-    })
+      .then((response) => {
+        console.log(response.data.recipes);
+        this.props.fetchFavorites(response.data.recipes)
+      })
     .catch((error) => console.log(error));
   }
 
@@ -105,10 +103,8 @@ const mapDispatchToProps = (dispatch) => {
     sortAToZ: () =>  { dispatch(sortAToZ()) },
     sortNumberReviews: () =>  { dispatch(sortNumberReviews()) },
     sortDate: () =>  { dispatch(sortDate()) },
-    filterIngredient: () =>  { dispatch(filterIngredient()) },
     sortRating: () =>  { dispatch(sortRating()) },
     fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
-
   }
 }
 

@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
     return { 
       checkUser: (user) =>  { dispatch(checkUser(user)) },
     }
-  }
+}
   
 
 export default connect(null, mapDispatchToProps)(Login)

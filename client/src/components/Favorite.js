@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Rating, Icon, Image} from 'semantic-ui-react'
+import { Button, Modal, Rating, Icon, Image, Item} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import RecipeInfo from './RecipeInfo'
@@ -36,7 +36,7 @@ class Favorite extends Component {
     }
 
     render() {
-        const i = this.props.favorite    
+        const i = this.props.recipe  
         return (
             <>
                 <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>   
@@ -46,7 +46,9 @@ class Favorite extends Component {
                 <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
                     <Icon style={{marginLeft:"93%", color:"#702963"}}floated="right" size="large" name="close"/>
                 </Button> 
-                <p><Rating size="small" rating={i.average} disabled maxRating={5} /></p>
+                <Item>
+                    <Rating size="small" rating={i.average} disabled maxRating={5} />
+                </Item>
                 <Modal 
                     open={this.state.modalOpen}
                     onClose={this.handleClose}
