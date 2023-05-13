@@ -31,6 +31,7 @@ class Login extends Component {
                 localStorage.token = response.data.jwt;
                 this.props.checkUser(response.data.user)
                 console.log(localStorage.token)
+                window.alert("Login successful.")
             }
         })
     }
