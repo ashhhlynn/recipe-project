@@ -20,6 +20,7 @@ class Favorite extends Component {
     }
 
     removeFavorite = () => {
+        let u = this.props.testUser
         this.props.removeFavorite(this.props.recipe)
     }
 
@@ -63,10 +64,16 @@ class Favorite extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return { 
+      testUser: state.testUser
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return { 
         removeFavorite: (recipe) =>  { dispatch(removeFavorite(recipe)) }
     }
 }
   
-export default connect(null, mapDispatchToProps)(Favorite)
+export default connect(mapStateToProps, mapDispatchToProps)(Favorite)

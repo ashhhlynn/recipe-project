@@ -73,6 +73,17 @@ export const createUser = (userData) => {
 export const checkUser = (u) => {
     return (dispatch) => {  
         dispatch({ type: "SET_CURRENT_USER", user: u })
+        dispatch({ type: "NO_LOGIN"})
+
+    }
+}
+
+export const testLogin = (user) => {
+    console.log(user)
+    return (dispatch) => {  
+        dispatch({ type: "TEST_LOGIN", user: user })
+        dispatch({ type: "TEST_FAVORITES", user: user })
+
     }
 }
 

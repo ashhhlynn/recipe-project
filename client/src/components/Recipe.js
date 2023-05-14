@@ -21,18 +21,42 @@ class Recipe extends Component {
     }
 
     addToFaves = () => {
+        let id = this.props.recipe.id
+        if (this.props.testUser.length > 0)
+        {
+        let u = this.props.testUser[0]
+        axios
+        .post("/api/v1/favorites", { recipe_id: id, user_id: u })
+        .then((response) => {
+          console.log(response);
+          window.alert("Recipe created.")
+    })
+}
         this.props.addToFavorites(this.props.recipe)
     }
 
     addToFavorites = () => {
         let id = this.props.recipe.id
+        if (this.props.testUser.length > 0)
+        {
+        let u = this.props.testUser[0]
         axios
+        .put("/api/v1/recipes/" + id, {
+            user_id: u
+        })
+        .then((response) => {
+        console.log(response.data)
+        });
+        }
+else {
+    axios
         .put("/api/v1/recipes/" + id, {
             user_id: 4
         })
         .then((response) => {
         console.log(response.data)
         });
+}
         this.props.addToFavorites(this.props.recipe)
         window.alert("Added to favorites.")
 
@@ -46,7 +70,7 @@ class Recipe extends Component {
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h2>   
-                <Button floated="right" onClick={this.addToFavorites} style={{marginTop:"-15%", background:"none"}} >
+                <Button floated="right" onClick={this.addToFaves} style={{marginTop:"-15%", background:"none"}} >
                     <Icon style={{color:"#702963", marginLeft:"93%"}}floated="right"  size="large" name="heart"/>
                 </Button> 
                 <Item>
@@ -66,6 +90,12 @@ class Recipe extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return { 
+      testUser: state.testUser
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return { 
       addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
@@ -73,4 +103,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
   
-export default connect(null, mapDispatchToProps)(Recipe)
+export default connect(mapStateToProps, mapDispatchToProps)(Recipe)

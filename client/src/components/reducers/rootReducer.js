@@ -5,7 +5,8 @@ const initialState = {
     loading: false,
     favorites: [],
     rating: '',
-    userFavorites: []
+    userFavorites: [],
+    testUser: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -139,6 +140,32 @@ const rootReducer = (state = initialState, action) => {
                 }
             }
             ;
+
+        case 'TEST_LOGIN':
+            console.log(action.user)
+                return {
+                    ...state, 
+                    testUser: [...state.testUser, action.user],
+                    loading: false
+                }
+            ;
+            case 'TEST_FAVORITES':
+                console.log(action.user)
+                let uR = state.recipes.filter(f => f.user_id === action.user)
+                console.log(uR)
+                    return {
+                        ...state, 
+                        favorites: uR,
+                        loading: false
+                    }
+                ;
+            case 'NO_LOGIN':
+                    return {
+                        ...state, 
+                        testUser: [], 
+                        loading: false
+                    }
+                ;
 
         case 'LOGOUT':
             return {

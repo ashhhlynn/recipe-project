@@ -28,8 +28,8 @@ class App extends Component {
               localStorage.removeItem("token")
           }
           else {
-          console.log(response);
-          this.props.checkUser(response.user)
+          console.log(response.data);
+          this.props.checkUser(response.data.user)
         }
       })
       .catch((error) => console.log(error));

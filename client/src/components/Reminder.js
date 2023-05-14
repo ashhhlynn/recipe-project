@@ -8,12 +8,11 @@ class Reminder extends Component {
     render() {
         return (
             <>
-               {this.props.currentUser.length === 0} ?
+             
                     <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
                         Create account or login to create.
                     </Message>
-                :
-                <><p>Hi</p></>
+              
             </>
         )
     }
@@ -21,8 +20,13 @@ class Reminder extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-      currentUser: state.currentUser
+      currentUser: state.currentUser,
+      testUser: state.testUser
+
     }
 }
+
+
+
 
 export default connect(mapStateToProps)(Reminder)

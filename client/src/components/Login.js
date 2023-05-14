@@ -4,6 +4,7 @@ import axios from "axios";
 import { Form, Grid, Segment} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { checkUser } from "./actions/rootActions"
+import { testLogin } from "./actions/rootActions"
 
 class Login extends Component {
 
@@ -32,6 +33,8 @@ class Login extends Component {
                 this.props.checkUser(response.data.user)
                 console.log(localStorage.token)
                 window.alert("Login successful.")
+                this.props.testLogin(response.data.user.id)
+
             }
         })
     }
@@ -77,6 +80,8 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => {
     return { 
       checkUser: (user) =>  { dispatch(checkUser(user)) },
+      testLogin: (user) =>  { dispatch(testLogin(user)) },
+
     }
 }
   
