@@ -1,8 +1,9 @@
 module Api::V1
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index, :create, :update, :show]
 
-  # GET /favorites
+  # GET /favorites, 
   def index
     @favorites = Favorite.all
 
@@ -16,9 +17,9 @@ class FavoritesController < ApplicationController
 
   # POST /favorites
   def create
-    @favorite = Favorite.new(favorite_params)
-    @recipe 
-    if @favorite.save
+    @favorite = Favorite.create(favorite_params)
+
+    if @favorite.valid?
       render json: @favorite, status: :created
     else
       render json: @favorite.errors, status: :unprocessable_entity
@@ -47,7 +48,7 @@ class FavoritesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def favorite_params
-      params.require(:favorite).permit(:user_id, :recipe_id)
+      params.require(:favorite).permit(:user_id, :recipe_id, :id)
     end
 end
 

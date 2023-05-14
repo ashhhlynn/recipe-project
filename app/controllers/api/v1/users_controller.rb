@@ -15,7 +15,7 @@ end
 
 def show
   @user = User.find(params[:id])
-  render json: @user, include: [recipes: {include: [:recipe_ingredients, :reviews]}]
+  render json: @user, include: [:favorites]
 
 end
 
