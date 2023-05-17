@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import { connect } from "react-redux"
 
 class Head extends Component {
 
@@ -17,8 +18,16 @@ class Head extends Component {
                         Dash Delish
                     </h1>
                     <Menu.Menu style={{marginTop:"1%"}} position="right">
-                        <Menu.Item><Icon color="grey" size="large" name="user plus"></Icon><Link to ='/signup'  style={{marginTop:"-10%", color:"grey"}}>Sign Up</Link></Menu.Item>
-                        <Menu.Item><Icon size="large" color="grey" name="sign-in"></Icon><Link to ='/login'  style={{marginTop:"-10%", color:"grey"}}>Sign In</Link></Menu.Item>
+                        {this.props.testUser.length === 0 ?
+                            <>
+                            <Menu.Item><Icon color="grey" size="large" name="user plus"></Icon><Link to ='/signup'  style={{marginTop:"-10%", color:"grey"}}>Sign Up</Link></Menu.Item>
+                            <Menu.Item><Icon size="large" color="grey" name="sign-in"></Icon><Link to ='/login'  style={{marginTop:"-10%", color:"grey"}}>Sign In</Link></Menu.Item>
+                            </>
+                        :
+                            <>
+                            <Menu.Item><Icon size="large" color="grey" name="sign-out"></Icon><Link to ='/'  style={{marginTop:"-10%", color:"grey"}}>Sign Out</Link></Menu.Item>
+                            </>
+                        }
                     </Menu.Menu>
                 </Menu>
             </div>
@@ -26,4 +35,10 @@ class Head extends Component {
     }
 }
 
-export default Head
+const mapStateToProps = (state) => {
+    return { 
+      testUser: state.testUser
+    }
+}
+
+export default connect(mapStateToProps)(Head)

@@ -19,11 +19,6 @@ class Favorite extends Component {
         this.setState({ modalOpen: false });
     }
 
-    removeFavorite = () => {
-        let u = this.props.testUser
-        this.props.removeFavorite(this.props.recipe)
-    }
-
     removeFave = () => {
         console.log(this.props.testUser[0])
         console.log(this.props.recipe.id)
@@ -33,7 +28,6 @@ class Favorite extends Component {
            parseInt(r.user_ud) === this.props.testUser[0])
         console.log(f)
         this.props.removeFavorite(this.props.recipe)
-
     }
 
     render() {
@@ -56,7 +50,7 @@ class Favorite extends Component {
                     closeIcon
                 >
                     <Modal.Content >
-                        <FavoriteInfo recipe={f} key={f.name} handleClose={this.handleClose} />
+                        <FavoriteInfo recipe={f} key={f.id} handleClose={this.handleClose} />
                     </Modal.Content>
                 </Modal>
             </>

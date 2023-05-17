@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Rating, Message} from 'semantic-ui-react'
+import { Form, Rating } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import { updateRR } from "./actions/rootActions"
@@ -7,9 +7,6 @@ import { updateRR } from "./actions/rootActions"
 class CreateReview extends Component {
 
     state = {
-    }
-    
-    componentDidMount = () => {
     }
 
     calculateAverage = (number) => {

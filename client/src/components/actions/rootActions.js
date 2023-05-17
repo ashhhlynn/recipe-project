@@ -6,7 +6,8 @@ export const fetchRecipes = (recipes) => {
 
 export const fetchFavorites = (recipes) => {
     return (dispatch) => {
-        dispatch({ type: "FETCH_FAVORITES", recipes: recipes })     
+        dispatch({ type: "FETCH_FAVORITES", recipes: recipes })  
+        dispatch({ type: "FETCH_FAVORITES_F", recipes: recipes })        
     }
 }
 

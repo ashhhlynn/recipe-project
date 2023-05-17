@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import {  Grid, Segment, Card, Message} from 'semantic-ui-react'
+import {  Grid, Segment, Card } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import Favorite from './Favorite'
 import { fetchFavorites } from "./actions/rootActions"
 import axios from "axios";
-import Reminder from './Reminder'
-
 
 class Favorites extends Component {        
 
@@ -16,6 +14,7 @@ componentDidMount = () => {
     axios
     .get("api/v1/users/" + u)
     .then((response) => {
+        console.log(response.data)
         console.log(response.data[0]);
         this.props.fetchFavorites(response.data[0])
     })

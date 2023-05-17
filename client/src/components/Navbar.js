@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Menu} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import Reminder from './Reminder'
+import { connect } from "react-redux"
 
 class Navbar extends Component {
     
@@ -14,11 +15,20 @@ class Navbar extends Component {
                     <Menu.Item><Link to="/favorites"  style={{fontWeight:"normal", color:"#585858 ",  fontSize:"20px"}}>favorites</Link></Menu.Item>
                     <Menu.Item></Menu.Item>
                     <br></br><br></br><br></br><br></br><br></br><br></br>
-                    <Reminder />
+                    {this.props.testUser.length === 0 ?
+                    <Reminder /> 
+                    :
+                    <></>}
                 </Menu>
             </div>
         )
     }
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+    return { 
+      testUser: state.testUser
+    }
+}
+
+export default connect(mapStateToProps)(Navbar)

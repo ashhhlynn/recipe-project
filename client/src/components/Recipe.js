@@ -4,7 +4,6 @@ import { connect } from "react-redux"
 import axios from "axios";
 import RecipeInfo from './RecipeInfo'
 import { addToFavorites } from "./actions/rootActions"
-import { fetchRecipes } from "./actions/rootActions"
 
 class Recipe extends Component {        
 
@@ -32,33 +31,6 @@ class Recipe extends Component {
             })
         }
         this.props.addToFavorites(this.props.recipe)
-    }
-
-    addToFavorites = () => {
-        let id = this.props.recipe.id
-        if (this.props.testUser.length > 0)
-        {
-        let u = this.props.testUser[0]
-        axios
-        .put("/api/v1/recipes/" + id, {
-            user_id: u
-        })
-        .then((response) => {
-        console.log(response.data)
-        });
-        }
-else {
-    axios
-        .put("/api/v1/recipes/" + id, {
-            user_id: 4
-        })
-        .then((response) => {
-        console.log(response.data)
-        });
-}
-        this.props.addToFavorites(this.props.recipe)
-        window.alert("Added to favorites.")
-
     }
 
     render() {
@@ -98,7 +70,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
       addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
-      fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }, 
     }
 }
   

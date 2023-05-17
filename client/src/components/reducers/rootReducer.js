@@ -1,10 +1,8 @@
 const initialState = {
     recipes: [],
-    filteredRecipes: [],
     currentUser: [],
     loading: false,
     favorites: [],
-    rating: '',
     userFavorites: [],
     userFavoritesF: [],
     testUser: [],
@@ -29,6 +27,15 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
+            case "FETCH_FAVORITES_F":
+                console.log(action.recipes)
+                return {
+                    ...state,
+                    userFavoritesF: action.recipes,
+                    loading: false,
+                };
+
+
             case "FETCH_ALL_FAVORITES":
                 console.log(action.recipes)
                 return {
@@ -45,18 +52,7 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
-        case "GET_RATING":
-            console.log(action.ratings)
-            let x = action.ratings.map(r => r.score)
-            const totalScores = x.reduce(
-                (previousScore, currentScore, index)=>previousScore+currentScore, 
-                0);
-            console.log(totalScores); //returns 403
-            return {
-                ...state,
-                rating: totalScores,
-                loading: false,
-            };
+
 
         case "SORT_A_TO_Z":
             console.log(...state.recipes)
@@ -92,6 +88,7 @@ const rootReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     favorites: [...state.favorites, action.recipe],
+                    userFavoritesF: [...state.userFavoritesF, action.recipe],
                     loading: false,
                 }
             }
@@ -109,6 +106,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 favorites: newFaves,
+                userFavoritesF: newFaves,
                 loading: false,
             };
         
@@ -117,6 +115,10 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipes: [...state.recipes, action.data],
             };
+
+
+
+
 
 
         case 'SET_CURRENT_USER':
