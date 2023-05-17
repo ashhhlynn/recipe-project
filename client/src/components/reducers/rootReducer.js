@@ -3,10 +3,8 @@ const initialState = {
     currentUser: [],
     loading: false,
     favorites: [],
-    userFavorites: [],
     userFavoritesF: [],
     testUser: [],
-    allFavorites: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -27,22 +25,14 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
-            case "FETCH_FAVORITES_F":
-                console.log(action.recipes)
-                return {
-                    ...state,
-                    userFavoritesF: action.recipes,
-                    loading: false,
-                };
-
-
-            case "FETCH_ALL_FAVORITES":
-                console.log(action.recipes)
-                return {
-                    ...state,
-                    allFavorites: action.recipes,
-                    loading: false,
-                };
+        case "FETCH_ALL_FAVORITES":
+            let nfs = action.recipes.filter(f => parseInt(f.user_id) === state.testUser[0])
+            console.log(nfs)
+            return {
+                ...state,
+                userFavoritesF: nfs,
+                loading: false,
+            };
 
         case "UPDATE_RR":
             console.log(action.recipe)
@@ -51,8 +41,6 @@ const rootReducer = (state = initialState, action) => {
                 recipes: [...state.recipes.filter(item=> item.id !== action.recipe.id), action.recipe],
                 loading: false,
             };
-
-
 
         case "SORT_A_TO_Z":
             console.log(...state.recipes)
@@ -88,7 +76,6 @@ const rootReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     favorites: [...state.favorites, action.recipe],
-                    userFavoritesF: [...state.userFavoritesF, action.recipe],
                     loading: false,
                 }
             }
@@ -102,11 +89,13 @@ const rootReducer = (state = initialState, action) => {
     
         case "REMOVE_FAVORITE":
             console.log(action.recipe)
+            console.log(action.i)
+            let newuserFavoritesF = state.userFavoritesF.filter(f => f.id !== action.i)
             let newFaves = state.favorites.filter(f => f.id !== action.recipe.id)
             return {
                 ...state,
                 favorites: newFaves,
-                userFavoritesF: newFaves,
+                userFavoritesF:  newuserFavoritesF,
                 loading: false,
             };
         
@@ -124,18 +113,14 @@ const rootReducer = (state = initialState, action) => {
         case 'SET_CURRENT_USER':
             console.log(state.currentUser)
             console.log(action.user)
-            if (action.user !== undefined){
+       
             return {
                 ...state, 
                 currentUser: action.user, 
                 loading: false
-            }}
-            
-            else {
-                return {
-                    ...state
-                }
             }
+            
+         
             ;
 
         case 'TEST_LOGIN':
@@ -146,16 +131,7 @@ const rootReducer = (state = initialState, action) => {
                     loading: false
                 }
             ;
-            case 'TEST_FAVORITES':
-                console.log(action.user)
-                let uR = state.recipes.filter(f => f.user_id === action.user)
-                console.log(uR)
-                    return {
-                        ...state, 
-                        favorites: uR,
-                        loading: false
-                    }
-                ;
+       
             case 'NO_LOGIN':
                     return {
                         ...state, 

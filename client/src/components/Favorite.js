@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Button, Modal, Rating, Icon, Image, Item} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
+import RecipeInfo from './RecipeInfo'
+
 import FavoriteInfo from './FavoriteInfo'
 import { removeFavorite } from "./actions/rootActions"
 
@@ -20,15 +22,27 @@ class Favorite extends Component {
     }
 
     removeFave = () => {
+        if (this.props.testUser.length > 0) {
         console.log(this.props.testUser[0])
         console.log(this.props.recipe.id)
-        console.log(this.props.allFavorites)
-        let f = this.props.allFavorites.find(r => 
-           parseInt(r.recipe_id) === this.props.recipe.id && 
-           parseInt(r.user_ud) === this.props.testUser[0])
+        let f = this.props.userFavoritesF.find(r => 
+           parseInt(r.recipe_id) === this.props.recipe.id)
         console.log(f)
-        this.props.removeFavorite(this.props.recipe)
+        let fi = f.id
+        this.props.removeFavorite(this.props.recipe, fi)
+
+        axios
+        .delete("/api/v1/favorites/" + fi)
+        .then((response) => {
+         console.log(response)
+        })
+        .catch((error) => console.log(error));}
+        else {
+            this.props.removeFavorite(this.props.recipe)
+        }
     }
+
+    
 
     render() {
         const f = this.props.recipe  
@@ -50,7 +64,7 @@ class Favorite extends Component {
                     closeIcon
                 >
                     <Modal.Content >
-                        <FavoriteInfo recipe={f} key={f.id} handleClose={this.handleClose} />
+                        <RecipeInfo recipe={f} key={f.id} handleClose={this.handleClose} />
                     </Modal.Content>
                 </Modal>
             </>
@@ -61,13 +75,13 @@ class Favorite extends Component {
 const mapStateToProps = (state) => {
     return { 
       testUser: state.testUser,
-      allFavorites: state.allFavorites
+      userFavoritesF: state.userFavoritesF
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return { 
-        removeFavorite: (recipe) =>  { dispatch(removeFavorite(recipe)) }
+        removeFavorite: (recipe, fi) =>  { dispatch(removeFavorite(recipe, fi)) }
     }
 }
   

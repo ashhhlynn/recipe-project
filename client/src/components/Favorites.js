@@ -3,8 +3,12 @@ import {  Grid, Segment, Card } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import Favorite from './Favorite'
+
+import Recipe from './Recipe'
+
 import { fetchFavorites } from "./actions/rootActions"
 import axios from "axios";
+import { fetchAllFavorites } from "./actions/rootActions"
 
 class Favorites extends Component {        
 
@@ -17,6 +21,13 @@ componentDidMount = () => {
         console.log(response.data)
         console.log(response.data[0]);
         this.props.fetchFavorites(response.data[0])
+    })
+    .catch((error) => console.log(error));
+    
+    axios 
+    .get("api/v1/favorites.json")
+    .then((response) => {
+        this.props.fetchAllFavorites(response.data)
     })
     .catch((error) => console.log(error));
     }
@@ -59,6 +70,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
       fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
+      fetchAllFavorites: (recipes) =>  { dispatch(fetchAllFavorites(recipes)) }, 
+
     }
 }
 

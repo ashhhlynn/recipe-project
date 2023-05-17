@@ -35,22 +35,10 @@ class App extends Component {
       })
       .catch((error) => console.log(error));
     }
-    axios
-    .get("api/v1/recipes.json")
-      .then((response) => {
-          console.log(response);
-          this.props.fetchRecipes(response.data)
-      })
-    .catch((error) => console.log(error));
+
     this.props.checkUser()
 
-    axios
-    .get("api/v1/favorites.json")
-      .then((response) => {
-          console.log(response);
-          this.props.fetchAllFavorites(response.data)
-      })
-    .catch((error) => console.log(error));
+   
   }
   
 render() {
@@ -76,8 +64,7 @@ render() {
 const mapDispatchToProps = (dispatch) => {
   return { 
     checkUser: (user) =>  { dispatch(checkUser(user)) },
-    fetchRecipes: (recipes) =>  { dispatch(fetchRecipes(recipes)) }, 
-    fetchAllFavorites: (recipes) =>  { dispatch(fetchAllFavorites(recipes)) }, 
+ 
   }
 }
 

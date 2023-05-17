@@ -7,7 +7,6 @@ export const fetchRecipes = (recipes) => {
 export const fetchFavorites = (recipes) => {
     return (dispatch) => {
         dispatch({ type: "FETCH_FAVORITES", recipes: recipes })  
-        dispatch({ type: "FETCH_FAVORITES_F", recipes: recipes })        
     }
 }
 
@@ -35,8 +34,6 @@ export const sortNumberReviews = () => {
     }
 }
 
-
-
 export const sortDate = () => {
     return (dispatch) => {
         dispatch({ type: "SORT_DATE" })
@@ -49,21 +46,15 @@ export const sortRating = () => {
     }
 }
 
-export const getRating = (ratings) => {
-    return (dispatch) => {
-        dispatch({ type: "GET_RATING", ratings })
-    }
-}
-
 export const addToFavorites = (recipe) => {
     return (dispatch) => {
         dispatch({ type: "ADD_TO_FAVORITES", recipe: recipe })     
     }
 }
 
-export const removeFavorite = (recipe) => {
+export const removeFavorite = (recipe, fi) => {
     return (dispatch) => {
-        dispatch({ type: "REMOVE_FAVORITE", recipe: recipe })     
+        dispatch({ type: "REMOVE_FAVORITE", recipe: recipe, i: fi })     
     }
 }
 
@@ -76,7 +67,6 @@ export const createUser = (userData) => {
 export const checkUser = (u) => {
     return (dispatch) => {  
         dispatch({ type: "SET_CURRENT_USER", user: u })
-        dispatch({ type: "NO_LOGIN"})
 
     }
 }
@@ -85,7 +75,6 @@ export const testLogin = (user) => {
     console.log(user)
     return (dispatch) => {  
         dispatch({ type: "TEST_LOGIN", user: user })
-        dispatch({ type: "TEST_FAVORITES", user: user })
 
     }
 }
