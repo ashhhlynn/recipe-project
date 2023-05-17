@@ -3,7 +3,6 @@ import {  Grid, Segment, Card } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import Favorite from './Favorite'
-import Recipe from './Recipe'
 import { fetchFavorites } from "./actions/rootActions"
 import axios from "axios";
 import { fetchAllFavorites } from "./actions/rootActions"

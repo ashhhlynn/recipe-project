@@ -28,13 +28,10 @@ class Recipe extends Component {
                 .post("/api/v1/favorites", { recipe_id: id, user_id: u })
                 .then((response) => {
                     console.log(response);
-                    this.props.addToFavorites(this.props.recipe)
                     window.alert("Added to favorites.")
                 })
             }
-            else {
-                this.props.addToFavorites(this.props.recipe)
-            }
+            this.props.addToFavorites(this.props.recipe)           
         }
     }
 
