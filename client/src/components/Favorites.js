@@ -16,6 +16,7 @@ componentDidMount = () => {
         .get("api/v1/users/" + u)
         .then((response) => {
             console.log(response.data[0]);
+            console.log(response.data)
             this.props.fetchFavorites(response.data[0])
         })
         .catch((error) => console.log(error));

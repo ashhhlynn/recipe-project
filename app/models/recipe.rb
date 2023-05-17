@@ -1,8 +1,12 @@
 class Recipe < ApplicationRecord
     has_many :reviews
     has_many :recipe_ingredients
-    belongs_to :user
-    accepts_nested_attributes_for :recipe_ingredients
     has_many :favorites
 
+    accepts_nested_attributes_for :recipe_ingredients
+
+    validates :description, length: { maximum: 400 }
+    validates :name, length: { maximum: 50 }
+
+    validates :recipe_ingredients, length: { minimum: 1, maximum: 6 }
 end

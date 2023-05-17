@@ -20,22 +20,25 @@ state = {
 
 addIngredient = (event) => {
     event.preventDefault()
-    console.log(this.state[event.target.id])
-    this.state.recipe_ingredients.push(this.state[event.target.id])
-    console.log(this.state.recipe_ingredients)
-    window.alert("Ingredient added.")
+    if (this.state.recipe_ingredients.length <= 4) {
+        this.state.recipe_ingredients.push(this.state[event.target.id])
+        console.log(this.state.recipe_ingredients)
+        window.alert("Ingredient added.")}
+    else{
+        window.alert("must be under 5 ingredients.")
+    }
 }
 
-handleChange = (event) => {
-    this.setState ({
-        [event.target.id]: event.target.value
-    })
-}
+    handleChange = (event) => {
+        this.setState ({
+            [event.target.id]: event.target.value
+        })
+    }
 
     handleSubmit = (event, recipe) => {
         event.preventDefault()
         axios
-        .post("/api/v1/recipes", { name: recipe.name, user_id: 3, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
+        .post("/api/v1/recipes", { name: recipe.name, user_id: 5, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
         .then((response) => {
             console.log(response);
             window.alert("Recipe created.")

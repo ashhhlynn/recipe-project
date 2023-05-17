@@ -7,10 +7,6 @@ class RecipeInfo extends Component {
 
     state = {
     }
-
-    componentDidMount = () => {     
-        console.log(this.props.recipe)
-    }
     
     render() {
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
@@ -41,7 +37,7 @@ class RecipeInfo extends Component {
                 </Grid>
                 <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} placeholder>
                     <h2>Reviews</h2>
-                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>
+                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.user_id}/>
                     <br></br>
                     <CreateReview recipe={this.props.recipe} key={this.props.recipe.id}/>
                     <br></br>

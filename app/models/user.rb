@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-    has_many :recipes
     has_secure_password
-   has_many :favorites
-has_many :recipes, through: :favorites
+    has_many :favorites
+
+    validates :username, length: { maximum: 50 }
+    validates :email, length: { maximum: 50 }
+
 end

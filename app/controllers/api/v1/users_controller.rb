@@ -11,16 +11,14 @@ module Api::V1
 
   def profile
     render json: {  user: current_user }, status: :accepted
-end
+  end
 
-def show
-  @user = User.find(params[:id])
-
-  @faves = @user.favorites
-  @fa = @faves.map do |f| 
-    f.recipe
-  end 
-
+  def show
+    @user = User.find(params[:id])
+    @faves = @user.favorites
+    @fa = @faves.map do |f| 
+      f.recipe
+    end 
   render json: [@fa, @user, include: [:favorites]], status: :accepted
 
 end

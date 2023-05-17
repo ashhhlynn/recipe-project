@@ -11,7 +11,6 @@ class CreateReview extends Component {
     calculateAverage = (number) => {
         let reviews = this.props.recipe.reviews.map(r => r.score)
         reviews.push(number)
-        console.log(reviews)
         const avg = reviews.reduce((a,b) => a + b, 0) / reviews.length;
         console.log(avg)
         let x = Math.round(avg)
@@ -27,17 +26,30 @@ class CreateReview extends Component {
         });
     }
 
+    handlePatchAverage = (x) => {
+        let id = this.props.recipe.id
+        axios
+        .put("/api/v1/recipes/" + id, {
+            average: x
+        })
+        .then((response) => {
+            console.log(response.data);
+            this.props.updateRR(response.data)
+        });
+    }
+
     handleSubmitRating = (event, number) => {
         event.preventDefault()
         let i = this.props.recipe.id
-        console.log(number.rating)
-        console.log(number.text)
+        let n = this.props.recipe.reviews.length
+        let x = Math.round((this.props.recipe.average*n + number.rating)/(n+1))
+        console.log(x)
         axios
         .post("/api/v1/reviews", { score: number.rating, recipe_id: i, text: number.text})
         .then((response) => {
             console.log(response.data)
             window.alert("Review submitted.")
-            this.calculateAverage(number.rating)
+            this.handlePatchAverage(x)
         })
     }
 
@@ -45,7 +57,6 @@ class CreateReview extends Component {
         this.setState ({
             text: event.target.value
         })
-        console.log(this.state.text)
     }
     
     handleRating = (e, { rating, maxRating }) =>
