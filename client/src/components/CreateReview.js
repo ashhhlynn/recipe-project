@@ -22,8 +22,8 @@ class CreateReview extends Component {
             average: x
         })
         .then((response) => {
-        console.log(response.data);
-        this.props.updateRR(response.data)
+            console.log(response.data);
+            this.props.updateRR(response.data)
         });
     }
 

@@ -32,17 +32,18 @@ handleChange = (event) => {
     })
 }
 
-handleSubmit = (event, recipe) => {
-    event.preventDefault()
-    axios
-    .post("/api/v1/recipes", { name: recipe.name, user_id: 3, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
-    .then((response) => {
-      console.log(response);
-      window.alert("Recipe created.")
-})}
+    handleSubmit = (event, recipe) => {
+        event.preventDefault()
+        axios
+        .post("/api/v1/recipes", { name: recipe.name, user_id: 3, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
+        .then((response) => {
+            console.log(response);
+            window.alert("Recipe created.")
+        })
+    }
 
-render() {
-    return ( 
+    render() {
+        return ( 
         <Segment style={{height:"100%", marginLeft:"-7%", minHeight:"515px", marginRight:"-6.5%", marginTop:"-1.4%", opacity:"87%"}}>
             <Grid stackable columns={2} >
                 <Grid.Column style={{width:"300px"}}> 
@@ -139,8 +140,8 @@ render() {
                 </Grid.Column>
             </Grid>
         </Segment>
-    )
-}
+        )
+    }
 }
 
 export default CreateRecipe

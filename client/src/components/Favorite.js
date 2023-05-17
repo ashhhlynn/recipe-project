@@ -3,7 +3,6 @@ import { Button, Modal, Rating, Icon, Image, Item} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import RecipeInfo from './RecipeInfo'
-import FavoriteInfo from './FavoriteInfo'
 import { removeFavorite } from "./actions/rootActions"
 
 class Favorite extends Component {        
@@ -38,7 +37,8 @@ class Favorite extends Component {
     }
 
     render() {
-        const f = this.props.recipe  
+        const f = this.props.recipe 
+        let r = this.props.recipes.find(r => r.id === f.id) 
         return (
             <>
                 <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {f.image_url} onClick={this.handleOpen}/>   
@@ -57,7 +57,7 @@ class Favorite extends Component {
                     closeIcon
                 >
                     <Modal.Content >
-                        <RecipeInfo recipe={f} key={f.id} handleClose={this.handleClose} />
+                        <RecipeInfo recipe={r} key={r.name} handleClose={this.handleClose} />
                     </Modal.Content>
                 </Modal>
             </>
@@ -68,7 +68,8 @@ class Favorite extends Component {
 const mapStateToProps = (state) => {
     return { 
       testUser: state.testUser,
-      userFavoritesF: state.userFavoritesF
+      userFavoritesF: state.userFavoritesF,
+      recipes: state.recipes
     }
 }
 

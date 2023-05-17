@@ -1,7 +1,7 @@
 module Api::V1
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :update, :destroy]
-  skip_before_action :authorized, only: [:index, :create, :update, :show]
+  skip_before_action :authorized, only: [:index, :create, :update, :show, :destroy]
 
   # GET /favorites, 
   def index

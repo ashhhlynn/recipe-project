@@ -16,12 +16,12 @@ end
 def show
   @user = User.find(params[:id])
 
-  @favorites = @user.favorites
-  @fa = @favorites.map do |f| 
+  @faves = @user.favorites
+  @fa = @faves.map do |f| 
     f.recipe
   end 
 
-  render json: [@fa, @user, include: [favorites: {include: :recipe}]], status: :accepted
+  render json: [@fa, @user, include: [:favorites]], status: :accepted
 
 end
 
