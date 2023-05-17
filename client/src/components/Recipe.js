@@ -21,18 +21,20 @@ class Recipe extends Component {
 
     addToFaves = () => {
         let id = this.props.recipe.id
-        if (this.props.testUser.length > 0) {
-            let u = this.props.testUser[0]
-            axios
-            .post("/api/v1/favorites", { recipe_id: id, user_id: u })
-            .then((response) => {
-                console.log(response);
+        if (!this.props.favorites.find(f=> f.id === id)) {
+            if (this.props.testUser.length > 0) {
+                let u = this.props.testUser[0]
+                axios
+                .post("/api/v1/favorites", { recipe_id: id, user_id: u })
+                .then((response) => {
+                    console.log(response);
+                    this.props.addToFavorites(this.props.recipe)
+                    window.alert("Added to favorites.")
+                })
+            }
+            else {
                 this.props.addToFavorites(this.props.recipe)
-                window.alert("Added to favorites.")
-            })
-        }
-        else {
-            this.props.addToFavorites(this.props.recipe)
+            }
         }
     }
 
@@ -66,7 +68,8 @@ class Recipe extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-      testUser: state.testUser
+      testUser: state.testUser,
+      favorites: state.favorites,
     }
 }
 

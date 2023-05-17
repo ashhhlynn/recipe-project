@@ -60,7 +60,7 @@ class Recipes extends Component {
             <Navbar/>
           </Grid.Column>
           <Grid.Column>  
-            <Item style={{width:"850px", marginLeft:"3.5%"}}>
+            <Item style={{width:"850px", marginLeft:"9%"}}>
               <Search
               placeholder='Search by ingredient...'
               />  
@@ -72,7 +72,7 @@ class Recipes extends Component {
                 <Button id="4" circular onClick={(event)=>{this.sortItems(event)}}>Reviews</Button> 
               </Header>  
           </Item>
-            <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
+            <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"6.2%"}}>
               {recipeGroup}
             </Card.Group>
           </Grid.Column>

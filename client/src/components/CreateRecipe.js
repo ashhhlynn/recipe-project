@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Grid, Button,  Segment,  Item } from 'semantic-ui-react'
+import { Form, Grid, Button,  Segment, Item } from 'semantic-ui-react'
 import Navbar from './Navbar'
 import axios from "axios";
 
@@ -49,7 +49,7 @@ render() {
                     <Navbar/>
                 </Grid.Column>
                 <Grid.Column>
-                    <Segment style={{marginLeft:"28%", marginTop:"2%", width:"615px"}}>
+                    <Segment style={{marginLeft:"29.5%", marginTop:"2%", width:"615px"}}>
                         <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
                         <Form success onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
                             <Form.Input
@@ -77,7 +77,8 @@ render() {
                             onChange={this.handleChange}
                             />    
                             <h2 >Ingredients</h2>
-                            <br></br>
+                            Click plus button to add ingredient.
+                            <br></br><br></br>
                             <Item style={{marginLeft: "30%"}}>
                             <Form.Group>
                             <Form.Input
@@ -131,7 +132,7 @@ render() {
                             <Button id="ingredient5" basic color="grey"  onClick={this.addIngredient} >+</Button>
                             </Form.Group>
                         </Item> 
-                        <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="large" className="formButtons" content='Save Recipe'/>        
+                        <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="big" className="formButtons" content='Save Recipe'/>        
                         <br></br>
                         </Form> 
                     </Segment>           

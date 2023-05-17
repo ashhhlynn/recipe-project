@@ -2,9 +2,15 @@ import React, { Component } from 'react'
 import { Icon, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
+import { logOut } from "./actions/rootActions"
 
 class Head extends Component {
 
+    handleLogout = () => {
+        localStorage.clear()
+        this.props.logOut()
+    }    
+        
     render() {
         return (
             <div>
@@ -25,7 +31,7 @@ class Head extends Component {
                             </>
                         :
                             <>
-                            <Menu.Item><Icon size="huge" color="grey" name="user circle outline"></Icon><Link to ='/'  style={{marginTop:"-10%", color:"grey"}}>Sign Out</Link></Menu.Item>
+                            <Menu.Item><Icon size="huge" color="grey" name="user circle outline"></Icon><Link to ='/'  onClick={this.handleLogout} style={{marginTop:"-10%", color:"grey"}}>Sign Out</Link></Menu.Item>
                             </>
                         }
                     </Menu.Menu>
@@ -41,4 +47,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Head)
+const mapDispatchToProps = (dispatch) => {
+    return { 
+      logOut: () =>  { dispatch(logOut()) }, 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Head)
