@@ -5,9 +5,6 @@ import axios from "axios";
 import RecipeInfo from './RecipeInfo'
 import { addToFavorites } from "./actions/rootActions"
 
-import AddButton from './AddButton'
-
-
 class Recipe extends Component {        
 
     state = {
@@ -35,7 +32,7 @@ class Recipe extends Component {
             })
         }
         else {
-        this.props.addToFavorites(this.props.recipe)
+            this.props.addToFavorites(this.props.recipe)
         }
     }
 
@@ -47,9 +44,11 @@ class Recipe extends Component {
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h2>   
-                <AddButton recipe={i} key={i.id} /> 
+                <Button floated="right" onClick={this.addToFaves} style={{marginTop:"-15%", background:"none"}} >
+                    <Icon style={{color:"#702963", marginLeft:"93%"}}floated="right"  size="large" name="heart"/>
+                </Button>                
                 <Item>
-                <Rating size="small" rating={i.average} disabled maxRating={5} />
+                    <Rating size="small" rating={i.average} disabled maxRating={5} />
                 </Item>
                 <Modal 
                     open={this.state.modalOpen}

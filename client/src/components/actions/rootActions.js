@@ -75,7 +75,6 @@ export const testLogin = (user) => {
     console.log(user)
     return (dispatch) => {  
         dispatch({ type: "TEST_LOGIN", user: user })
-
     }
 }
 

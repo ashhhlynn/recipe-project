@@ -3,7 +3,6 @@ import { Button, Modal, Rating, Icon, Image, Item} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import axios from "axios";
 import RecipeInfo from './RecipeInfo'
-
 import FavoriteInfo from './FavoriteInfo'
 import { removeFavorite } from "./actions/rootActions"
 
@@ -23,26 +22,20 @@ class Favorite extends Component {
 
     removeFave = () => {
         if (this.props.testUser.length > 0) {
-        console.log(this.props.testUser[0])
-        console.log(this.props.recipe.id)
-        let f = this.props.userFavoritesF.find(r => 
-           parseInt(r.recipe_id) === this.props.recipe.id)
-        console.log(f)
-        let fi = f.id
-        this.props.removeFavorite(this.props.recipe, fi)
-
-        axios
-        .delete("/api/v1/favorites/" + fi)
-        .then((response) => {
-         console.log(response)
-        })
-        .catch((error) => console.log(error));}
+            let f = this.props.userFavoritesF.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
+            console.log(f)
+            let fi = f.id
+            this.props.removeFavorite(this.props.recipe, fi)
+            axios
+            .delete("/api/v1/favorites/" + fi)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => console.log(error));}
         else {
             this.props.removeFavorite(this.props.recipe)
         }
     }
-
-    
 
     render() {
         const f = this.props.recipe  

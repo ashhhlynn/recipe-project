@@ -105,40 +105,22 @@ const rootReducer = (state = initialState, action) => {
                 recipes: [...state.recipes, action.data],
             };
 
-
-
-
-
-
         case 'SET_CURRENT_USER':
             console.log(state.currentUser)
             console.log(action.user)
-       
             return {
                 ...state, 
                 currentUser: action.user, 
                 loading: false
-            }
-            
-         
-            ;
+            };
 
         case 'TEST_LOGIN':
             console.log(action.user)
-                return {
-                    ...state, 
-                    testUser: [...state.testUser, action.user],
-                    loading: false
-                }
-            ;
-       
-            case 'NO_LOGIN':
-                    return {
-                        ...state, 
-                        testUser: [], 
-                        loading: false
-                    }
-                ;
+            return {
+                ...state, 
+                testUser: [...state.testUser, action.user],
+                loading: false
+            };
 
         case 'LOGOUT':
             return {

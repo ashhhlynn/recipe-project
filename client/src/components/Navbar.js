@@ -16,9 +16,11 @@ class Navbar extends Component {
                     <Menu.Item></Menu.Item>
                     <br></br><br></br><br></br><br></br><br></br><br></br>
                     {this.props.testUser.length === 0 ?
-                    <Reminder /> 
+                        <Reminder /> 
                     :
-                    <></>}
+                        <>
+                        </>
+                    }
                 </Menu>
             </div>
         )

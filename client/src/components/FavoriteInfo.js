@@ -5,8 +5,7 @@ import CreateReview from './CreateReview'
 
 class FavoriteInfo extends Component {
 
-    state = {
-    }
+    state = {}
 
     componentDidMount = () => {     
         console.log(this.props.recipe)

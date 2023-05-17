@@ -34,7 +34,6 @@ class Login extends Component {
                 console.log(localStorage.token)
                 window.alert("Login successful.")
                 this.props.testLogin(response.data.user.id)
-
             }
         })
     }
@@ -81,7 +80,6 @@ const mapDispatchToProps = (dispatch) => {
     return { 
       checkUser: (user) =>  { dispatch(checkUser(user)) },
       testLogin: (user) =>  { dispatch(testLogin(user)) },
-
     }
 }
   

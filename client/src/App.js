@@ -8,8 +8,6 @@ import Profile from './components/Notusin/Profile'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Favorites from './components/Favorites'
-import { fetchRecipes } from "./components/actions/rootActions"
-import { fetchAllFavorites } from "./components/actions/rootActions"
 import Head from './components/Head'
 import { checkUser } from "./components/actions/rootActions"
 import { Container } from 'semantic-ui-react'
@@ -35,10 +33,7 @@ class App extends Component {
       })
       .catch((error) => console.log(error));
     }
-
     this.props.checkUser()
-
-   
   }
   
 render() {
@@ -64,7 +59,6 @@ render() {
 const mapDispatchToProps = (dispatch) => {
   return { 
     checkUser: (user) =>  { dispatch(checkUser(user)) },
- 
   }
 }
 
