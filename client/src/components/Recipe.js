@@ -22,16 +22,15 @@ class Recipe extends Component {
 
     addToFaves = () => {
         let id = this.props.recipe.id
-        if (this.props.testUser.length > 0)
-        {
-        let u = this.props.testUser[0]
-        axios
-        .post("/api/v1/favorites", { recipe_id: id, user_id: u })
-        .then((response) => {
-          console.log(response);
-          window.alert("Recipe created.")
-    })
-}
+        if (this.props.testUser.length > 0) {
+            let u = this.props.testUser[0]
+            axios
+            .post("/api/v1/favorites", { recipe_id: id, user_id: u })
+            .then((response) => {
+                console.log(response);
+                window.alert("Added to favorites.")
+            })
+        }
         this.props.addToFavorites(this.props.recipe)
     }
 

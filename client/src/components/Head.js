@@ -8,7 +8,7 @@ class Head extends Component {
         return (
             <div>
                 <Menu style={{textAlign:"center", opacity:"94%", color:"white", backgroundColor:"#702963", marginBottom:"0%"}} position="middle">
-                    <h3 style={{marginLeft:"36%", marginTop:".5%", letterSpacing: "1.5px"}}>
+                    <h3 style={{marginLeft:"38%", fontSize: "16px", marginTop:".75%", letterSpacing: "1.5px"}}>
                         recipes with five ingredients or less <Icon size="small" color="yellow" name="heart"></Icon>
                     </h3>
                 </Menu>

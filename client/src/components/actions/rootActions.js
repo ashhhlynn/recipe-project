@@ -10,6 +10,12 @@ export const fetchFavorites = (recipes) => {
     }
 }
 
+export const fetchAllFavorites = (recipes) => {
+    return (dispatch) => {
+        dispatch({ type: "FETCH_ALL_FAVORITES", recipes: recipes })     
+    }
+}
+
 export const updateRR = (recipe) => {
     return (dispatch) => {
         dispatch({ type: "UPDATE_RR", recipe: recipe })     
@@ -28,11 +34,7 @@ export const sortNumberReviews = () => {
     }
 }
 
-export const filterIngredient = (name) => {
-    return (dispatch) => {
-        dispatch({ type: "FILTER_INGREDIENT", name })
-    }
-}
+
 
 export const sortDate = () => {
     return (dispatch) => {

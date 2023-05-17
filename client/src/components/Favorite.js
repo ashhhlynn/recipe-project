@@ -25,15 +25,15 @@ class Favorite extends Component {
     }
 
     removeFave = () => {
-        let i = this.props.recipe.id
-        axios
-        .put("/api/v1/recipes/" + i, {
-            user_id: 3
-        })
-        .then((response) => {
-            console.log(response.data);
-        });
+        console.log(this.props.testUser[0])
+        console.log(this.props.recipe.id)
+        console.log(this.props.allFavorites)
+        let f = this.props.allFavorites.find(r => 
+           parseInt(r.recipe_id) === this.props.recipe.id && 
+           parseInt(r.user_ud) === this.props.testUser[0])
+        console.log(f)
         this.props.removeFavorite(this.props.recipe)
+
     }
 
     render() {
@@ -66,7 +66,8 @@ class Favorite extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-      testUser: state.testUser
+      testUser: state.testUser,
+      allFavorites: state.allFavorites
     }
 }
 

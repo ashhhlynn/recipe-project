@@ -49,10 +49,7 @@ render() {
                     <Navbar/>
                 </Grid.Column>
                 <Grid.Column>
-                    <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-                        <Message color="yellow" style={{marginLeft:"24%", width:"300px"}}>
-                            Create account or login to create recipe.
-                        </Message>
+                    <Segment style={{marginLeft:"28%", marginTop:"2%", width:"615px"}}>
                         <h1 style={{ marginTop:"1.5%"}}>Share Recipe</h1>
                         <Form success onSubmit= { (event) => {this.handleSubmit(event, this.state)}}>
                             <Form.Input

@@ -60,9 +60,6 @@ class CreateReview extends Component {
         return (
             <>
             <center>                   
-                <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
-                    Create account or login to create review.
-                </Message>
                 <Form onSubmit= { (event) => {this.handleSubmitRating(event, this.state)}}>
                     <Rating color="purple" size="massive" maxRating={5} onRate={this.handleRating} />
                     <Form.TextArea

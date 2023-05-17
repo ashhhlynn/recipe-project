@@ -6,7 +6,9 @@ const initialState = {
     favorites: [],
     rating: '',
     userFavorites: [],
+    userFavoritesF: [],
     testUser: [],
+    allFavorites: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -26,6 +28,14 @@ const rootReducer = (state = initialState, action) => {
                 favorites: action.recipes,
                 loading: false,
             };
+
+            case "FETCH_ALL_FAVORITES":
+                console.log(action.recipes)
+                return {
+                    ...state,
+                    allFavorites: action.recipes,
+                    loading: false,
+                };
 
         case "UPDATE_RR":
             console.log(action.recipe)
@@ -75,14 +85,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipes: [...state.recipes.slice().sort((item1, item2) => item2.average > item1.average ? 1 : -1)]
             }; 
-    
-        case "FILTER_INGREDIENT":
-            console.log(...state.recipes)
-            let filteredRecipes = state.recipes.filter(f => f.name === action.name)
-                return {
-                    ...state,
-                    recipes:  filteredRecipes
-                }; 
         
         case "ADD_TO_FAVORITES":
             console.log(action.recipe)
@@ -116,13 +118,6 @@ const rootReducer = (state = initialState, action) => {
                 recipes: [...state.recipes, action.data],
             };
 
-        case "DELETE_RECIPE":
-            let recipesNew = state.recipes.filter(item => item.id !== action.id);
-            return {
-                ...state,
-                recipes: recipesNew,
-                loading: false
-            };
 
         case 'SET_CURRENT_USER':
             console.log(state.currentUser)

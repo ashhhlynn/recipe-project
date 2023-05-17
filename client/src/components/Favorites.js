@@ -10,42 +10,19 @@ import Reminder from './Reminder'
 
 class Favorites extends Component {        
 
-componentDidMounto = () => {
-    if (this.props.testUser.length > 0)
-    {
+componentDidMount = () => {
+    if (this.props.testUser.length > 0) {
     let u = this.props.testUser[0]
     axios
     .get("api/v1/users/" + u)
     .then((response) => {
-        console.log(response.data.recipes);
-        this.props.fetchFavorites(response.data.recipes)
+        console.log(response.data[0]);
+        this.props.fetchFavorites(response.data[0])
     })
     .catch((error) => console.log(error));
-}
-}
-    componentDidMounty = () => {
-        console.log(this.props.testUser[0])
-        if (this.props.currentUser.length === 0 ){
-            axios
-            .get("api/v1/users/4.json")
-              .then((response) => {
-                console.log(response.data.recipes);
-                this.props.fetchFavorites(response.data.recipes)
-              })
-            .catch((error) => console.log(error));
-        }
-        else {
-            let u = this.props.currentUser.id
-            axios
-            .get("api/v1/users/" + u)
-            .then((response) => {
-                console.log(response.data.recipes);
-                this.props.fetchFavorites(response.data.recipes)
-            })
-            .catch((error) => console.log(error));
-        }
     }
-    
+}
+
     render() {
         const recipeGroup = this.props.favorites.map( f => {
             return (
@@ -54,8 +31,6 @@ componentDidMounto = () => {
                 </Card>    
             )
         })  
-
-
         return (
             <Segment style={{height:"100%", marginLeft:"-7%", minHeight:"515px", marginRight:"-6.5%", marginTop:"-1.4%", opacity:"87%"}}>
                 <Grid stackable columns={2} >
@@ -63,7 +38,6 @@ componentDidMounto = () => {
                     <Navbar/>
                 </Grid.Column>
                 <Grid.Column >
-                    <Reminder />
                     <Card.Group itemsPerRow={3}  style={{width:"890px",marginTop: "1%", marginLeft:"5%"}}>
                         {recipeGroup}
                     </Card.Group>

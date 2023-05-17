@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import Reminder from './Reminder'
 
 class Navbar extends Component {
     
@@ -12,6 +13,8 @@ class Navbar extends Component {
                     <Menu.Item><Link to="/createrecipe"  style={{fontWeight:"normal", color:"#585858", fontSize:"20px"}}>share recipe</Link></Menu.Item>
                     <Menu.Item><Link to="/favorites"  style={{fontWeight:"normal", color:"#585858 ",  fontSize:"20px"}}>favorites</Link></Menu.Item>
                     <Menu.Item></Menu.Item>
+                    <br></br><br></br><br></br><br></br><br></br><br></br>
+                    <Reminder />
                 </Menu>
             </div>
         )

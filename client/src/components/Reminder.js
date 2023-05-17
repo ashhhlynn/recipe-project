@@ -8,10 +8,9 @@ class Reminder extends Component {
     render() {
         return (
             <>
-             
-                    <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
-                        Create account or login to create.
-                    </Message>
+                <Message color="yellow" style={{marginLeft:"0%", width:"300px"}}>
+                    Create account or login to create or save recipes and reviews.
+                </Message>
               
             </>
         )
