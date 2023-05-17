@@ -17,7 +17,7 @@ class Head extends Component {
                     <h1 style={{letterSpacing: "0px", fontFamily:"Segoe Print", color: "#702963", fontSize:"40px", marginTop:"1.7%", marginLeft:"3%"}}>
                         Dash Delish
                     </h1>
-                    <Menu.Menu style={{marginTop:"1%"}} position="right">
+                    <Menu.Menu style={{marginTop:"1%", marginRight:"1%"}} position="right">
                         {this.props.testUser.length === 0 ?
                             <>
                             <Menu.Item><Icon color="grey" size="large" name="user plus"></Icon><Link to ='/signup'  style={{marginTop:"-10%", color:"grey"}}>Sign Up</Link></Menu.Item>
@@ -25,7 +25,7 @@ class Head extends Component {
                             </>
                         :
                             <>
-                            <Menu.Item><Icon size="large" color="grey" name="sign-out"></Icon><Link to ='/'  style={{marginTop:"-10%", color:"grey"}}>Sign Out</Link></Menu.Item>
+                            <Menu.Item><Icon size="huge" color="grey" name="user circle outline"></Icon><Link to ='/'  style={{marginTop:"-10%", color:"grey"}}>Sign Out</Link></Menu.Item>
                             </>
                         }
                     </Menu.Menu>

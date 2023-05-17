@@ -9,7 +9,7 @@ import { removeFavorite } from "./actions/rootActions"
 class Favorite extends Component {        
 
     state = {
-        modalOpen: false
+        modalOpen: false,
     }
     
     handleOpen = () => {

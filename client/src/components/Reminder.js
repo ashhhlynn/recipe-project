@@ -8,7 +8,7 @@ class Reminder extends Component {
     render() {
         return (
             <>
-                <Message color="yellow" style={{ marginLeft:".75%", width:"300px"}}>
+                <Message color="yellow" style={{ marginLeft:".75%", marginBottom:"-.5%", width:"300px"}}>
                     Create account or login to create or save recipes and reviews.
                 </Message>   
             </>
