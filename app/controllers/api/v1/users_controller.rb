@@ -6,7 +6,7 @@ module Api::V1
   # GET /users
   def index
     @users = User.all
-    render json: @users, include: [:recipes]
+    render json: @users, include: [:favorites]
   end
 
   def profile
@@ -15,7 +15,13 @@ end
 
 def show
   @user = User.find(params[:id])
-  render json: @user, include: [:favorites]
+
+  @favorites = @user.favorites
+  @fa = @favorites.map do |f| 
+    f.recipe
+  end 
+
+  render json: [@fa, @user, include: [favorites: {include: :recipe}]], status: :accepted
 
 end
 

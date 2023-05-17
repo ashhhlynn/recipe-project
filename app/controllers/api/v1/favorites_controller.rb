@@ -7,20 +7,20 @@ class FavoritesController < ApplicationController
   def index
     @favorites = Favorite.all
 
-    render json: @favorites
+    render json: @favorites, include: [:recipe]
   end
 
   # GET /favorites/1
   def show
-    render json: @favorite
+    render json: @favorite, include: [:recipe]
   end
 
   # POST /favorites
   def create
     @favorite = Favorite.create(favorite_params)
-
+    @recipe = @favorite.recipe
     if @favorite.valid?
-      render json: @favorite, status: :created
+      render json: [@favorite, @recipe], status: :created
     else
       render json: @favorite.errors, status: :unprocessable_entity
     end
