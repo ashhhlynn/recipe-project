@@ -5,8 +5,7 @@ import CreateReview from './CreateReview'
 
 class RecipeInfo extends Component {
 
-    state = {
-    }
+    state = {}
     
     render() {
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
@@ -29,7 +28,7 @@ class RecipeInfo extends Component {
                         <center>
                             <Item style={{marginRight:"17%"}}>
                                 <h2>Ingredients</h2>
-                                <h3 style={{fontWeight:"normal"}}> {recipe_ingredients}</h3>
+                                <h3 style={{fontWeight:"normal"}}>{recipe_ingredients}</h3>
                                 <h3 style={{fontWeight:"normal"}}>Instructions: {this.props.recipe.description}</h3><br></br>
                             </Item>
                         </center>

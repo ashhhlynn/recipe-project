@@ -11,13 +11,6 @@ import { sortDate } from "./actions/rootActions"
 import { sortRating } from "./actions/rootActions"
 
 class Recipes extends Component {        
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      recipes: [],
-    };
-  }
     
   componentDidMount() {
     axios
@@ -30,7 +23,6 @@ class Recipes extends Component {
   }
 
   sortItems = (event) => {
-    console.log(event.target.id)
     if (event.target.id === "1" ) { 
         this.props.sortRating()
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {  Grid, Segment, Card } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
-import Favorite from './Favorite'
+import Recipe from './Recipe'
 import { fetchFavorites } from "./actions/rootActions"
 import axios from "axios";
 import { fetchAllFavorites } from "./actions/rootActions"
@@ -15,8 +15,6 @@ componentDidMount = () => {
         axios
         .get("api/v1/users/" + u)
         .then((response) => {
-            console.log(response.data[0]);
-            console.log(response.data)
             this.props.fetchFavorites(response.data[0])
         })
         .catch((error) => console.log(error));
@@ -34,7 +32,7 @@ componentDidMount = () => {
         const recipeGroup = this.props.favorites.map( f => {
             return (
                 <Card >
-                    <Favorite recipe={f} key={f.id}/>
+                    <Recipe recipe={f} key={f.id}/>
                 </Card>    
             )
         })  

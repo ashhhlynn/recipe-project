@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react'
-import { connect } from "react-redux"
 import { Message} from 'semantic-ui-react'
 
 class Reminder extends Component {
@@ -8,19 +7,12 @@ class Reminder extends Component {
     render() {
         return (
             <>
-                <Message color="yellow" style={{ marginLeft:".9%", marginBottom:"-.5%", width:"300px"}}>
-                    Create account or login to create or save recipes and reviews.
+                <Message color="yellow" style={{ marginLeft:"0%", marginBottom:"-.5%", width:"306px"}}>
+                    Signup or login to create recipes, reviews, and favorites.
                 </Message>   
             </>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return { 
-      currentUser: state.currentUser,
-      testUser: state.testUser
-    }
-}
-
-export default connect(mapStateToProps)(Reminder)
+export default Reminder

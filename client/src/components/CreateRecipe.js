@@ -5,29 +5,28 @@ import axios from "axios";
 
 class CreateRecipe extends Component {
 
-state = {
-    id:'',
-    name: '',
-    description: '',
-    image_url: '',
-    ingredient1: '',
-    ingredient2: '',
-    ingredient3: '',
-    ingredient4: '',
-    ingredient5: '',
-    recipe_ingredients: []
-}
-
-addIngredient = (event) => {
-    event.preventDefault()
-    if (this.state.recipe_ingredients.length <= 4) {
-        this.state.recipe_ingredients.push(this.state[event.target.id])
-        console.log(this.state.recipe_ingredients)
-        window.alert("Ingredient added.")}
-    else{
-        window.alert("must be under 5 ingredients.")
+    state = {
+        id:'',
+        name: '',
+        description: '',
+        image_url: '',
+        ingredient1: '',
+        ingredient2: '',
+        ingredient3: '',
+        ingredient4: '',
+        ingredient5: '',
+        recipe_ingredients: []
     }
-}
+
+    addIngredient = (event) => {
+        event.preventDefault()
+        if (this.state.recipe_ingredients.length <= 4) {
+            this.state.recipe_ingredients.push(this.state[event.target.id])
+            window.alert("Ingredient added.")}
+        else {
+            window.alert("must be under 5 ingredients.")
+        }
+    }
 
     handleChange = (event) => {
         this.setState ({
@@ -76,7 +75,7 @@ addIngredient = (event) => {
                             required
                             type="text"
                             id="description"
-                            placeholder="Description"
+                            placeholder="Instructions"
                             value={this.state.description} 
                             onChange={this.handleChange}
                             />    

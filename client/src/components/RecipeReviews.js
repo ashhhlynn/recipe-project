@@ -3,16 +3,8 @@ import { Rating} from 'semantic-ui-react'
 
 class RecipeReviews extends Component {
 
-    state = {
-        revs: this.props.recipe.reviews
-    }
-
-    addRev = (r) => {
-        this.state.revs.push(r)
-    }
-
     render() {
-        const reviews = this.state.revs.map(r => {           
+        const reviews = this.props.recipe.reviews.map(r => {           
             return(
                 <div>
                     <Rating size="small" rating={r.score} disabled maxRating={5} /> 
