@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import './App.css';
 import Recipes from './components/Recipes'
 import CreateRecipe from './components/CreateRecipe'
-import Profile from './components/Notusin/Profile'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Favorites from './components/Favorites'
@@ -39,7 +38,6 @@ render() {
         <Routes>
           <Route exact path="/" element={<Recipes />} />
           <Route exact path="/createrecipe" element={<CreateRecipe />} />
-          <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/favorites" element={<Favorites />} />

@@ -11,8 +11,10 @@ module Api::V1
 
   def profile
       faves = current_user.favorites
-      @fa = faves.map do |f| 
-        f.recipe
+      @fa = []
+     faves.each do |f| 
+      r = Recipe.all.find_by(id: f.recipe_id)
+        @fa << r
       end 
       render json: {  user: current_user, fa: @fa, favorites: current_user.favorites }, status: :accepted
   end
@@ -26,7 +28,7 @@ module Api::V1
   def create
     @user = User.create(user_params)
     if @user.valid?
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       render json: @user, status: :created
     else
       render json: { message: 'Failed to create user. Please try again.' }

@@ -37,7 +37,7 @@ class CreateRecipe extends Component {
     handleSubmit = (event, recipe) => {
         event.preventDefault()
         axios
-        .post("/api/v1/recipes", { name: recipe.name, user_id: 5, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
+        .post("/api/v1/recipes", { name: recipe.name, user_id: 7, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
         .then((response) => {
             console.log(response);
             window.alert("Recipe created.")

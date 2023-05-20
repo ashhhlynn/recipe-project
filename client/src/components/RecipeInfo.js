@@ -10,15 +10,15 @@ class RecipeInfo extends Component {
     render() {
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
             return (
-                <div>{ri.name}</div>
+                <div key={ri.id}>{ri.name}</div>
             )
         })
         return (         
             <center>
                 <h1>{this.props.recipe.name}</h1>
-                <Rating size="massive" rating={this.props.recipe.average} disabled maxRating={5} />
+                <Rating size="massive" key={this.props.recipe.id} rating={this.props.recipe.average} disabled maxRating={5} />
                 <Divider></Divider>
-                <Grid vert stackable columns={2} >
+                <Grid stackable columns={2} >
                     <Grid.Column > 
                         <center>
                             <Image size="medium" src={this.props.recipe.image_url}></Image>
@@ -36,7 +36,7 @@ class RecipeInfo extends Component {
                 </Grid>
                 <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} placeholder>
                     <h2>Reviews</h2>
-                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.user_id}/>
+                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>
                     <br></br>
                     <CreateReview recipe={this.props.recipe} key={this.props.recipe.id}/>
                     <br></br>

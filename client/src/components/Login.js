@@ -27,7 +27,6 @@ class Login extends Component {
                 window.alert(response.message)
             }
             else {
-                console.log(response.data)
                 this.props.checkUser(response.data)
                 window.alert("Login successful.")
             }

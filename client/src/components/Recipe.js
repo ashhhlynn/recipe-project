@@ -44,6 +44,8 @@ class Recipe extends Component {
             .delete("/api/v1/favorites/" + fi)
             .then((response) => {
                 console.log(response)
+                window.alert("Removed from favorites.")
+
             })
             .catch((error) => console.log(error));}
         else {

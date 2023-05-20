@@ -1,7 +1,7 @@
 module Api::V1
   class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :update, :destroy]
-  skip_before_action :authorize, only: [:index, :create]
+  skip_before_action :authorize, only: [:index]
 
   # GET /reviews
   def index

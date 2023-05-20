@@ -39,7 +39,7 @@ class Recipes extends Component {
   render() {
     const recipeGroup = this.props.recipes.map( r => {
       return (
-        <Card >
+        <Card key={r.id}>
           <Recipe recipe={r} key={r.id}/>
         </Card>    
       )

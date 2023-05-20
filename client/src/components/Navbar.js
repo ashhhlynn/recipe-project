@@ -14,7 +14,7 @@ class Navbar extends Component {
                         <Reminder /> 
                     :
                         <>
-                        <h1 style={{letterSpacing:"2px", marginTop:"3%"}}>Hi, user{this.props.currentUser.username}!</h1>
+                        <h1 style={{letterSpacing:"2px", marginTop:"3%"}}>Hi, {this.props.currentUser.username}!</h1>
                         </>
                     }
                     <Menu.Item ><Link to="/" style={{fontWeight:"normal", letterSpacing:"1.25px", color:"#000000", fontSize:"20px"}}>all recipes</Link></Menu.Item>
