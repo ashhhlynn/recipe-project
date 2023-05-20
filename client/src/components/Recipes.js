@@ -5,6 +5,8 @@ import Navbar from './Navbar'
 import axios from "axios";
 import Recipe from './Recipe'
 import { fetchRecipes } from "./actions/rootActions"
+import { fetchFavorites } from "./actions/rootActions"
+
 import { sortAToZ } from "./actions/rootActions"
 import { sortNumberReviews } from "./actions/rootActions"
 import { sortDate } from "./actions/rootActions"
@@ -86,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
     sortNumberReviews: () =>  { dispatch(sortNumberReviews()) },
     sortDate: () =>  { dispatch(sortDate()) },
     sortRating: () =>  { dispatch(sortRating()) },
+    fetchFavorites: ( favorites) =>  { dispatch(fetchFavorites(favorites)) }, 
   }
 }
 

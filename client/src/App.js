@@ -12,6 +12,7 @@ import { checkUser } from "./components/actions/rootActions"
 import { Container } from 'semantic-ui-react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { connect } from "react-redux"
+import { fetchFavorites } from "./components/actions/rootActions"
 
 class App extends Component {
 
@@ -25,6 +26,13 @@ class App extends Component {
       else {
         this.props.checkUser(response.data.user)
       }
+    })
+    .catch((error) => console.log(error));
+
+    axios
+    .get("api/v1/favorites")
+    .then((response) => {
+        this.props.fetchFavorites(response.data)
     })
     .catch((error) => console.log(error));
   }
@@ -51,6 +59,7 @@ render() {
 const mapDispatchToProps = (dispatch) => {
   return { 
     checkUser: (user) =>  { dispatch(checkUser(user)) },
+    fetchFavorites: ( favorites) =>  { dispatch(fetchFavorites(favorites)) }, 
   }
 }
 

@@ -4,10 +4,9 @@ export const fetchRecipes = (recipes) => {
     }
 }
 
-export const fetchFavorites = (recipes, favorites) => {
+export const fetchFavorites = (favorites) => {
     return (dispatch) => {
-        dispatch({ type: "FETCH_FAVORITES", recipes: recipes })  
-        dispatch({ type: "FETCH_USER_FAVORITES", favorites: favorites })  
+        dispatch({ type: "FETCH_FAVORITES", favorites: favorites })
     }
 }
 
@@ -65,8 +64,3 @@ export const logOut = () => {
     }
 }
 
-export const testFavorites = (favorites) => {
-    return (dispatch) => {
-        dispatch({ type: "TEST_FAVORITES", favorites: favorites })
-    }
-}

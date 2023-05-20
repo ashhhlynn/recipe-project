@@ -6,12 +6,12 @@ class RecipesController < ApplicationController
   # GET /recipes
   def index
     @recipes = Recipe.all
-    render json: @recipes, include: [:reviews, :recipe_ingredients, :favorites]
+    render json: @recipes, include: [:reviews, :recipe_ingredients]
   end
 
   # GET /recipes/1
   def show
-    render json: @recipe, include: [:reviews, :recipe_ingredients, :favorites]
+    render json: @recipe, include: [:reviews, :recipe_ingredients]
   end
 
   # POST /recipes

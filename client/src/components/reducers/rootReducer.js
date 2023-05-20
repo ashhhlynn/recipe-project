@@ -15,23 +15,7 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
-        case "FETCH_FAVORITES":
-            console.log(action.recipes)
-            return {
-                ...state,
-                favorites: action.recipes,
-                loading: false,
-            };
-
-        case "FETCH_USER_FAVORITES":
-            console.log(action.favorites)
-            return {
-                ...state,
-                favorites: action.favorites,
-                loading: false,
-            };
-
-        case 'TEST_FAVORITES':
+        case 'FETCH_FAVORITES':
             console.log(action.favorites)
             return {
                 ...state, 

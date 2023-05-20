@@ -6,7 +6,7 @@ A content management application for recipes with five ingredients or less. Crea
   
 ## Functionality
 
-- Users can create accounts and sign in, authenticated and authorized through BCrpyt, stored through JWT.
+- Users can create accounts and sign in, authenticated and authorized through BCrypt.
 
 - Users can view recipes and sort by alphabetical order, date, number of reviews, and highest rating.
 
@@ -27,7 +27,7 @@ A content management application for recipes with five ingredients or less. Crea
 - Semantic UI React
 - HTML & CSS
 - PostgresQL - Database
-- Bcrypt and JWT for authentication and authorization
+- Bcrypt for authentication and authorization
 - rack-cors - provides support for Cross-Origin Resource Sharing for Rack compatible web applications(allows the front-end portion of this project to perform fetch requests)
 - active_model_serializers - allows customization and rendering of data in JSON format as responses to requests
 - React Router
