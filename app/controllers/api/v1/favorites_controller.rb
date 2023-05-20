@@ -1,12 +1,11 @@
 module Api::V1
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :update, :destroy]
-  skip_before_action :authorized, only: [:index, :create, :update, :show, :destroy]
+  before_action :set_favorite, only: [:show, :destroy]
+  skip_before_action :authorize, only: [:index, :create, :show, :destroy]
 
   # GET /favorites, 
   def index
     @favorites = Favorite.all
-
     render json: @favorites, include: [:recipe]
   end
 
@@ -21,15 +20,6 @@ class FavoritesController < ApplicationController
     @recipe = @favorite.recipe
     if @favorite.valid?
       render json: [@favorite, @recipe], status: :created
-    else
-      render json: @favorite.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /favorites/1
-  def update
-    if @favorite.update(favorite_params)
-      render json: @favorite
     else
       render json: @favorite.errors, status: :unprocessable_entity
     end

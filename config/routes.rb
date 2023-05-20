@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+
   namespace :api do
     namespace :v1 do
       resources :reviews
       resources :users
       resources :recipe_ingredients
       resources :recipes
-      resources :ratings
       resources :favorites
-      post '/login', to: 'auth#create'
+      post '/login', to: 'sessions#create'
       get '/profile', to: 'users#profile'
+      delete '/logout', to: 'sessions#logout'
     end
   end
 

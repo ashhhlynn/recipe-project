@@ -1,12 +1,11 @@
 module Api::V1
   class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :update, :destroy]
-  skip_before_action :authorized, only: [:index, :create]
+  skip_before_action :authorize, only: [:index, :create]
 
   # GET /reviews
   def index
     @reviews = Review.all
-
     render json: @reviews
   end
 
@@ -18,20 +17,12 @@ module Api::V1
   # POST /reviews
   def create
     @review = Review.new(review_params)
-
     if @review.save
-
-
       render json: @review, status: :created
     else
       render json: @review.errors, status: :unprocessable_entity
     end
-
-
   end
-
-  # PATCH/PUT /reviews/1
- 
 
   # DELETE /reviews/1
   def destroy

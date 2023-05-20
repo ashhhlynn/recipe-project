@@ -1,20 +1,16 @@
 module Api::V1
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
-
-  skip_before_action :authorized, only: [:index, :create, :update, :show]
-
+  skip_before_action :authorize, only: [:index, :create, :update, :show]
 
   # GET /recipes
   def index
     @recipes = Recipe.all
-
     render json: @recipes, include: [:reviews, :recipe_ingredients, :favorites]
   end
 
   # GET /recipes/1
   def show
-
     render json: @recipe, include: [:reviews, :recipe_ingredients, :favorites]
   end
 
@@ -22,10 +18,10 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.create(recipe_params)
     if params[:recipe_ingredients]
-    params[:recipe_ingredients].each do |ri|
-      RecipeIngredient.create(recipe_id: @recipe.id, name: ri)
-    end 
-  end 
+        params[:recipe_ingredients].each do |ri|
+          RecipeIngredient.create(recipe_id: @recipe.id, name: ri)
+        end 
+      end 
     if @recipe.save
       render json: @recipe, status: :created
     else

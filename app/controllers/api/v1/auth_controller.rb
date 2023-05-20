@@ -1,7 +1,7 @@
 module Api::V1
     class AuthController < ApplicationController
 
-      skip_before_action :authorized, only: [:create]
+      skip_before_action :authorize, only: [:create]
 
         def create
             @user = User.find_by(email: user_login_params[:email])
