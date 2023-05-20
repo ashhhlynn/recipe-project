@@ -4,15 +4,10 @@ export const fetchRecipes = (recipes) => {
     }
 }
 
-export const fetchFavorites = (recipes) => {
+export const fetchFavorites = (recipes, favorites) => {
     return (dispatch) => {
         dispatch({ type: "FETCH_FAVORITES", recipes: recipes })  
-    }
-}
-
-export const fetchAllFavorites = (recipes) => {
-    return (dispatch) => {
-        dispatch({ type: "FETCH_ALL_FAVORITES", recipes: recipes })     
+        dispatch({ type: "FETCH_USER_FAVORITES", favorites: favorites })  
     }
 }
 
@@ -58,22 +53,9 @@ export const removeFavorite = (recipe, fi) => {
     }
 }
 
-export const createUser = (userData) => {
-    return (dispatch) => {
-        dispatch({ type: "SET_CURRENT_USER", user: userData })
-    }
-}
-
 export const checkUser = (u) => {
     return (dispatch) => {  
         dispatch({ type: "SET_CURRENT_USER", user: u })
-    }
-}
-
-export const testLogin = (user) => {
-    console.log(user)
-    return (dispatch) => {  
-        dispatch({ type: "TEST_LOGIN", user: user })
     }
 }
 

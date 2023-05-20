@@ -5,24 +5,15 @@ import Navbar from './Navbar'
 import Recipe from './Recipe'
 import { fetchFavorites } from "./actions/rootActions"
 import axios from "axios";
-import { fetchAllFavorites } from "./actions/rootActions"
 
 class Favorites extends Component {        
 
 componentDidMount = () => {
-    if (this.props.testUser.length > 0) {
-        let u = this.props.testUser[0]
+    if (this.props.currentUser.length !== 0) {
         axios
-        .get("api/v1/users/" + u)
+        .get("api/v1/profile")
         .then((response) => {
-            this.props.fetchFavorites(response.data[0])
-        })
-        .catch((error) => console.log(error));
-        
-        axios 
-        .get("api/v1/favorites.json")
-        .then((response) => {
-            this.props.fetchAllFavorites(response.data)
+            this.props.fetchFavorites(response.data.fa, response.data.favorites)
         })
         .catch((error) => console.log(error));
     }
@@ -32,7 +23,7 @@ componentDidMount = () => {
         const recipeGroup = this.props.favorites.map( f => {
             return (
                 <Card >
-                    <Recipe recipe={f} key={f.id}/>
+                    <Recipe recipe={f} key={f.user_id}/>
                 </Card>    
             )
         })  
@@ -58,14 +49,12 @@ const mapStateToProps = (state) => {
     return { 
       favorites: state.favorites,
       currentUser: state.currentUser,
-      testUser: state.testUser
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return { 
-      fetchFavorites: (recipes) =>  { dispatch(fetchFavorites(recipes)) }, 
-      fetchAllFavorites: (recipes) =>  { dispatch(fetchAllFavorites(recipes)) }, 
+      fetchFavorites: (recipes, favorites) =>  { dispatch(fetchFavorites(recipes, favorites)) }, 
     }
 }
 

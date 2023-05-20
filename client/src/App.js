@@ -17,23 +17,17 @@ import { connect } from "react-redux"
 class App extends Component {
 
   componentDidMount = () => {
-    if (localStorage.token) {
-      const token = localStorage.token;
-      console.log(token)
-      axios
-      .get("/api/v1/profile.json")
-      .then((response) => {
-          if (response.message) {
-              localStorage.removeItem("token")
-          }
-          else {
-          console.log(response.data);
-          this.props.checkUser(response.data.user)
-        }
-      })
-      .catch((error) => console.log(error));
-    }
-    this.props.checkUser()
+    axios
+    .get("/api/v1/profile.json")
+    .then((response) => {
+      if (response.message) {
+        console.log(response.message)
+      }
+      else {
+        this.props.checkUser(response.data.user)
+      }
+    })
+    .catch((error) => console.log(error));
   }
   
 render() {

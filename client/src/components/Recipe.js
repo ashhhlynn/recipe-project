@@ -23,9 +23,9 @@ class Recipe extends Component {
     addToFaves = () => {
         let id = this.props.recipe.id
         if (!this.props.favorites.find(f=> f.id === id)) {
-            if (this.props.testUser.length > 0) {
+            if (this.props.currentUser.length !== 0) {
                 axios
-                .post("/api/v1/favorites", { recipe_id: id, user_id: this.props.testUser[0] })
+                .post("/api/v1/favorites", { recipe_id: id, user_id: this.props.currentUser.id })
                 .then((response) => {
                     console.log(response);
                     window.alert("Added to favorites.")
@@ -36,9 +36,8 @@ class Recipe extends Component {
     }
 
     removeFave = () => {
-        if (this.props.testUser.length > 0) {
+        if (this.props.currentUser.length !== 0) {
             let f = this.props.userFavoritesF.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
-            console.log(f)
             let fi = f.id
             this.props.removeFavorite(this.props.recipe, fi)
             axios
@@ -90,9 +89,9 @@ class Recipe extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-      testUser: state.testUser,
       favorites: state.favorites,
       userFavoritesF: state.userFavoritesF,
+      currentUser: state.currentUser
     }
 }
 

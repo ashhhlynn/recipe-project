@@ -16,7 +16,6 @@ class Recipes extends Component {
     axios
     .get("api/v1/recipes.json")
       .then((response) => {
-        console.log(response);
         this.props.fetchRecipes(response.data)
       })
     .catch((error) => console.log(error));
@@ -38,10 +37,10 @@ class Recipes extends Component {
   }
 
   render() {
-    const recipeGroup = this.props.recipes.map( i => {
+    const recipeGroup = this.props.recipes.map( r => {
       return (
         <Card >
-          <Recipe recipe={i} key={i.id}/>
+          <Recipe recipe={r} key={r.id}/>
         </Card>    
       )
     })

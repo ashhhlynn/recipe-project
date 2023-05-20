@@ -3,11 +3,17 @@ import { Icon, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import { logOut } from "./actions/rootActions"
+import axios from "axios";
 
 class Head extends Component {
 
     handleLogout = () => {
-        localStorage.clear()
+        axios
+        .delete("/api/v1/logout")
+        .then((response) => {
+            console.log(response)
+        })
+            .catch((error) => console.log(error));
         this.props.logOut()
     }    
         
@@ -24,9 +30,9 @@ class Head extends Component {
                         Dash Delish
                     </h1>
                     <Menu.Menu style={{marginTop:"1%", marginRight:"1%"}} position="right">
-                        {this.props.testUser.length === 0 ?
+                        {this.props.currentUser.length === 0 ?
                             <>
-                            <Menu.Item><Icon color="grey" size="large" name="user plus "></Icon><Link to ='/signup'  style={{marginTop:"-10%", color:"grey"}}>Sign Up</Link></Menu.Item>
+                            <Menu.Item><Icon color="grey" size="large" name="user plus"></Icon><Link to ='/signup'  style={{marginTop:"-10%", color:"grey"}}>Sign Up</Link></Menu.Item>
                             <Menu.Item><Icon size="large" color="grey" name="user outline"></Icon><Link to ='/login'  style={{marginTop:"-10%", color:"grey"}}>Sign In</Link></Menu.Item>
                             </>
                         :
@@ -43,7 +49,7 @@ class Head extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-      testUser: state.testUser
+      currentUser: state.currentUser
     }
 }
 

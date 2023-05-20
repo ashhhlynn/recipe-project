@@ -19,9 +19,8 @@ class Signup extends Component {
         axios
         .post("/api/v1/users", { username: userData.username, email: userData.email, password: userData.password, password_confirmation: userData.password_confirmation})
         .then((response) => {
-          console.log(response.data.user)
-          localStorage.token = response.data.jwt;
           window.alert("Signup successful.")
+          this.props.checkUser(response.data)
         })
     }
 

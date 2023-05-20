@@ -10,11 +10,11 @@ class Navbar extends Component {
         return (
             <div className="navy" style={{height:"100%"}}>
                 <Menu size="huge" vertical style={{height:"100%", minHeight:"500px", backgroundColor:"#F0f0f0", marginTop:"-5.5%", marginLeft:"-1%"}}>
-                {this.props.testUser.length === 0 ?
+                {this.props.currentUser.length === 0 ?
                         <Reminder /> 
                     :
                         <>
-                        <h1 style={{letterSpacing:"2px", marginTop:"3%"}}>Hi, user{this.props.testUser[0]}!</h1>
+                        <h1 style={{letterSpacing:"2px", marginTop:"3%"}}>Hi, user{this.props.currentUser.username}!</h1>
                         </>
                     }
                     <Menu.Item ><Link to="/" style={{fontWeight:"normal", letterSpacing:"1.25px", color:"#000000", fontSize:"20px"}}>all recipes</Link></Menu.Item>
@@ -31,7 +31,7 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-      testUser: state.testUser
+      currentUser: state.currentUser
     }
 }
 

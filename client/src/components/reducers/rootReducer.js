@@ -4,7 +4,6 @@ const initialState = {
     loading: false,
     favorites: [],
     userFavoritesF: [],
-    testUser: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -25,12 +24,11 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
             };
 
-        case "FETCH_ALL_FAVORITES":
-            let nfs = action.recipes.filter(f => parseInt(f.user_id) === state.testUser[0])
-            console.log(nfs)
+        case "FETCH_USER_FAVORITES":
+            console.log(action.favorites)
             return {
                 ...state,
-                userFavoritesF: nfs,
+                userFavoritesF: action.favorites,
                 loading: false,
             };
 
@@ -97,19 +95,10 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case 'SET_CURRENT_USER':
-            console.log(state.currentUser)
             console.log(action.user)
             return {
                 ...state, 
                 currentUser: action.user, 
-                loading: false
-            };
-
-        case 'TEST_LOGIN':
-            console.log(action.user)
-            return {
-                ...state, 
-                testUser: [...state.testUser, action.user],
                 loading: false
             };
 
