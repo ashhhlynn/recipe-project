@@ -47,9 +47,9 @@ export const addToFavorites = (recipe) => {
     }
 }
 
-export const removeFavorite = (recipe, fi) => {
+export const removeFavorite = (fi) => {
     return (dispatch) => {
-        dispatch({ type: "REMOVE_FAVORITE", recipe: recipe, i: fi })     
+        dispatch({ type: "REMOVE_FAVORITE", i: fi })     
     }
 }
 
@@ -62,5 +62,11 @@ export const checkUser = (u) => {
 export const logOut = () => {
     return (dispatch) => {
         dispatch({ type: "LOGOUT" })
+    }
+}
+
+export const testFavorites = (favorites) => {
+    return (dispatch) => {
+        dispatch({ type: "TEST_FAVORITES", favorites: favorites })
     }
 }

@@ -1,7 +1,7 @@
 module Api::V1
 class RecipeIngredientsController < ApplicationController
   before_action :set_recipe_ingredient, only: [:show]
-  skip_before_action :authorize, only: [:index, :create, :destroy]
+  skip_before_action :authorize, only: [:index, :create, :destroy, :show]
 
   # GET /recipe_ingredients
   def index

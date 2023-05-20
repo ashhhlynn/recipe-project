@@ -22,34 +22,33 @@ class Recipe extends Component {
 
     addToFaves = () => {
         let id = this.props.recipe.id
-        if (!this.props.favorites.find(f=> f.id === id)) {
+        if (!this.props.favorites.find(f=> f.recipe_id === id)) {
             if (this.props.currentUser.length !== 0) {
                 axios
                 .post("/api/v1/favorites", { recipe_id: id, user_id: this.props.currentUser.id })
                 .then((response) => {
-                    console.log(response);
+                    console.log(response.data);
                     window.alert("Added to favorites.")
+                    this.props.addToFavorites(response.data)
                 })
             }
-            this.props.addToFavorites(this.props.recipe)           
         }
     }
 
     removeFave = () => {
         if (this.props.currentUser.length !== 0) {
-            let f = this.props.userFavoritesF.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
+            let f = this.props.favorites.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
             let fi = f.id
-            this.props.removeFavorite(this.props.recipe, fi)
             axios
             .delete("/api/v1/favorites/" + fi)
             .then((response) => {
                 console.log(response)
+                this.props.removeFavorite(fi)
                 window.alert("Removed from favorites.")
-
             })
             .catch((error) => console.log(error));}
         else {
-            this.props.removeFavorite(this.props.recipe)
+           
         }
     }
 
@@ -61,7 +60,7 @@ class Recipe extends Component {
                 <h2 style={{textAlign:"center", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h2>
-                {this.props.favorites.find(f=> f.id === i.id) ?
+                {this.props.favorites.find(f=> parseInt(f.recipe_id) === i.id) ?
                     <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
                         <Icon style={{color:"#702963", marginLeft:"93%"}}floated="right"  size="large" name="close"/>
                     </Button>  
@@ -92,7 +91,6 @@ class Recipe extends Component {
 const mapStateToProps = (state) => {
     return { 
       favorites: state.favorites,
-      userFavoritesF: state.userFavoritesF,
       currentUser: state.currentUser
     }
 }
@@ -100,7 +98,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
       addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
-      removeFavorite: (recipe, fi) =>  { dispatch(removeFavorite(recipe, fi)) }
+      removeFavorite: (fi) =>  { dispatch(removeFavorite(fi)) }
     }
 }
 

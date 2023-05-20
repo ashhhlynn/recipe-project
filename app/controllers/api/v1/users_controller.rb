@@ -10,13 +10,7 @@ module Api::V1
   end
 
   def profile
-      faves = current_user.favorites
-      @fa = []
-     faves.each do |f| 
-      r = Recipe.all.find_by(id: f.recipe_id)
-        @fa << r
-      end 
-      render json: {  user: current_user, fa: @fa, favorites: current_user.favorites }, status: :accepted
+    render json: {  user: current_user }, status: :accepted
   end
 
   def show

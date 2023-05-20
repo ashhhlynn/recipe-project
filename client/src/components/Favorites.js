@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import Navbar from './Navbar'
 import Recipe from './Recipe'
 import { fetchFavorites } from "./actions/rootActions"
+import { testFavorites } from "./actions/rootActions"
 import axios from "axios";
 
 class Favorites extends Component {        
@@ -11,9 +12,9 @@ class Favorites extends Component {
 componentDidMount = () => {
     if (this.props.currentUser.length !== 0) {
         axios
-        .get("api/v1/profile")
+        .get("api/v1/favorites")
         .then((response) => {
-            this.props.fetchFavorites(response.data.fa, response.data.favorites)
+            this.props.testFavorites(response.data)
         })
         .catch((error) => console.log(error));
     }
@@ -23,7 +24,7 @@ componentDidMount = () => {
         const recipeGroup = this.props.favorites.map( f => {
             return (
                 <Card >
-                    <Recipe recipe={f} key={f.user_id}/>
+                    <Recipe recipe={f.recipe} key={f.recipe.id}/>
                 </Card>    
             )
         })  
@@ -49,12 +50,14 @@ const mapStateToProps = (state) => {
     return { 
       favorites: state.favorites,
       currentUser: state.currentUser,
+      recipes: state.recipes,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return { 
       fetchFavorites: (recipes, favorites) =>  { dispatch(fetchFavorites(recipes, favorites)) }, 
+      testFavorites: ( favorites) =>  { dispatch(testFavorites(favorites)) }, 
     }
 }
 
