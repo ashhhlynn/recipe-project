@@ -5,6 +5,6 @@ class Recipe < ApplicationRecord
 
     accepts_nested_attributes_for :recipe_ingredients
     validates :description, length: { maximum: 400 }
-    validates :name, length: { maximum: 70 }
+    validates :name, length: { maximum: 50 }
     validates :recipe_ingredients, length: { minimum: 0, maximum: 6 }
 end

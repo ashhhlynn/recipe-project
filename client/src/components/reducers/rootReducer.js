@@ -85,6 +85,7 @@ const rootReducer = (state = initialState, action) => {
 
         case 'SET_CURRENT_USER':
             console.log(action.user)
+            if (action.user !== null)
             return {
                 ...state, 
                 currentUser: action.user, 

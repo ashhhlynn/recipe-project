@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Search, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
+import { Button, Grid, Segment, Card, Item, Header} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import Navbar from './Navbar'
 import axios from "axios";
@@ -53,10 +53,7 @@ class Recipes extends Component {
             <Navbar/>
           </Grid.Column>
           <Grid.Column>  
-            <Item style={{width:"850px", marginLeft:"9%"}}>
-              <Search
-              placeholder='Search by ingredient...'
-              />  
+            <Item style={{width:"850px", marginLeft:"9%"}}> 
               <br></br>
               <Header style={{marginTop:"0%", marginLeft:"0%"}}>
                 <Button id="3" circular onClick={(event)=>{this.sortItems(event)}}>Name</Button> 

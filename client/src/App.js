@@ -29,13 +29,13 @@ class App extends Component {
     })
     .catch((error) => console.log(error));
 
-    axios
-    .get("api/v1/favorites")
-    .then((response) => {
-        this.props.fetchFavorites(response.data)
-    })
-    .catch((error) => console.log(error));
-  }
+      axios
+      .get("api/v1/favorites")
+      .then((response) => {
+          this.props.fetchFavorites(response.data)
+      })
+      .catch((error) => console.log(error));
+}
   
 render() {
   return (
@@ -55,6 +55,12 @@ render() {
   </Router>
   )}
 }
+
+const mapStateToProps = (state) => {
+  return { 
+    currentUser: state.currentUser
+  }
+}
   
 const mapDispatchToProps = (dispatch) => {
   return { 
@@ -63,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

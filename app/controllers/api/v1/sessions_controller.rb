@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
 
     def logout
         session.delete :user_id
-        head :no_content
     end
 
 end
