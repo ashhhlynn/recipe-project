@@ -1,12 +1,19 @@
 .App {
   text-align: center;
- font-family: "Lato" !important;
+  font-family: "Lato" !important;
 }
 
 .h1 {
   font-weight: "normal" !important;
 }
 
+.h2 {
+  font-weight: "normal" !important;
+}
+
+.h3 {
+  font-weight: "normal" !important;
+}
 
 .button.ui.button {
   background-color: #702963;
@@ -14,17 +21,8 @@
   font-weight: normal  !important;
 }
 
-.h2 {
-  font-weight: "normal" !important;
-}
-
 .ui.header {
   font-weight: "normal" !important;
-}
-
-.navy > .a  {
-color: "grey" !important;
-letter-spacing: 3%  !important;
 }
 
 .App-header {
@@ -41,8 +39,3 @@ letter-spacing: 3%  !important;
 .App-link {
   color: #61dafb;
 }
-
-.ui.header {
-  font-weight: "normal" !important;
-}
-

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import axios from "axios";
+import axios from "axios"
 import { Form, Grid, Segment} from 'semantic-ui-react'
 import Navbar from './Navbar'
 import { checkUser } from "./actions/rootActions"
@@ -36,15 +36,15 @@ class Login extends Component {
     render() {
         return (
             <>          
-                <Segment style={{height:"100%", marginLeft:"-7%", minHeight:"515px", marginRight:"-6.5%", marginTop:"-1.4%", opacity:"87%"}}>
-                    <Grid stackable columns={2} >
-                        <Grid.Column style={{width:"300px"}}> 
-                            <Navbar/>
-                        </Grid.Column>
-                        <Grid.Column>
-                            <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
-                                <h1 style={{}}>Sign In</h1>
-                                <Form onSubmit={ (event) => { this.handleSubmit(event, this.state)}}>
+            <Segment style={{height:"100%", marginLeft:"-7%", marginRight:"-6.5%", marginTop:"-1.4%" }}>
+                <Grid stackable columns={2} >
+                    <Grid.Column style={{width:"300px"}}> 
+                        <Navbar/>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Segment style={{marginLeft:"28%", marginTop:"5%", width:"615px"}}>
+                            <h1 style={{}}>Sign In</h1>
+                            <Form onSubmit={ (event) => { this.handleSubmit(event, this.state)}}>
                                 <Form.Input
                                 required
                                 id="email"
@@ -60,12 +60,12 @@ class Login extends Component {
                                 value={this.state.password} 
                                 onChange={this.handleChange}
                                 /> 
-                                <Form.Button circular size="large" content='Submit' />
-                                </Form>
-                            </Segment>    
-                        </Grid.Column>
-                    </Grid>
-                </Segment>
+                                <Form.Button style={{letterSpacing:"1px"}} circular size="large" content='Submit' />
+                            </Form>
+                        </Segment>    
+                    </Grid.Column>
+                </Grid>
+            </Segment>
             </>
         )
     }

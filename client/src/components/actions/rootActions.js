@@ -52,9 +52,9 @@ export const removeFavorite = (fi) => {
     }
 }
 
-export const checkUser = (u) => {
+export const checkUser = (user) => {
     return (dispatch) => {  
-        dispatch({ type: "SET_CURRENT_USER", user: u })
+        dispatch({ type: "SET_CURRENT_USER", user: user })
     }
 }
 

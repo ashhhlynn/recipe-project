@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Modal, Icon, Image, Item, Rating} from 'semantic-ui-react'
+import { Button, Card, Modal, Icon, Image, Item, Rating } from 'semantic-ui-react'
 import { connect } from "react-redux"
-import axios from "axios";
+import axios from "axios"
 import RecipeInfo from './RecipeInfo'
 import { addToFavorites } from "./actions/rootActions"
 import { removeFavorite } from "./actions/rootActions"
@@ -20,7 +20,7 @@ class Recipe extends Component {
         this.setState({ modalOpen: false });
     }
 
-    addToFaves = () => {
+    addToFavorites = () => {
         let id = this.props.recipe.id
         if (!this.props.favorites.find(f=> f.recipe_id === id)) {
             if (this.props.currentUser.length !== 0) {
@@ -37,13 +37,13 @@ class Recipe extends Component {
         }
     }
 
-    removeFave = () => {
+    removeFavorite = () => {
         if (this.props.currentUser.length !== 0) {
-            let f = this.props.favorites.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
+            let fave = this.props.favorites.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
             axios
-            .delete("/api/v1/favorites/" + f.id)
+            .delete("/api/v1/favorites/" + fave.id)
             .then(() => {
-                this.props.removeFavorite(f.id)
+                this.props.removeFavorite(fave.id)
                 window.alert("Removed from favorites.")
             })
             .catch((error) => console.log(error));
@@ -57,20 +57,19 @@ class Recipe extends Component {
         const i = this.props.recipe    
         return (
             <>
-                <Image style={{cursor:"pointer", width:"270px", height:"260px"}}src= {i.image_url} onClick={this.handleOpen}/>
+            <Card>
+                <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>
                 <h3 style={{textAlign:"center", fontSize:"21px", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h3>
                 {this.props.favorites.find(f=> parseInt(f.recipe_id) === i.id) ?
-                     <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
-                     <Icon style={{color:"grey", marginLeft:"95%"}}floated="right"  size="large"  name="close"/>
-                 </Button>  
-                :
-                    <>
-                    <Button floated="right" onClick={this.addToFaves} style={{marginTop:"-15%", background:"none"}} >
+                    <Button floated="right" onClick={this.removeFavorite} style={{marginTop:"-15%", background:"none"}} >
+                        <Icon style={{color:"grey", marginLeft:"95%"}}floated="right"  size="large"  name="close"/>
+                    </Button>  
+                :        
+                    <Button floated="right" onClick={this.addToFavorites} style={{marginTop:"-15%", background:"none"}} >
                         <Icon style={{color:"#880808", marginLeft:"95%"}}floated="right"  size="large" name="heart"/>
-                    </Button> 
-                    </>
+                    </Button>   
                 }           
                 <Item>
                     <Rating size="small" rating={i.average} disabled maxRating={5} />
@@ -84,6 +83,7 @@ class Recipe extends Component {
                         <RecipeInfo recipe={i} key={i.id} handleClose={this.handleClose} />
                     </Modal.Content>
                 </Modal>
+            </Card>
             </>
         )
     }

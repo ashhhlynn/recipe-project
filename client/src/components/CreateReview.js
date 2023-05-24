@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Rating } from 'semantic-ui-react'
 import { connect } from "react-redux"
-import axios from "axios";
+import axios from "axios"
 import { updateRR } from "./actions/rootActions"
 
 class CreateReview extends Component {
@@ -44,17 +44,17 @@ class CreateReview extends Component {
         return (
             <>
             <center>                   
-                <Form onSubmit= { (event) => {this.handleSubmitRating(event, this.state)}}>
+                <Form onSubmit= { (event) => {this.handleSubmitRating(event, this.state)} }>
                     <Rating color="purple" size="massive" maxRating={5} onRate={this.handleRating} />
                     <Form.TextArea
-                            style={{width:"300px"}}
-                            type="text"
-                            id="text"
-                            placeholder=""
-                            value={this.state.text} 
-                            onChange={this.handleChange}
+                        style={{width:"300px"}}
+                        type="text"
+                        id="text"
+                        placeholder=""
+                        value={this.state.text} 
+                        onChange={this.handleChange}
                     />
-                    <Form.Button circular style={{width:"130px", color:"white", fontWeight:"normal"}}className="formButtons" content='Submit'/>        
+                    <Form.Button circular style={{letterSpacing: "1px", width:"130px", color:"white" }}className="formButtons" content='Submit'/>        
                 </Form>   
             </center>
             </>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, Image, Grid, Rating, Segment, Divider} from 'semantic-ui-react'
+import { Item, Image, Grid, Rating, Segment, Divider } from 'semantic-ui-react'
 import RecipeReviews from './RecipeReviews'
 import CreateReview from './CreateReview'
 
@@ -10,7 +10,7 @@ class RecipeInfo extends Component {
     render() {
         const recipe_ingredients = this.props.recipe.recipe_ingredients.map(ri => {
             return (
-                <div key={ri.id}>{ri.name}</div>
+                <div key={ri.quantity}>{ri.name}</div>
             )
         })
         return (         
@@ -18,10 +18,11 @@ class RecipeInfo extends Component {
                 <h1>{this.props.recipe.name}</h1>
                 <Rating size="massive" key={this.props.recipe.id} rating={this.props.recipe.average} disabled maxRating={5} />
                 <Divider></Divider>
-                <Grid stackable columns={2} >
+                <Grid stackable columns={2}>
                     <Grid.Column > 
+                        <br></br>
                         <center>
-                            <Image size="medium" src={this.props.recipe.image_url}></Image>
+                            <Image size="medium" src={this.props.recipe.image_url}/>
                         </center>
                     </Grid.Column>
                     <Grid.Column>
@@ -36,9 +37,9 @@ class RecipeInfo extends Component {
                 </Grid>
                 <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} placeholder>
                     <h2>Reviews</h2>
-                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.average}/>
+                    <RecipeReviews recipe={this.props.recipe} />
                     <br></br>
-                    <CreateReview recipe={this.props.recipe} key={this.props.recipe.name}/>
+                    <CreateReview recipe={this.props.recipe}/>
                     <br></br>
                 </Segment>
             </center>  
