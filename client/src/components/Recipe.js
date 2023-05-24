@@ -59,15 +59,15 @@ class Recipe extends Component {
             <>
             <Card>
                 <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>
-                <h3 style={{textAlign:"center", fontSize:"21px", marginTop: "2%", marginBottom:"2%"}}>
+                <h3 style={{fontFamily:"Segoe Print", fontWeight:"normal", textAlign:"center", fontSize:"19px", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h3>
                 {this.props.favorites.find(f=> parseInt(f.recipe_id) === i.id) ?
-                    <Button floated="right" onClick={this.removeFavorite} style={{marginTop:"-15%", background:"none"}} >
+                    <Button floated="right" onClick={this.removeFavorite} style={{marginTop:"-14%", background:"none"}} >
                         <Icon style={{color:"grey", marginLeft:"95%"}}floated="right"  size="large"  name="close"/>
                     </Button>  
                 :        
-                    <Button floated="right" onClick={this.addToFavorites} style={{marginTop:"-15%", background:"none"}} >
+                    <Button floated="right" onClick={this.addToFavorites} style={{marginTop:"-14%", background:"none"}} >
                         <Icon style={{color:"#880808", marginLeft:"95%"}}floated="right"  size="large" name="heart"/>
                     </Button>   
                 }           

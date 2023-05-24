@@ -15,7 +15,7 @@ class RecipeInfo extends Component {
         })
         return (         
             <center>
-                <h1>{this.props.recipe.name}</h1>
+                <h1 style={{fontFamily:"Segoe Print"}}>{this.props.recipe.name}</h1>
                 <Rating size="massive" key={this.props.recipe.id} rating={this.props.recipe.average} disabled maxRating={5} />
                 <Divider></Divider>
                 <Grid stackable columns={2}>

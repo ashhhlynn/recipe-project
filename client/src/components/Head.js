@@ -21,7 +21,7 @@ class Head extends Component {
         return (
             <div>
                 <Menu style={{textAlign:"center", opacity:"94%", color:"white", backgroundColor:"#702963", marginBottom:"0%"}} position="middle">
-                    <h3 style={{marginLeft:"39.5%", fontWeight:"normal", fontSize: "16px", marginTop:".75%", letterSpacing: "1.2px"}}>
+                    <h3 style={{marginLeft:"39.5%", fontWeight:"normal", fontSize: "16px", marginTop:".75%", letterSpacing: "1px"}}>
                         recipes with five ingredients or less <Icon size="small" color="yellow" name="heart"/>
                     </h3>
                 </Menu>
@@ -32,12 +32,12 @@ class Head extends Component {
                     <Menu.Menu style={{marginTop:"1%", marginRight:"1%"}} position="right">
                         {this.props.currentUser.length === 0 ?
                             <>
-                            <Menu.Item><Icon color="grey" size="large" name="user plus"/><Link to ='/signup' style={{marginTop:"-10%", color:"grey"}}>Sign Up</Link></Menu.Item>
-                            <Menu.Item><Icon size="large" color="grey" name="user outline"/><Link to ='/login' style={{marginTop:"-10%", color:"grey"}}>Sign In</Link></Menu.Item>
+                            <Menu.Item><Icon color="grey" size="large" name="user plus"/><Link to ='/signup' style={{marginTop:"-10%", color:"grey", letterSpacing:"1px"}}>sign up</Link></Menu.Item>
+                            <Menu.Item><Icon size="large" color="grey" name="user outline"/><Link to ='/login' style={{marginTop:"-10%", color:"grey", letterSpacing:"1px"}}>sign in</Link></Menu.Item>
                             </>
                         :
                             <>
-                            <Menu.Item><Icon size="huge" color="grey" name="user circle outline"/><Link to ='/' onClick={this.handleLogout} style={{marginTop:"-10%", color:"grey"}}>Sign Out</Link></Menu.Item>
+                            <Menu.Item><Icon size="huge" color="grey" name="user circle outline"/><Link to ='/' onClick={this.handleLogout} style={{marginTop:"-10%", color:"grey", letterSpacing:"1px"}}>sign out</Link></Menu.Item>
                             </>
                         }
                     </Menu.Menu>
