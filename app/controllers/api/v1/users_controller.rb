@@ -1,9 +1,8 @@
 module Api::V1
   class UsersController < ApplicationController
 
-    skip_before_action :authorize, only: [:create, :index, :profile, :show]
+  skip_before_action :authorize, only: [:create, :index, :profile, :show]
 
-  # GET /users
   def index
     @users = User.all
     render json: @users, include: [:favorites]
@@ -18,7 +17,6 @@ module Api::V1
     render json: @user, status: :accepted
   end
 
-  # POST /users
   def create
     @user = User.create(user_params)
     if @user.valid?
@@ -30,7 +28,6 @@ module Api::V1
   end
 
   private
-    # Only allow a list of trusted parameters through.
     def user_params
       params.permit(:username, :email, :password, :password_confirmation)
     end
