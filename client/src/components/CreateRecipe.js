@@ -140,7 +140,7 @@ class CreateRecipe extends Component {
                                     <Button id="ingredient5" basic color="grey"  onClick={this.addIngredient} >+</Button>
                                 </Form.Group>
                             </Item> 
-                            <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="big" className="formButtons" content='Save Recipe'/>        
+                            <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}className="formButtons" content='Save Recipe'/>        
                             <br></br>
                         </Form> 
                     </Segment>           

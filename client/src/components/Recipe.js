@@ -5,6 +5,8 @@ import axios from "axios";
 import RecipeInfo from './RecipeInfo'
 import { addToFavorites } from "./actions/rootActions"
 import { removeFavorite } from "./actions/rootActions"
+import AddButton from './AddButton'
+
 
 class Recipe extends Component {        
 
@@ -62,13 +64,13 @@ class Recipe extends Component {
                     {i.name}                     
                 </h3>
                 {this.props.favorites.find(f=> parseInt(f.recipe_id) === i.id) ?
-                    <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
-                        <Icon style={{color:"#702963", marginLeft:"95%"}}floated="right"  size="large" name="close"/>
-                    </Button>  
+                     <Button floated="right" onClick={this.removeFave} style={{marginTop:"-15%", background:"none"}} >
+                     <Icon style={{color:"grey", marginLeft:"95%"}}floated="right"  size="large"  name="close"/>
+                 </Button>  
                 :
                     <>
                     <Button floated="right" onClick={this.addToFaves} style={{marginTop:"-15%", background:"none"}} >
-                        <Icon style={{color:"#702963", marginLeft:"95%"}}floated="right"  size="large" name="heart"/>
+                        <Icon style={{color:"#880808", marginLeft:"95%"}}floated="right"  size="large" name="heart"/>
                     </Button> 
                     </>
                 }           
