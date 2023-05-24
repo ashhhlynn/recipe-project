@@ -23,8 +23,8 @@ class Login extends Component {
         axios
         .post("/api/v1/login", {  email: userData.email, password: userData.password})
         .then((response) => {
-            if (response.message) {
-                window.alert(response.message)
+            if (response.data.errors) {
+                window.alert("Login failed.")
             }
             else {
                 this.props.checkUser(response.data)

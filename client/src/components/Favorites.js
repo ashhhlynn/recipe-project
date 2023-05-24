@@ -8,12 +8,23 @@ import axios from "axios";
 
 class Favorites extends Component {        
 
+    componentDidMount = () => {
+        if (this.props.currentUser.length !== 0) {
+            axios
+            .get("api/v1/favorites")
+            .then((response) => {
+                console.log(response)
+                this.props.fetchFavorites(response.data)
+            })
+            .catch((error) => console.log(error));
+        }
+    }
 
     render() {
         const recipeGroup = this.props.favorites.map( f => {
             return (
                 <Card >
-                    <Recipe recipe={f.recipe} key={f.recipe.id}/>
+                    <Recipe recipe={f.recipe} key={f.image_url}/>
                 </Card>    
             )
         })  
@@ -38,8 +49,7 @@ class Favorites extends Component {
 const mapStateToProps = (state) => {
     return { 
       favorites: state.favorites,
-      currentUser: state.currentUser,
-      recipes: state.recipes,
+      currentUser: state.currentUser
     }
 }
 

@@ -25,17 +25,19 @@ class App extends Component {
       }
       else {
         this.props.checkUser(response.data.user)
+
+        axios
+      .get("api/v1/favorites")
+      .then((response) => {
+        this.props.fetchFavorites(response.data)
+      })
+      .catch((error) => console.log(error));
+
       }
     })
     .catch((error) => console.log(error));
 
-      axios
-      .get("api/v1/favorites")
-      .then((response) => {
-          this.props.fetchFavorites(response.data)
-      })
-      .catch((error) => console.log(error));
-}
+  }
   
 render() {
   return (

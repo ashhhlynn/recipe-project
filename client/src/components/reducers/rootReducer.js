@@ -21,40 +21,37 @@ const rootReducer = (state = initialState, action) => {
                 ...state, 
                 favorites: action.favorites,
                 loading: false
-            }
-            ;
+            };
 
         case "UPDATE_RR":
             console.log(action.recipe)
+            let faves = state.favorites
             return {
                 ...state,
                 recipes: [...state.recipes.filter(item=> item.id !== action.recipe.id), action.recipe],
                 loading: false,
+                favorites: faves
             };
 
         case "SORT_A_TO_Z":
-            console.log(...state.recipes)
             return {
                 ...state,
                  recipes: [...state.recipes.slice().sort((item1, item2) => item2.name < item1.name ? 1 : -1)]
             }; 
 
         case "SORT_NUMBER_REVIEWS":
-            console.log(...state.recipes)
             return {
                 ...state,
                 recipes: [...state.recipes.slice().sort((item1, item2) => item2.reviews.length > item1.reviews.length ? 1 : -1)]
             }; 
 
         case "SORT_DATE":
-            console.log(...state.recipes)
             return {
                 ...state,
                 recipes: [...state.recipes.slice().sort((item1, item2) => item2.created_at > item1.created_at ? 1 : -1)]
             }; 
 
         case "SORT_RATING":
-            console.log(...state.recipes)
             return {
                 ...state,
                 recipes: [...state.recipes.slice().sort((item1, item2) => item2.average > item1.average ? 1 : -1)]
@@ -84,19 +81,22 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case 'SET_CURRENT_USER':
-            console.log(action.user)
             if (action.user !== null)
-            return {
-                ...state, 
-                currentUser: action.user, 
-                loading: false
+                return {
+                    ...state, 
+                    currentUser: action.user, 
+                    loading: false
+                }
+            else {
+                return {
+                    ...state
+                }
             };
 
         case 'LOGOUT':
             return {
                 ...state, 
                 currentUser: [], 
-                testUser: [],
                 loading: false,
             };
 

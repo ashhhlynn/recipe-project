@@ -27,28 +27,29 @@ class Recipe extends Component {
                 axios
                 .post("/api/v1/favorites", { recipe_id: id, user_id: this.props.currentUser.id })
                 .then((response) => {
-                    console.log(response.data);
                     window.alert("Added to favorites.")
                     this.props.addToFavorites(response.data)
                 })
             }
+        }
+        else {
+            window.alert("Failed to add to favorites.")
         }
     }
 
     removeFave = () => {
         if (this.props.currentUser.length !== 0) {
             let f = this.props.favorites.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
-            let fi = f.id
             axios
-            .delete("/api/v1/favorites/" + fi)
-            .then((response) => {
-                console.log(response)
-                this.props.removeFavorite(fi)
+            .delete("/api/v1/favorites/" + f.id)
+            .then(() => {
+                this.props.removeFavorite(f.id)
                 window.alert("Removed from favorites.")
             })
-            .catch((error) => console.log(error));}
+            .catch((error) => console.log(error));
+        }
         else {
-           
+            window.alert("Failed to remove from favorites.")
         }
     }
 
@@ -98,7 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
       addToFavorites: (recipe) =>  { dispatch(addToFavorites(recipe)) },
-      removeFavorite: (fi) =>  { dispatch(removeFavorite(fi)) }
+      removeFavorite: (f) =>  { dispatch(removeFavorite(f)) }
     }
 }
 

@@ -39,8 +39,13 @@ class CreateRecipe extends Component {
         axios
         .post("/api/v1/recipes", { name: recipe.name, user_id: 7, description: recipe.description, image_url: recipe.image_url, average: 0, recipe_ingredients: recipe.recipe_ingredients})
         .then((response) => {
-            console.log(response);
-            window.alert("Recipe created.")
+            if (response.data.errors) {
+                window.alert("Recipe creation failed.")
+            }
+            else {
+                console.log(response);
+                window.alert("Recipe created.")
+            }
         })
     }
 
@@ -83,60 +88,60 @@ class CreateRecipe extends Component {
                             Click plus button to add ingredient.
                             <br></br><br></br>
                             <Item style={{marginLeft: "30%"}}>
-                            <Form.Group>
-                            <Form.Input
-                            required
-                            type="text"
-                            id="ingredient1"
-                            placeholder="Ingredient"
-                            value={this.state.ingredient1} 
-                            onChange={this.handleChange}
-                            />                    
-                            <Button id="ingredient1" basic color="grey" onClick={this.addIngredient} >+</Button>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Input
-                            type="text"
-                            id="ingredient2"
-                            placeholder="Ingredient"
-                            value={this.state.ingredient2} 
-                            onChange={this.handleChange}
-                            />
-                            <Button id="ingredient2" basic color="grey" onClick={this.addIngredient} >+</Button>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Input                       
-                            type="text"
-                            id="ingredient3"
-                            placeholder="Ingredient"
-                            value={this.state.ingredient3} 
-                            onChange={this.handleChange}
-                            />
-                            <Button id="ingredient3" basic color="grey" onClick={this.addIngredient} >+</Button>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Input
-                            type="text"
-                            id="ingredient4"
-                            placeholder="Ingredient"
-                            value={this.state.ingredient4} 
-                            onChange={this.handleChange}
-                            />
-                            <Button id="ingredient4" basic color="grey" onClick={this.addIngredient} >+</Button>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Input
-                            type="text"
-                            id="ingredient5"
-                            placeholder="Ingredient"
-                            value={this.state.ingredient5} 
-                            onChange={this.handleChange}
-                            />
-                            <Button id="ingredient5" basic color="grey"  onClick={this.addIngredient} >+</Button>
-                            </Form.Group>
-                        </Item> 
-                        <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="big" className="formButtons" content='Save Recipe'/>        
-                        <br></br>
+                                <Form.Group>
+                                    <Form.Input
+                                    required
+                                    type="text"
+                                    id="ingredient1"
+                                    placeholder="Ingredient"
+                                    value={this.state.ingredient1} 
+                                    onChange={this.handleChange}
+                                    />                    
+                                    <Button id="ingredient1" basic color="grey" onClick={this.addIngredient} >+</Button>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input
+                                    type="text"
+                                    id="ingredient2"
+                                    placeholder="Ingredient"
+                                    value={this.state.ingredient2} 
+                                    onChange={this.handleChange}
+                                    />
+                                    <Button id="ingredient2" basic color="grey" onClick={this.addIngredient} >+</Button>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input                       
+                                    type="text"
+                                    id="ingredient3"
+                                    placeholder="Ingredient"
+                                    value={this.state.ingredient3} 
+                                    onChange={this.handleChange}
+                                    />
+                                    <Button id="ingredient3" basic color="grey" onClick={this.addIngredient} >+</Button>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input
+                                    type="text"
+                                    id="ingredient4"
+                                    placeholder="Ingredient"
+                                    value={this.state.ingredient4} 
+                                    onChange={this.handleChange}
+                                    />
+                                    <Button id="ingredient4" basic color="grey" onClick={this.addIngredient} >+</Button>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Input
+                                    type="text"
+                                    id="ingredient5"
+                                    placeholder="Ingredient"
+                                    value={this.state.ingredient5} 
+                                    onChange={this.handleChange}
+                                    />
+                                    <Button id="ingredient5" basic color="grey"  onClick={this.addIngredient} >+</Button>
+                                </Form.Group>
+                            </Item> 
+                            <Form.Button circular  style={{marginTop:"5%",  fontWeight:"normal"}}size="big" className="formButtons" content='Save Recipe'/>        
+                            <br></br>
                         </Form> 
                     </Segment>           
                 </Grid.Column>

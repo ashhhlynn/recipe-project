@@ -36,9 +36,9 @@ class RecipeInfo extends Component {
                 </Grid>
                 <Segment style={{marginLeft:"-2%", marginRight:"-2%"}} placeholder>
                     <h2>Reviews</h2>
-                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.id}/>
+                    <RecipeReviews recipe={this.props.recipe} key={this.props.recipe.average}/>
                     <br></br>
-                    <CreateReview recipe={this.props.recipe} key={this.props.recipe.id}/>
+                    <CreateReview recipe={this.props.recipe} key={this.props.recipe.name}/>
                     <br></br>
                 </Segment>
             </center>  
