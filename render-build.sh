@@ -8,4 +8,7 @@ npm install --prefix client && npm run build --prefix client
 cp -a client/build/. public/
 
 bundle install
-bundle exec rake db:migrate
+bundle exec rails assets:precompile
+bundle exec rails assets:clean
+bundle exec rails db:migrate
+
