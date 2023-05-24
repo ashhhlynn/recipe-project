@@ -5,8 +5,6 @@ import axios from "axios";
 import RecipeInfo from './RecipeInfo'
 import { addToFavorites } from "./actions/rootActions"
 import { removeFavorite } from "./actions/rootActions"
-import AddButton from './AddButton'
-
 
 class Recipe extends Component {        
 
