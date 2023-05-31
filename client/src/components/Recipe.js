@@ -37,6 +37,16 @@ class Recipe extends Component {
         }
     }
 
+    deleteRecipe = () => {
+        let r = this.props.recipe.id
+        axios
+        .delete("/api/v1/recipes/" + r)
+        .then((response) => {
+            console.log(response.data)
+        })
+        .catch((error) => console.log(error));
+    }
+
     removeFavorite = () => {
         if (this.props.currentUser.length !== 0) {
             let fave = this.props.favorites.find(r => parseInt(r.recipe_id) === this.props.recipe.id)
@@ -58,10 +68,12 @@ class Recipe extends Component {
         return (
             <>
             <Card>
+
                 <Image style={{cursor:"pointer", width:"270px", height:"260px"}} src= {i.image_url} onClick={this.handleOpen}/>
                 <h3 style={{fontFamily:"Segoe Print", fontWeight:"normal", textAlign:"center", fontSize:"19px", marginTop: "2%", marginBottom:"2%"}}>
                     {i.name}                     
                 </h3>
+                <Button onClick={this.deleteRecipe}>Del</Button>
                 {this.props.favorites.find(f=> parseInt(f.recipe_id) === i.id) ?
                     <Button floated="right" onClick={this.removeFavorite} style={{marginTop:"-14%", background:"none"}} >
                         <Icon style={{color:"grey", marginLeft:"95%"}}floated="right"  size="large"  name="close"/>
